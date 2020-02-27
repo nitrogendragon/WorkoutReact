@@ -1,9 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
-export default function index(props) {
-    return (
-        <App/>
-    )
-}
+import App from './components/App'
+
 ReactDOM.render(<App />, document.getElementById('root'))
