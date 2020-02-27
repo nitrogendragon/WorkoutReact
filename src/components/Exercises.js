@@ -2,9 +2,7 @@ import React, {useState,useEffect} from 'react'
 import Exercise from './Exercise'
 import '../styles/exercises.css'
 export default function Exercises(props) {
-    const [exercises, setExercises] = useState([])
-    const [makeExercises, setMakeExercises] = useState(true)
-    const exampleExercises = ["pushup", "situp", "planche", "crabwalk"]
+
 
 
     function createExerciseList(exercises){
@@ -14,23 +12,23 @@ export default function Exercises(props) {
             tempArray[i] = <Exercise highlighted = {false} exerciseName = {exercises[i]}/>
             i++
         }
-        setExercises(tempArray)
+        props.setExercises(tempArray)
     }
 
     useEffect(()=>{
-        createExerciseList(exampleExercises)
+        createExerciseList(props.exerciseList)
     },[props.exercisesCompleted])
 
 
-    if(makeExercises){
-        setMakeExercises(false)
-        createExerciseList(exampleExercises)
+    if(props.makeExercises){
+        props.setMakeExercises(false)
+        createExerciseList(props.exerciseList)
     }
 
 
     return (
         <div className ="exercises-container">
-            {exercises}
+            {props.exercises}
         </div>
     )
 }

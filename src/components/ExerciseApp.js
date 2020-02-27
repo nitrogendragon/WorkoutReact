@@ -1,16 +1,24 @@
 import React, {useState,useEffect} from 'react'
 import Exercises from './Exercises'
 import TimerComponent from './TimerComponent'
+import CreateWorkout from './CreateWorkout'
 import '../styles/exercises.css'
 export default function App(props) {
     const[timeRemaining, setTimeRemaining] = useState()
     const[isActiveTimer, setIsActiveTimer] = useState(true)
     const[timerRunning, setTimerRunning] = useState(false)
-    const activePeriods = [2,2,2,2]
-    const restPeriods = [1,1,1,1]
+    const [activePeriods,setActivePeriods] = useState([2,2,2,2])
+    const [restPeriods,setRestPeriods] = useState([1,1,1,1])
+    const [exerciseList, setExerciseList] = useState(["pushup", "situp", "planche", "crabwalk"])
     const[totalSets, setTotalSets] = useState(3)
     const[currentSet, setCurrentSet] = useState(1)
     const[currentExerciseIndex, setCurrentExerciseIndex] = useState(0)
+    const[showCreateWorkout,setShowCreateWorkout] = useState(false)
+    const [exercises, setExercises] = useState([])
+    const [makeExercises, setMakeExercises] = useState(true)
+    
+
+
     function toggleActive(){
         setIsActiveTimer(!isActiveTimer)
     }
@@ -18,6 +26,15 @@ export default function App(props) {
     function startRoutine(){
         setTimeRemaining(activePeriods[currentExerciseIndex])
         setTimerRunning(true)
+    }
+
+    function createWorkout(){
+        setShowCreateWorkout(true)
+    }
+
+
+    function goToWorkout(){
+        setShowCreateWorkout(false)
     }
 
     function resetTimer(){
@@ -72,12 +89,22 @@ export default function App(props) {
 
 
 
-
+    if(!showCreateWorkout){
     return (
         <>
         <button onClick={startRoutine}>Start</button>
+        <button onClick={createWorkout}>Create Workout </button>
         <div className = "exercise-app-container">
-            <Exercises exercisesCompleted = {currentExerciseIndex}/>
+            <Exercises 
+                exercisesCompleted = {currentExerciseIndex}
+                exercises = {exercises}
+                exerciseList = {exerciseList}
+                makeExercises = {makeExercises}
+                setExerciseList = {setExerciseList}
+                setMakeExercises = {setMakeExercises}
+                setExercises = {setExercises}
+            
+            />
             <p className="directions">{timerRunning ? isActiveTimer ? "PUSH IT!!!" : "REST" : "Get Ready"}</p>
             <TimerComponent timeRemaining = {timeRemaining} timerRunning = {timerRunning}/>
             <div>
@@ -88,4 +115,19 @@ export default function App(props) {
         </div>
         </>
     )
+    }
+    else
+    {
+        return (
+            <>
+            <button onClick={goToWorkout}>Workout </button>
+            <CreateWorkout
+                setExerciseList = {setExerciseList}
+                setRestPeriods = {setRestPeriods}
+                setActivePeriods = {setActivePeriods}
+                setTotalSets = {setTotalSets}
+            />
+            </>
+        )
+    }
 }
