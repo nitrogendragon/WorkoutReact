@@ -8,14 +8,18 @@ export default function Exercises(props) {
 
 
     function createExerciseList(exercises){
-        let i  = 0
+        let i  = props.exercisesCompleted
         let tempArray = []
         while(i< exercises.length ){
-            tempArray[i] = <Exercise exerciseName = {exercises[i]}/>
+            tempArray[i] = <Exercise highlighted = {false} exerciseName = {exercises[i]}/>
             i++
         }
         setExercises(tempArray)
     }
+
+    useEffect(()=>{
+        createExerciseList(exampleExercises)
+    },[props.exercisesCompleted])
 
 
     if(makeExercises){
@@ -23,10 +27,6 @@ export default function Exercises(props) {
         createExerciseList(exampleExercises)
     }
 
-
-    useEffect(()=>{
-        console.log(exercises)
-    },[exercises])
 
     return (
         <div className ="exercises-container">

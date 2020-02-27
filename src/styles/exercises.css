@@ -5,9 +5,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: font-size 1000ms ease-in-out;
-    
+    transition: font-weight font-size 1000ms ease-in-out;
+}
 
+.exercise-card-highlighted{
+    font-weight:bolder;
+    font-size:50px;
 }
 
 .exercise-app-container{
@@ -15,6 +18,8 @@
     grid-template-columns: repeat(3, 24%) auto;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    min-height: 1000px;
     border: 2px solid lightblue;
 }
 
@@ -24,9 +29,15 @@
     width:30%;
     align-items: center;
     justify-content: center;
+    
 }
 
 .exercise-card:first-child{
-    font-weight:bolder;
     font-size:50px;
+    font-weight:bolder;
 }
+
+.directions{
+    font-size: 60px;
+}
+
