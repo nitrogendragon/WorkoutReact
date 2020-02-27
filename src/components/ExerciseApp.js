@@ -88,6 +88,8 @@ export default function App(props) {
     },[timerRunning, timeRemaining])
 
 
+    
+
 
     if(!showCreateWorkout){
     return (
@@ -110,7 +112,7 @@ export default function App(props) {
             <div>
                 <p>The current Exercise number is: {currentExerciseIndex}</p>
                 <p>Set {currentSet}</p>
-                <p>Sets Remaining {totalSets+1 - currentSet}</p>
+                <p>Sets Remaining {totalSets - currentSet}</p>
             </div>
         </div>
         </>
@@ -126,6 +128,10 @@ export default function App(props) {
                 setRestPeriods = {setRestPeriods}
                 setActivePeriods = {setActivePeriods}
                 setTotalSets = {setTotalSets}
+                exerciseList = {exerciseList}
+                restPeriods = {restPeriods}
+                activePeriods = {activePeriods}
+                totalSets = {totalSets}
             />
             </>
         )
