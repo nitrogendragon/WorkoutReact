@@ -1,4 +1,5 @@
 import React, {useState,useEffect} from 'react'
+import WorkoutPreview from './WorkoutPreview'
 import '../styles/workoutCreation.css'
 // setExerciseList = {setExerciseList}
 // setRestPeriods = {setRestPeriods}
@@ -11,8 +12,10 @@ import '../styles/workoutCreation.css'
 export default function CreateWorkout(props) {
     const [restPeriodTemp,setRestPeriodTemp] = useState()
     const [activePeriodTemp,setActivePeriodTemp] = useState()
-    const [exerciseTemp,setExerciseTemp] = useState()
-    
+    const [exerciseTemp,setExerciseTemp] = useState("")
+    const [exercisesPreview, setExercisesPreview] = useState([])
+    const [restPeriodsPreview, setRestPeriodsPreview] = useState([])
+    const [activePeriodsPreview, setActivePeriodsPreview] = useState([])
     
     const workoutContainer = {
         display: "flex",
@@ -21,12 +24,8 @@ export default function CreateWorkout(props) {
         textAlign: "center",
         justifyContent: "center",
         alignItems: "center",
-        
-       
     }
-    const workoutPreviewContainer = {
 
-    }
 
     const workoutButtonsContainer = {
         display: "flex",
@@ -49,10 +48,6 @@ export default function CreateWorkout(props) {
         }
     }
     function handleUpdateWorkout(value){
-        console.log(value)
-        console.log("exerciseTemp is: " + exerciseTemp)
-        console.log("activePeriodTemp is: " + activePeriodTemp)
-        console.log("restPeriodTemp is: " + restPeriodTemp)
         if(value==="add"){
             if(restPeriodTemp !== 0 && activePeriodTemp !== 0 && exerciseTemp !== ""
                 && exerciseTemp && restPeriodTemp && activePeriodTemp 
@@ -62,11 +57,6 @@ export default function CreateWorkout(props) {
                 props.setExerciseList((prev)=> [...prev, exerciseTemp])
                 setRestPeriodTemp(1)
                 setActivePeriodTemp(1)
-                setExerciseTemp("")
-                console.log("We succcesfully added an exercise")
-            }
-            else{
-                console.log("We did not clear the requirements to add")
             }
         }
         else if(value==="remove"){
@@ -75,23 +65,25 @@ export default function CreateWorkout(props) {
                 let tempArray = props.exerciseList
                 tempArray.pop()
                 props.setExerciseList(tempArray)
-
-            console.log("we tried removing")
             }
-            else{
-                console.log("There isn't anything left to remove")
-            }
+            
         }
         else if(value==="clear"){
-            console.log("we tried clearing")
             props.setExerciseList([])
             props.setRestPeriods([])
             props.setActivePeriods([])
         }
-        else{
-            console.log("We did nothing")
-        }
+
     }
+
+
+    useEffect(()=>{
+        setExercisesPreview(props.exerciseList.map((val)=> val + " "))
+        setRestPeriodsPreview(props.restPeriods.map((val)=> val + " "))
+        setActivePeriodsPreview(props.activePeriods.map((val)=> val + " "))
+    },[props.exerciseList])
+
+
     return (
         <>
             <div style={workoutContainer}>
@@ -111,9 +103,7 @@ export default function CreateWorkout(props) {
                     type = "text" 
                     className="rounded-big-input"
                     value = {exerciseTemp}
-                    onChange={e => e.target.value !== "" ? 
-                        setExerciseTemp(e.target.value) : 
-                        setExerciseTemp("")  
+                    onChange={e => setExerciseTemp(e.target.value)
                     }
                     onKeyDown={e => handleKeyDown(e,"add")}
                 />
@@ -140,16 +130,17 @@ export default function CreateWorkout(props) {
                     }
                     onKeyDown={e => handleKeyDown(e,"add")}
                 />
-            </div>
-            <div style={workoutButtonsContainer}>
-                <button onClick={e => handleUpdateWorkout(e.target.value)} value = "add">Add Exercise</button>
-                <button onClick={e => handleUpdateWorkout(e.target.value)} value= "remove">Remove Last</button>
-                <button onClick={e => handleUpdateWorkout(e.target.value)} value = "clear">Clear All</button>
-            </div>
-            <div style={workoutPreviewContainer}>
-                <p>{props.exerciseList}</p>
-                <p>{props.activePeriods}</p>
-                <p>{props.restPeriods}</p>
+            
+                <div style={workoutButtonsContainer}>
+                    <button onClick={e => handleUpdateWorkout(e.target.value)} value = "add">Add Exercise</button>
+                    <button onClick={e => handleUpdateWorkout(e.target.value)} value= "remove">Remove Last</button>
+                    <button onClick={e => handleUpdateWorkout(e.target.value)} value = "clear">Clear All</button>
+                </div>     
+                <WorkoutPreview 
+                    exercisesPreview = {exercisesPreview}
+                    restPeriodsPreview = {restPeriodsPreview}
+                    activePeriodsPreview = {activePeriodsPreview}
+                />
             </div>
         </>
     )

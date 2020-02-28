@@ -1,0 +1,12 @@
+.grid-3{
+    display: grid;
+    grid-template-columns: repeat(3, 250px);
+    justify-content: center;
+}
+.grid-item{
+    border: 2px solid black;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: 30px;
+}
