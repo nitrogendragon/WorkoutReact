@@ -71,3 +71,8 @@
     z-index: -1;
     background-color: rgba(173, 238, 211, 0.5);
 }
+
+.p-bold{
+    font-size: 24px;
+    font-weight:bold;
+}

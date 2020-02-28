@@ -94,7 +94,14 @@ export default function App(props) {
 
 
     
-
+    useEffect(()=>{
+        if(showCreateWorkout){
+            setTimerRunning(false)
+            setCurrentSet(1)
+            setTimeRemaining(activePeriods[0])//starting over so 0 index works
+            setCurrentExerciseIndex(0)
+        }
+    },[showCreateWorkout])
 
     if(!showCreateWorkout){
     return (
@@ -117,9 +124,9 @@ export default function App(props) {
             <p className="directions">{timerRunning ? isActiveTimer ? "PUSH IT!!!" : "REST" : "Get Ready"}</p>
             <TimerComponent timeRemaining = {timeRemaining} timerRunning = {timerRunning}/>
             <div>
-                <p>The current Exercise number is: {currentExerciseIndex}</p>
-                <p>Set {currentSet}</p>
-                <p>Sets Remaining {totalSets - currentSet}</p>
+                <p className = "p-bold">The current Exercise number is: {currentExerciseIndex}</p>
+                <p className = "p-bold">Set {currentSet}</p>
+                <p className = "p-bold">Sets Remaining {totalSets - currentSet}</p>
             </div>
         </div>
         </>
