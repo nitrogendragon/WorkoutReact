@@ -137,7 +137,13 @@ export default function App(props) {
     {
         return (
             <div className="workout-creation-body">
-                <Speech text="Welcome to react speech" />
+                <Speech 
+                text="Come on Guys Push it!!"
+                pitch="1.0"
+                rate="1.2"
+                volume="1.0"
+                lang="jp-US"
+                voice="Google UK English Female"/>
             <div className="center-button">
                 <button onClick={goToWorkout} className="to-workout-btn">Go to Workout </button>
             </div>
