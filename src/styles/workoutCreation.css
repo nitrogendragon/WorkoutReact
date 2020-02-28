@@ -1,0 +1,10 @@
+p{
+    display:flex;
+    justify-content: center;
+
+}
+
+input{
+    width:40%;
+    text-align: center;
+}
