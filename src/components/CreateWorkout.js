@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react'
-import WorkoutPreview from './WorkoutPreview'
 import '../styles/workoutCreation.css'
+import '../styles/workoutPreview.css'
 // setExerciseList = {setExerciseList}
 // setRestPeriods = {setRestPeriods}
 // setActivePeriods = {setActivePeriods}
@@ -13,9 +13,32 @@ export default function CreateWorkout(props) {
     const [restPeriodTemp,setRestPeriodTemp] = useState()
     const [activePeriodTemp,setActivePeriodTemp] = useState()
     const [exerciseTemp,setExerciseTemp] = useState("")
-    const [exercisesPreview, setExercisesPreview] = useState([])
-    const [restPeriodsPreview, setRestPeriodsPreview] = useState([])
-    const [activePeriodsPreview, setActivePeriodsPreview] = useState([])
+    const[preview, setPreview] = useState ([])
+    
+    function thePreview() {
+        let arr = []
+        for(let i =  0; i < props.exerciseList.length; i ++){
+            arr[i] = 
+            <>
+                <div className = "grid-3" key = {i}>
+                    <p className="grid-item">Exercise: {props.exerciseList[i]}</p>
+                    <p className="grid-item">Active Time: {props.activePeriods[i]} seconds</p>
+                    <p className="grid-item">Rest Time: {props.restPeriods[i]} seconds</p>
+                </div>
+            </>
+        }
+        setPreview(arr) 
+        console.log(arr)
+    }
+
+
+    useEffect(()=>{
+        console.log("we should be updating our thingy")
+        setTimeout(()=>{
+
+            handleUpdateWorkout("")
+        },50)
+    },[props.exerciseList])
     
     const workoutContainer = {
         display: "flex",
@@ -65,6 +88,13 @@ export default function CreateWorkout(props) {
                 let tempArray = props.exerciseList
                 tempArray.pop()
                 props.setExerciseList(tempArray)
+                tempArray = props.activePeriods
+                tempArray.pop()
+                props.setActivePeriods(tempArray)
+                tempArray = props.restPeriods
+                tempArray.pop()
+                props.setRestPeriods(tempArray)
+
             }
             
         }
@@ -73,15 +103,12 @@ export default function CreateWorkout(props) {
             props.setRestPeriods([])
             props.setActivePeriods([])
         }
+        setTimeout(()=>{
+
+            thePreview()
+        },50)
 
     }
-
-
-    useEffect(()=>{
-        setExercisesPreview(props.exerciseList.map((val)=> val + " "))
-        setRestPeriodsPreview(props.restPeriods.map((val)=> val + " "))
-        setActivePeriodsPreview(props.activePeriods.map((val)=> val + " "))
-    },[props.exerciseList])
 
 
     return (
@@ -136,11 +163,7 @@ export default function CreateWorkout(props) {
                     <button onClick={e => handleUpdateWorkout(e.target.value)} value= "remove">Remove Last</button>
                     <button onClick={e => handleUpdateWorkout(e.target.value)} value = "clear">Clear All</button>
                 </div>     
-                <WorkoutPreview 
-                    exercisesPreview = {exercisesPreview}
-                    restPeriodsPreview = {restPeriodsPreview}
-                    activePeriodsPreview = {activePeriodsPreview}
-                />
+                <>{preview}</>
             </div>
         </>
     )

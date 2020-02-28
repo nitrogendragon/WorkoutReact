@@ -24,7 +24,7 @@ export default function App(props) {
     }
 
     function startRoutine(){
-        if(exerciseList.length > 1){
+        if(exerciseList.length > 0){
         setTimeRemaining(activePeriods[currentExerciseIndex])
         setTimerRunning(true)
         }
