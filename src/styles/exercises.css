@@ -14,13 +14,20 @@
 }
 
 .exercise-app-container{
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    top:0;
+    bottom:0;
+    margin:0;
     display: grid;
     grid-template-columns: repeat(3, 24%) auto;
     justify-content: center;
     align-items: center;
     text-align: center;
     min-height: 1000px;
-    border: 2px solid lightblue;
+    background-color: rgba(65, 184, 87, .3);
+    border-radius: 15px;
 }
 
 .exercises-container{
@@ -41,3 +48,26 @@
     font-size: 60px;
 }
 
+
+.center-button{
+    display:flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.to-workout-btn{
+    width: 40%;
+    margin-top:20px;
+}
+
+.workout-creation-body{
+    position:absolute;
+    top:0;
+    left:0;
+    margin:0px;
+    width:100%;
+    height:100%;
+    z-index: -1;
+    background-color: rgba(173, 238, 211, 0.5);
+}

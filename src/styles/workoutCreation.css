@@ -1,6 +1,8 @@
 p{
     display:flex;
+    font-weight:bold;
     justify-content: center;
+    
 
 }
 
@@ -8,3 +10,36 @@ input{
     width:40%;
     text-align: center;
 }
+
+button{
+    border: none;
+    border-radius: 5px;
+    margin: 15px;
+    min-height: 80px;
+    min-width: 200px;
+    transition: background-color 400ms, font-size 400ms ease-in-out;
+    box-shadow: 0px 0px 0px 2px black;
+    font-weight:bold;
+    font-size: 18px;
+    
+}
+
+button:hover{
+    background-color: rgba(25,25,25,.5);
+    box-shadow: 0px 0px 0px 4px black;
+    color:white;
+    font-size: 22px;
+}
+
+.bigger-text{
+    font-size: 18px;
+    
+}
+
+.rounded-big-input{
+    border-radius: 5px;
+    min-height: 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+

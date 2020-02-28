@@ -13,7 +13,7 @@ export default function App(props) {
     const[totalSets, setTotalSets] = useState(3)
     const[currentSet, setCurrentSet] = useState(1)
     const[currentExerciseIndex, setCurrentExerciseIndex] = useState(0)
-    const[showCreateWorkout,setShowCreateWorkout] = useState(false)
+    const[showCreateWorkout,setShowCreateWorkout] = useState(true)
     const [exercises, setExercises] = useState([])
     const [makeExercises, setMakeExercises] = useState(true)
     
@@ -24,8 +24,13 @@ export default function App(props) {
     }
 
     function startRoutine(){
+        if(exerciseList.length > 1){
         setTimeRemaining(activePeriods[currentExerciseIndex])
         setTimerRunning(true)
+        }
+        else{
+            alert("You don't have a routine made. Please go to the Workout Creation Station and make one first.")
+        }
     }
 
     function createWorkout(){
@@ -94,8 +99,10 @@ export default function App(props) {
     if(!showCreateWorkout){
     return (
         <>
-        <button onClick={startRoutine}>Start</button>
-        <button onClick={createWorkout}>Create Workout </button>
+        <div className="center-button">
+            <button onClick={startRoutine}>Start</button>
+            <button onClick={createWorkout}>Create Workout </button>
+        </div>
         <div className = "exercise-app-container">
             <Exercises 
                 exercisesCompleted = {currentExerciseIndex}
@@ -121,8 +128,10 @@ export default function App(props) {
     else
     {
         return (
-            <>
-            <button onClick={goToWorkout}>Workout </button>
+            <div className="workout-creation-body">
+            <div className="center-button">
+                <button onClick={goToWorkout} className="to-workout-btn">Go to Workout </button>
+            </div>
             <CreateWorkout
                 setExerciseList = {setExerciseList}
                 setRestPeriods = {setRestPeriods}
@@ -133,7 +142,7 @@ export default function App(props) {
                 activePeriods = {activePeriods}
                 totalSets = {totalSets}
             />
-            </>
+            </div>
         )
     }
 }
