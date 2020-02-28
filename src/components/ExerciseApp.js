@@ -2,6 +2,7 @@ import React, {useState,useEffect} from 'react'
 import Exercises from './Exercises'
 import TimerComponent from './TimerComponent'
 import CreateWorkout from './CreateWorkout'
+import Speech from 'react-speech';
 import '../styles/exercises.css'
 export default function App(props) {
     const[timeRemaining, setTimeRemaining] = useState()
@@ -136,6 +137,7 @@ export default function App(props) {
     {
         return (
             <div className="workout-creation-body">
+                <Speech text="Welcome to react speech" />
             <div className="center-button">
                 <button onClick={goToWorkout} className="to-workout-btn">Go to Workout </button>
             </div>
