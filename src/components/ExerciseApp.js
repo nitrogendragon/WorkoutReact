@@ -57,6 +57,7 @@ export default function App(props) {
                 activePeriods[currentExerciseIndex].toString() + " seconds!")
             CoachCancelPrevAndSpeak()
             setTimeRemaining(activePeriods[currentExerciseIndex])
+            setStartedRoutine(true)
             setTimerRunning(true)
         }
         else{
@@ -80,13 +81,13 @@ export default function App(props) {
             setTimeRemaining(restPeriods[currentExerciseIndex])//rest Time
             setCurrentExerciseIndex(prev => prev+1)
             updateCoach(0,0,0,"And Rest! Good Work! We have " + 
-                restPeriods[currentExerciseIndex].toString() + " seconds to rest")
+                restPeriods[currentExerciseIndex].toString() + " seconds to rest.")
             CoachCancelPrevAndSpeak()
         }
         else if(!isActiveTimer && currentExerciseIndex < activePeriods.length-1){
             console.log("going to active")
             setTimeRemaining(activePeriods[currentExerciseIndex])//exercise Time
-            updateCoach(0,0,0,"Here we go!" + exerciseList[currentExerciseIndex].toString() + " for" +
+            updateCoach(0,0,0,"Heeerre we go!" + exerciseList[currentExerciseIndex].toString() + " for" +
                 activePeriods[currentExerciseIndex].toString() + " seconds!")
             CoachCancelPrevAndSpeak()
         }
@@ -95,7 +96,7 @@ export default function App(props) {
             if(currentSet < totalSets){
                 console.log("new set")
                 updateCoach(0,0,0,"And Rest! Great Job! you got through set " + currentSet.toString() + " We've got " +
-                restPeriods[currentExerciseIndex-1].toString() + " seconds to rest" +
+                restPeriods[currentExerciseIndex-1].toString() + " seconds to rest." +
                 " Make sure you are keeping hydrated and keep moving to keep your body loose!"
                 )
             CoachCancelPrevAndSpeak()
@@ -110,6 +111,8 @@ export default function App(props) {
                 setCurrentSet(1)
                 setTimeRemaining(activePeriods[0])//starting over so 0 index works
                 setCurrentExerciseIndex(0)
+                setStartedRoutine(false)
+                updateCoach(0,0,0,"And Rest! Great Job! you got through your workout! I'm really proud of you! Make sure to get a drink and then start cooling down. Great work again and I can't wait for our next workout.")
             }
         }
     }
@@ -118,6 +121,7 @@ export default function App(props) {
     useEffect(() => {
         
         let interval = null
+        
         if(timerRunning){
             interval = setInterval( () => {
                 setTimeRemaining(timeLeft => Math.round((timeLeft -.1) * 100) / 100);
@@ -147,6 +151,10 @@ export default function App(props) {
             setCurrentSet(1)
             setTimeRemaining(activePeriods[0])//starting over so 0 index works
             setCurrentExerciseIndex(0)
+        }
+        else if(!showCreateWorkout && !startedRoutine){
+            updateCoach(0,0,0,"Get ready! We're about to get started. Make sure you are properly hydrated and warmed up!")
+            CoachCancelPrevAndSpeak()
         }
     },[showCreateWorkout])
 

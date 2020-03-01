@@ -33,9 +33,9 @@
 .exercises-container{
     display: flex;
     flex-direction: column;
-    width:30%;
     align-items: center;
     justify-content: center;
+    text-align: center;
     
 }
 
