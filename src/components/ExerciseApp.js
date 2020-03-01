@@ -85,7 +85,7 @@ export default function App(props) {
                 restPeriods[currentExerciseIndex].toString() + " seconds to rest.")
             CoachCancelPrevAndSpeak()
         }
-        else if(!isActiveTimer && currentExerciseIndex < activePeriods.length-1){
+        else if(!isActiveTimer && currentExerciseIndex < activePeriods.length){
             console.log("going to active")
             setTimeRemaining(activePeriods[currentExerciseIndex])//exercise Time
             updateCoach(0,0,0,"Heeerre we go!" + exerciseList[currentExerciseIndex].toString() + " for" +
@@ -100,7 +100,7 @@ export default function App(props) {
                 restPeriods[currentExerciseIndex-1].toString() + " seconds to rest." +
                 " Make sure you are keeping hydrated and keep moving to keep your body loose!"
                 )
-            CoachCancelPrevAndSpeak()
+                CoachCancelPrevAndSpeak()
                 setCurrentSet(prev=> prev + 1)
                 setTimeRemaining(activePeriods[0])//starting over so 0 index works
                 setCurrentExerciseIndex(0)
@@ -114,6 +114,7 @@ export default function App(props) {
                 setCurrentExerciseIndex(0)
                 setStartedRoutine(false)
                 updateCoach(0,0,0,"And Rest! Great Job! you got through your workout! I'm really proud of you! Make sure to get a drink and then start cooling down. Great work again and I can't wait for our next workout.")
+                CoachCancelPrevAndSpeak()
             }
         }
     }
