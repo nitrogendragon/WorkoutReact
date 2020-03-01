@@ -8,8 +8,8 @@ export default function App(props) {
     const[timeRemaining, setTimeRemaining] = useState()
     const[isActiveTimer, setIsActiveTimer] = useState(true)
     const[timerRunning, setTimerRunning] = useState(false)
-    const [activePeriods,setActivePeriods] = useState([2,2,2,2])
-    const [restPeriods,setRestPeriods] = useState([1,1,1,1])
+    const [activePeriods,setActivePeriods] = useState([5,5,5,5])
+    const [restPeriods,setRestPeriods] = useState([5,5,5,5])
     const [exerciseList, setExerciseList] = useState(["pushup", "situp", "planche", "crabwalk"])
     const[totalSets, setTotalSets] = useState(3)
     const[currentSet, setCurrentSet] = useState(1)
@@ -17,6 +17,7 @@ export default function App(props) {
     const[showCreateWorkout,setShowCreateWorkout] = useState(true)
     const [exercises, setExercises] = useState([])
     const [makeExercises, setMakeExercises] = useState(true)
+    const [startedRoutine, setStartedRoutine] = useState(false)
     const myCoach = new SpeechSynthesisUtterance()
     myCoach.pitch = 1
     myCoach.volume = .4
@@ -52,8 +53,11 @@ export default function App(props) {
 
     function startRoutine(){
         if(exerciseList.length > 0){
-        setTimeRemaining(activePeriods[currentExerciseIndex])
-        setTimerRunning(true)
+            updateCoach(0,0,0,"Here we go!" + exerciseList[currentExerciseIndex].toString() + " for" +
+                activePeriods[currentExerciseIndex].toString() + " seconds!")
+            CoachCancelPrevAndSpeak()
+            setTimeRemaining(activePeriods[currentExerciseIndex])
+            setTimerRunning(true)
         }
         else{
             alert("You don't have a routine made. Please go to the Workout Creation Station and make one first.")
@@ -71,22 +75,30 @@ export default function App(props) {
 
     function resetTimer(){
         //checking for what we are coming from and making sure we have more periods
-        if(isActiveTimer && currentExerciseIndex < activePeriods.length){
+        if(isActiveTimer && currentExerciseIndex < activePeriods.length-1){
             console.log("going to rest")
             setTimeRemaining(restPeriods[currentExerciseIndex])//rest Time
             setCurrentExerciseIndex(prev => prev+1)
             updateCoach(0,0,0,"And Rest! Good Work! We have " + 
-                restPeriods[currentExerciseIndex].toString() + "seconds to rest")
+                restPeriods[currentExerciseIndex].toString() + " seconds to rest")
             CoachCancelPrevAndSpeak()
         }
-        else if(!isActiveTimer && currentExerciseIndex < activePeriods.length){
+        else if(!isActiveTimer && currentExerciseIndex < activePeriods.length-1){
             console.log("going to active")
             setTimeRemaining(activePeriods[currentExerciseIndex])//exercise Time
+            updateCoach(0,0,0,"Here we go!" + exerciseList[currentExerciseIndex].toString() + " for" +
+                activePeriods[currentExerciseIndex].toString() + " seconds!")
+            CoachCancelPrevAndSpeak()
         }
         else{
             //we are done with the set and maybe the routine 
             if(currentSet < totalSets){
                 console.log("new set")
+                updateCoach(0,0,0,"And Rest! Great Job! you got through set " + currentSet.toString() + " We've got " +
+                restPeriods[currentExerciseIndex-1].toString() + " seconds to rest" +
+                " Make sure you are keeping hydrated and keep moving to keep your body loose!"
+                )
+            CoachCancelPrevAndSpeak()
                 setCurrentSet(prev=> prev + 1)
                 setTimeRemaining(activePeriods[0])//starting over so 0 index works
                 setCurrentExerciseIndex(0)
@@ -129,7 +141,7 @@ export default function App(props) {
             speechSynthesis.cancel()
             myCoach.text="Welcome Corey, I'm excited to get started!"
             CoachSpeak()
-            updateCoach(1,.4,1.1,"What would you like to do today!")
+            updateCoach(1,.4,1.1," What would you like to do today!")
             CoachSpeak()
             setTimerRunning(false)
             setCurrentSet(1)

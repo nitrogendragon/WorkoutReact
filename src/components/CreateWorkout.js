@@ -78,8 +78,8 @@ export default function CreateWorkout(props) {
                 props.setRestPeriods((prev)=> [...prev, restPeriodTemp])
                 props.setActivePeriods((prev)=> [...prev, activePeriodTemp])
                 props.setExerciseList((prev)=> [...prev, exerciseTemp])
-                setRestPeriodTemp(1)
-                setActivePeriodTemp(1)
+                setRestPeriodTemp(10)
+                setActivePeriodTemp(10)
             }
         }
         else if(value==="remove"){
