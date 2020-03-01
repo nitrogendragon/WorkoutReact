@@ -82,7 +82,9 @@ export default function App(props) {
             setTimeRemaining(restPeriods[currentExerciseIndex])//rest Time
             setCurrentExerciseIndex(prev => prev+1)
             updateCoach(0,0,0,"And Rest! Good Work! We have " + 
-                restPeriods[currentExerciseIndex].toString() + " seconds to rest.")
+                restPeriods[currentExerciseIndex].toString() + " seconds to rest." + " The next exercise is " + 
+                (exerciseList[currentExerciseIndex+1] ? exerciseList[currentExerciseIndex+1].toString() :
+                exerciseList[0].toString()))
             CoachCancelPrevAndSpeak()
         }
         else if(!isActiveTimer && currentExerciseIndex < activePeriods.length){
