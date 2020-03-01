@@ -14,10 +14,11 @@ export default function App(props) {
     const[totalSets, setTotalSets] = useState(3)
     const[currentSet, setCurrentSet] = useState(1)
     const[currentExerciseIndex, setCurrentExerciseIndex] = useState(0)
-    const[showCreateWorkout,setShowCreateWorkout] = useState(true)
+    const[showCreateWorkout,setShowCreateWorkout] = useState(false)
     const [exercises, setExercises] = useState([])
     const [makeExercises, setMakeExercises] = useState(true)
     const [startedRoutine, setStartedRoutine] = useState(false)
+    const [firstLoad, setFirstLoad] = useState(true)
     const myCoach = new SpeechSynthesisUtterance()
     myCoach.pitch = 1
     myCoach.volume = .4
@@ -118,6 +119,12 @@ export default function App(props) {
     }
 
 
+    function handleEnterApp(){
+        setFirstLoad(false)
+        setShowCreateWorkout(true)
+    }
+
+
     useEffect(() => {
         
         let interval = null
@@ -152,13 +159,24 @@ export default function App(props) {
             setTimeRemaining(activePeriods[0])//starting over so 0 index works
             setCurrentExerciseIndex(0)
         }
-        else if(!showCreateWorkout && !startedRoutine){
+        else if(!showCreateWorkout && !startedRoutine && !firstLoad){
             updateCoach(0,0,0,"Get ready! We're about to get started. Make sure you are properly hydrated and warmed up!")
             CoachCancelPrevAndSpeak()
         }
     },[showCreateWorkout])
 
-    if(!showCreateWorkout){
+
+    if(firstLoad){
+        return(
+            <>
+                <button onClick={handleEnterApp} className="home-page">Start App</button>
+            </>
+        )
+        
+    }
+
+
+    else if(!showCreateWorkout){
     return (
         <>
         <div className="center-button">
