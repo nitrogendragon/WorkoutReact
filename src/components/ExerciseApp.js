@@ -22,7 +22,7 @@ export default function App(props) {
     myCoach.pitch = 1
     myCoach.volume = .4
     myCoach.rate = 1.1
-    myCoach.text = "Welcome! I'm excited to get started!"
+    myCoach.text="Welcome Corey, I'm excited to get started!"
     myCoach.lang = 'en-GB'
 
     function toggleActive(){
