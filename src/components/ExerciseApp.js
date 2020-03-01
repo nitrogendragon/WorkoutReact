@@ -37,6 +37,19 @@ export default function App(props) {
         if(text !== "" && text !== undefined){myCoach.text = text} 
     }
 
+    //stop previous if necessary and then speak something new
+    function CoachCancelPrevAndSpeak(){
+        speechSynthesis.cancel()
+        speechSynthesis.speak(myCoach)
+    }
+    
+    
+    //speak after all other speak calls have ran
+    function CoachSpeak(){
+        speechSynthesis.speak(myCoach)
+    }
+
+
     function startRoutine(){
         if(exerciseList.length > 0){
         setTimeRemaining(activePeriods[currentExerciseIndex])
@@ -64,7 +77,7 @@ export default function App(props) {
             setCurrentExerciseIndex(prev => prev+1)
             updateCoach(0,0,0,"And Rest! Good Work! We have " + 
                 restPeriods[currentExerciseIndex].toString() + "seconds to rest")
-            speechSynthesis.speak(myCoach)
+            CoachCancelPrevAndSpeak()
         }
         else if(!isActiveTimer && currentExerciseIndex < activePeriods.length){
             console.log("going to active")
@@ -113,10 +126,11 @@ export default function App(props) {
     
     useEffect(()=>{
         if(showCreateWorkout){
+            speechSynthesis.cancel()
             myCoach.text="Welcome Corey, I'm excited to get started!"
-            speechSynthesis.speak(myCoach)
+            CoachSpeak()
             updateCoach(1,.4,1.1,"What would you like to do today!")
-            speechSynthesis.speak(myCoach)
+            CoachSpeak()
             setTimerRunning(false)
             setCurrentSet(1)
             setTimeRemaining(activePeriods[0])//starting over so 0 index works

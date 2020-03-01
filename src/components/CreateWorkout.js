@@ -120,9 +120,7 @@ export default function CreateWorkout(props) {
                     type = "number" 
                     className="rounded-big-input"
                     value = {props.totalSets}
-                    onChange={e => e.target.value > 0 ? 
-                        props.setTotalSets(e.target.value) : 
-                        props.setTotalSets(1)    
+                    onChange={e => props.setTotalSets(e.target.value >= 1 ? e.target.value : 1)
                     }
                 />
                 <p className="bigger-text">Set the name of the exercise</p>
@@ -139,9 +137,7 @@ export default function CreateWorkout(props) {
                     type = "number" 
                     className="rounded-big-input"
                     value = {restPeriodTemp}
-                    onChange={e => e.target.value > 9 ? 
-                        setRestPeriodTemp(e.target.value) : 
-                        setRestPeriodTemp(10)    
+                    onChange={e => setRestPeriodTemp(e.target.value >= 10 ? e.target.value : 10) 
                     }
                     onKeyDown={e => handleKeyDown(e,"add")}
                 />
@@ -150,9 +146,8 @@ export default function CreateWorkout(props) {
                     type = "number" 
                     className="rounded-big-input"
                     value = {activePeriodTemp}
-                    onChange={e => e.target.value > 9 ? 
-                        setActivePeriodTemp(e.target.value) : 
-                        setActivePeriodTemp(10) 
+                    onChange={e => setActivePeriodTemp(e.target.value >= 10 ? e.target.value : 10) 
+                        
                         
                     }
                     onKeyDown={e => handleKeyDown(e,"add")}
