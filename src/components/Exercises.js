@@ -9,7 +9,7 @@ export default function Exercises(props) {
         let i  = props.exercisesCompleted
         let tempArray = []
         while(i< exercises.length ){
-            tempArray[i] = <Exercise highlighted = {false} exerciseName = {exercises[i]}/>
+            tempArray[i] = <Exercise key ={i} highlighted = {false} exerciseName = {exercises[i]}/>
             i++
         }
         props.setExercises(tempArray)

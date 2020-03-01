@@ -17,11 +17,24 @@ export default function App(props) {
     const[showCreateWorkout,setShowCreateWorkout] = useState(true)
     const [exercises, setExercises] = useState([])
     const [makeExercises, setMakeExercises] = useState(true)
-    
-
+    const myCoach = new SpeechSynthesisUtterance()
+    myCoach.pitch = 1
+    myCoach.volume = .4
+    myCoach.rate = 1.1
+    myCoach.text = "Welcome! I'm excited to get started!"
+    myCoach.lang = 'en-GB'
 
     function toggleActive(){
         setIsActiveTimer(!isActiveTimer)
+    }
+    //Will take in pitch, volume, rate, text, and lang in that order as params.
+    //If zero is passed for the first three it won't do anything and if "" is passed for the 
+    // last two it won't do anything to them either but always want to pass all five in some form
+    function updateCoach(pitch, volume, rate, text, lang){
+        if(pitch !== 0 && pitch !== undefined){myCoach.pitch = pitch}
+        if(volume !== 0 && volume !== undefined){myCoach.volume = volume}
+        if(rate !== 0 && rate !== undefined){myCoach.rate = rate}
+        if(text !== "" && text !== undefined){myCoach.text = text} 
     }
 
     function startRoutine(){
@@ -49,6 +62,9 @@ export default function App(props) {
             console.log("going to rest")
             setTimeRemaining(restPeriods[currentExerciseIndex])//rest Time
             setCurrentExerciseIndex(prev => prev+1)
+            updateCoach(0,0,0,"And Rest! Good Work! We have " + 
+                restPeriods[currentExerciseIndex].toString() + "seconds to rest")
+            speechSynthesis.speak(myCoach)
         }
         else if(!isActiveTimer && currentExerciseIndex < activePeriods.length){
             console.log("going to active")
@@ -97,6 +113,10 @@ export default function App(props) {
     
     useEffect(()=>{
         if(showCreateWorkout){
+            myCoach.text="Welcome Corey, I'm excited to get started!"
+            speechSynthesis.speak(myCoach)
+            updateCoach(1,.4,1.1,"What would you like to do today!")
+            speechSynthesis.speak(myCoach)
             setTimerRunning(false)
             setCurrentSet(1)
             setTimeRemaining(activePeriods[0])//starting over so 0 index works
@@ -137,26 +157,20 @@ export default function App(props) {
     {
         return (
             <div className="workout-creation-body">
-                <Speech 
-                text="Come on Guys Push it!!"
-                pitch="1.0"
-                rate="1.2"
-                volume="1.0"
-                lang="jp-US"
-                voice="Google UK English Female"/>
-            <div className="center-button">
-                <button onClick={goToWorkout} className="to-workout-btn">Go to Workout </button>
-            </div>
-            <CreateWorkout
-                setExerciseList = {setExerciseList}
-                setRestPeriods = {setRestPeriods}
-                setActivePeriods = {setActivePeriods}
-                setTotalSets = {setTotalSets}
-                exerciseList = {exerciseList}
-                restPeriods = {restPeriods}
-                activePeriods = {activePeriods}
-                totalSets = {totalSets}
-            />
+                
+                <div className="center-button">
+                    <button onClick={goToWorkout} className="to-workout-btn">Go to Workout </button>
+                </div>
+                <CreateWorkout
+                    setExerciseList = {setExerciseList}
+                    setRestPeriods = {setRestPeriods}
+                    setActivePeriods = {setActivePeriods}
+                    setTotalSets = {setTotalSets}
+                    exerciseList = {exerciseList}
+                    restPeriods = {restPeriods}
+                    activePeriods = {activePeriods}
+                    totalSets = {totalSets}
+                />
             </div>
         )
     }

@@ -19,21 +19,21 @@ export default function CreateWorkout(props) {
         let arr = []
         for(let i =  0; i < props.exerciseList.length; i ++){
             arr[i] = 
-            <>
-                <div className = "grid-3" key = {i}>
+            <div key = {i}>
+                <div className = "grid-3">
                     <p className="grid-item">Exercise: {props.exerciseList[i]}</p>
                     <p className="grid-item">Active Time: {props.activePeriods[i]} seconds</p>
                     <p className="grid-item">Rest Time: {props.restPeriods[i]} seconds</p>
                 </div>
-            </>
+            </div>
         }
         setPreview(arr) 
-        console.log(arr)
+        // console.log(arr)
     }
 
 
     useEffect(()=>{
-        console.log("we should be updating our thingy")
+        // console.log("we should be updating our thingy")
         setTimeout(()=>{
 
             handleUpdateWorkout("")
@@ -60,7 +60,7 @@ export default function CreateWorkout(props) {
 
 
     useEffect(()=>{
-        console.log(props.totalSets)
+        // console.log(props.totalSets)
     },[props.totalSets])
 
 
@@ -139,9 +139,9 @@ export default function CreateWorkout(props) {
                     type = "number" 
                     className="rounded-big-input"
                     value = {restPeriodTemp}
-                    onChange={e => e.target.value > 0 ? 
+                    onChange={e => e.target.value > 9 ? 
                         setRestPeriodTemp(e.target.value) : 
-                        setRestPeriodTemp(1)    
+                        setRestPeriodTemp(10)    
                     }
                     onKeyDown={e => handleKeyDown(e,"add")}
                 />
@@ -150,9 +150,9 @@ export default function CreateWorkout(props) {
                     type = "number" 
                     className="rounded-big-input"
                     value = {activePeriodTemp}
-                    onChange={e => e.target.value > 0 ? 
+                    onChange={e => e.target.value > 9 ? 
                         setActivePeriodTemp(e.target.value) : 
-                        setActivePeriodTemp(1) 
+                        setActivePeriodTemp(10) 
                         
                     }
                     onKeyDown={e => handleKeyDown(e,"add")}
