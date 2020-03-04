@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react'
 import '../styles/workoutCreation.css'
 import '../styles/workoutPreview.css'
+import WorkoutSaver from './WorkoutSaver'
 // setExerciseList = {setExerciseList}
 // setRestPeriods = {setRestPeriods}
 // setActivePeriods = {setActivePeriods}
@@ -223,6 +224,14 @@ export default function CreateWorkout(props) {
                     <button onClick={e => handleUpdateWorkout(e.target.value)} value = "add">Add Exercise</button>
                     <button onClick={e => handleUpdateWorkout(e.target.value)} value= "remove">Remove Last</button>
                     <button onClick={e => handleUpdateWorkout(e.target.value)} value = "clear">Clear All</button>
+                    <WorkoutSaver 
+                        exerciseList = {props.exerciseList} 
+                        activePeriods = {props.activePeriods}
+                        restPeriods = {props.restPeriods}
+                        setExerciseList = {props.setExerciseList} 
+                        setActivePeriods = {props.setActivePeriods}
+                        setRestPeriods = {props.setRestPeriods}
+                        workoutValue = "workout_1"/>
                 </div>     
                 <>{preview}</>
             </div>
