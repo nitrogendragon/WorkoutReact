@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-// import '../styles/workoutCreation.css'
+import '../styles/workoutSaver.css'
 export default function WorkoutSaver(props) {
     const exercisesKey = "_exercises"
     const activePeriodsKey = "_activePeriods"
@@ -16,6 +16,17 @@ export default function WorkoutSaver(props) {
         textAlign: "center",
         justifyContent: "center",
         alignItems: "center",
+
+    }
+
+
+    const saveLoadBackButton = {
+        position: 'absolute',
+        top: '0',
+        right: '10px',
+        margin: '0',
+        marginTop:'10px',
+        borderRadius:'50px'
     }
 
 
@@ -107,12 +118,26 @@ export default function WorkoutSaver(props) {
         )
     else if(choosingWorkoutToLoad)
         return (
-            <div>{theLoadButtons}</div>
+            <div className = 'save-load-container'>
+                <div className='save-load-inner'>
+                <button style = {saveLoadBackButton} value = 'false' 
+                    onClick = {() => setChoosingWorkoutToLoad(false)}>Back
+                </button>
+                {theLoadButtons}
+                </div>
+            </div>
             
         )
     else if(choosingWorkoutToSaveTo){
         return(
-            <div>{theSaveButtons}</div>
+            <div className ='save-load-container'>
+                <div className='save-load-inner'>
+                <button style = {saveLoadBackButton} value = 'false' 
+                    onClick = {() => setChoosingWorkoutToSaveTo(false)}>Back
+                </button>
+                {theSaveButtons}
+                </div>
+            </div>
         )
     }
 }

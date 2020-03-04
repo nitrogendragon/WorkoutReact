@@ -15,6 +15,8 @@ export default function CreateWorkout(props) {
     const [activePeriodTemp,setActivePeriodTemp] = useState(10)
     const [exerciseTemp,setExerciseTemp] = useState("")
     const [preview, setPreview] = useState ([])
+
+
     function thePreview() {
         let arr = []
         for(let i =  0; i < props.exerciseList.length; i ++){
@@ -67,6 +69,7 @@ export default function CreateWorkout(props) {
         textAlign: "center",
         justifyContent: "center",
         alignItems: "center",
+        height:'auto',
     }
 
 
@@ -233,7 +236,7 @@ export default function CreateWorkout(props) {
                         setRestPeriods = {props.setRestPeriods}
                         />
                 </div>     
-                <>{preview}</>
+                <div>{preview}</div>
             </div>
         </>
     )

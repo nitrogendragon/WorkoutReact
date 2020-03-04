@@ -61,13 +61,15 @@
     margin-top:20px;
 }
 
+
 .workout-creation-body{
     position:absolute;
     top:0;
     left:0;
     margin:0px;
     width:100%;
-    height:100%;
+    min-height:100%;
+    max-height:auto;
     z-index: -1;
     background-color: rgba(173, 238, 211, 0.5);
 }
