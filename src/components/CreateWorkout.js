@@ -231,7 +231,7 @@ export default function CreateWorkout(props) {
                         setExerciseList = {props.setExerciseList} 
                         setActivePeriods = {props.setActivePeriods}
                         setRestPeriods = {props.setRestPeriods}
-                        workoutValue = "workout_1"/>
+                        />
                 </div>     
                 <>{preview}</>
             </div>
