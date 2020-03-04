@@ -5,22 +5,37 @@
     top: 0;
     left: 0;
     margin: 0;
-    width: 100%;
+    min-width: 100%;
     min-height:100%;
     justify-content:center;
     align-items:center;
-    background-color: rgba(173, 238, 211, 1);
+    background-color: darkseagreen;
 }
 
 .save-load-inner{
-    margin-top:180px;
+    margin-top:100px;
     display: grid;
     
-    grid-template-columns: repeat(2,250px);
+    grid-template-columns: repeat(5,250px);
     width: 100%;
     justify-content:center;
     align-items:center;
-    background-color: darkseagreen;
-    border-radius: 50px;
+    background-color: rgb(35, 59, 35);
+    border-radius: 5px;
 
+}
+
+.workout-name-input{
+    grid-column-start: 1;
+  grid-column-end: 6;
+  grid-row-start: 0;
+  grid-row-end: 1;
+  margin-top:10px;
+  width:100%;
+  height:40px;
+  border-radius:10px;
+  font-size:16px;
+  font-weight: bolder;
+  justify-content:center;
+  align-items:center;
 }
