@@ -223,7 +223,6 @@ export default function CreateWorkout(props) {
                     <button onClick={e => handleUpdateWorkout(e.target.value)} value = "add">Add Exercise</button>
                     <button onClick={e => handleUpdateWorkout(e.target.value)} value= "remove">Remove Last</button>
                     <button onClick={e => handleUpdateWorkout(e.target.value)} value = "clear">Clear All</button>
-                    <button onClick={e => handleUpdateWorkout(e.target.value)} value = "update">Update Values</button>
                 </div>     
                 <>{preview}</>
             </div>
