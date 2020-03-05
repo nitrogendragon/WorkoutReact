@@ -179,6 +179,8 @@ export default function App(props) {
                     setloggedIn = {setLoggedIn}
                     setFirstLoad = {setFirstLoad}
                     setShowCreateWorkout = {setShowCreateWorkout}
+                    users = {users}
+                    setUsers = {setUsers}
                 />
             </>
         )
