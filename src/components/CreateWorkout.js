@@ -15,7 +15,7 @@ export default function CreateWorkout(props) {
     const [activePeriodTemp,setActivePeriodTemp] = useState(10)
     const [exerciseTemp,setExerciseTemp] = useState("")
     const [preview, setPreview] = useState ([])
-
+    const [workoutNames, setWorkoutNames] = useState ([])
 
     function thePreview() {
         let arr = []
@@ -234,6 +234,8 @@ export default function CreateWorkout(props) {
                         setExerciseList = {props.setExerciseList} 
                         setActivePeriods = {props.setActivePeriods}
                         setRestPeriods = {props.setRestPeriods}
+                        workoutNames = {workoutNames}
+                        setWorkoutNames = {setWorkoutNames}
                         />
                 </div>     
                 <div>{preview}</div>

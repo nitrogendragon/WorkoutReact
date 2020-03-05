@@ -4,6 +4,7 @@ export default function WorkoutSaver(props) {
     const exercisesKey = "_exercises"
     const activePeriodsKey = "_activePeriods"
     const restPeriodsKey = "_restPeriods"
+    const LOCAL_workoutNamesKey = "_workoutNames"
     const [choosingWorkoutToSaveTo,setChoosingWorkoutToSaveTo] = useState(false)
     const [choosingWorkoutToLoad,setChoosingWorkoutToLoad] = useState(false)
     const [theLoadButtons, setTheLoadButtons] = useState([])
@@ -33,7 +34,6 @@ export default function WorkoutSaver(props) {
 
 
     function handleLoadWorkout(LOCAL_STORAGE_KEY){
-        
         const exercises = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY+ exercisesKey))
         const restPeriods = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY + restPeriodsKey))
         const activePeriods = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY + activePeriodsKey))
@@ -50,11 +50,13 @@ export default function WorkoutSaver(props) {
     }
 
 
-    function handleSaveWorkout(LOCAL_STORAGE_KEY) {
+    function handleSaveWorkout(LOCAL_STORAGE_KEY, id) {
         if(props.exerciseList && props.restPeriods && props.activePeriods){
+            updateWorkoutName(id)
             localStorage.setItem(LOCAL_STORAGE_KEY + exercisesKey, JSON.stringify(props.exerciseList))
             localStorage.setItem(LOCAL_STORAGE_KEY + restPeriodsKey, JSON.stringify(props.restPeriods))
             localStorage.setItem(LOCAL_STORAGE_KEY + activePeriodsKey, JSON.stringify(props.activePeriods))
+            localStorage.setItem(LOCAL_workoutNamesKey, JSON.stringify(props.workoutNames))
             alert(LOCAL_STORAGE_KEY + " was saved to")
             setChoosingWorkoutToSaveTo(false)
         } else{ alert("Please create a workout before trying to save")}
@@ -63,22 +65,15 @@ export default function WorkoutSaver(props) {
     }
 
 
-    function updateWorkoutName(index){
-        if (workoutName != ""){
-
-        }
-    }
-
-
-    function createTheLoadButtons(index){
+    function createTheLoadButtons(){
         i = 0
         let tempButtons = []
         let val
         while(i != maxWorkoutsCount){
             val = "workout_" + i.toString()
             tempButtons[i] = 
-                <button value = {val}  onClick={e => handleLoadWorkout(e.target.value)}>
-                    Load {val}
+                <button value = {val} onClick={e => handleLoadWorkout(e.target.value)}>
+                    {props.workoutNames[i] ? props.workoutNames[i]: val}
                 </button>
                 ++i
             }
@@ -93,8 +88,8 @@ export default function WorkoutSaver(props) {
         while(i != maxWorkoutsCount){
             val = "workout_" + i.toString()
             tempButtons[i] =
-                <button value = {val}  onClick={e => handleSaveWorkout(e.target.value)}>
-                    Save {val}
+                <button value = {val} id = {i} onClick={e => handleSaveWorkout(e.target.value, e.target.id)}>
+                    {props.workoutNames[i] ? props.workoutNames[i]: val}
                 </button>
                 ++i
             }
@@ -102,18 +97,48 @@ export default function WorkoutSaver(props) {
     }
 
 
-    useEffect(()=>{
-        console.log(workoutName)
-    },[workoutName])
+    function updateWorkoutName(id){
+        let temp = []
+        temp = props.workoutNames
+        if(workoutName != ""){ temp[id] = workoutName}
+        console.log(temp[id])
+        props.setWorkoutNames(temp)
+        let val = "workout_" + id.toString()
+        temp = theSaveButtons
+        temp[id] = 
+            <button value = {val} id = {i} onClick={e => handleSaveWorkout(e.target.value, e.target.id)}>
+                    {props.workoutNames[i] ? props.workoutNames[i]: val}
+            </button>
+        setTheSaveButtons(temp)
+        temp = theLoadButtons
+        temp[id] = 
+            <button value = {val} id = {i} onClick={e => handleLoadWorkout(e.target.value, e.target.id)}>
+                    {props.workoutNames[i] ? props.workoutNames[i]: val}
+            </button>
+        setTheLoadButtons(temp)
+        setWorkoutName("")
+    }
 
+
+    useEffect(()=>{
+        console.log(props.workoutNames)
+    },[props.workoutNames])
+
+    useEffect(()=>{
+        let storedNames = JSON.parse(localStorage.getItem(LOCAL_workoutNamesKey))
+        if(storedNames){
+            props.setWorkoutNames(storedNames)
+        }
+    },[])
 
     useEffect(()=>{
         if(choosingWorkoutToLoad){
             createTheLoadButtons()
         }
         else if(choosingWorkoutToSaveTo){
-        createTheSaveButtons()}
-    },[choosingWorkoutToLoad,choosingWorkoutToSaveTo])
+            createTheSaveButtons()
+        }
+    },[choosingWorkoutToLoad,choosingWorkoutToSaveTo, workoutName])
 
 
     if(!choosingWorkoutToSaveTo && !choosingWorkoutToLoad)
@@ -131,9 +156,6 @@ export default function WorkoutSaver(props) {
         return (
             <div className = 'save-load-container'>
                 <div className='save-load-inner'>
-                    <input className = 'workout-name-input' placeholder="Enter the name of the workout"
-                        type="text" value={workoutName} onChange = {(e)=> setWorkoutName(e.target.value)}>
-                    </input>
                     <button style = {saveLoadBackButton} value = 'false' 
                         onClick = {() => setChoosingWorkoutToLoad(false)}>Back
                     </button>

@@ -9,7 +9,7 @@
     min-height:100%;
     justify-content:center;
     align-items:center;
-    background-color: darkseagreen;
+    background-color: rgb(35, 59, 35);
 }
 
 .save-load-inner{
@@ -20,9 +20,6 @@
     width: 100%;
     justify-content:center;
     align-items:center;
-    background-color: rgb(35, 59, 35);
-    border-radius: 5px;
-
 }
 
 .workout-name-input{
@@ -31,7 +28,8 @@
   grid-row-start: 0;
   grid-row-end: 1;
   margin-top:10px;
-  width:100%;
+  display:flex;
+  width:auto;
   height:40px;
   border-radius:10px;
   font-size:16px;
