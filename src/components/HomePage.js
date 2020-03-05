@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import User from './User'
 import '../styles/homePage.css'
 export default function HomePage(props) {
     const [userName, setUserName] = useState("")
@@ -39,11 +40,14 @@ export default function HomePage(props) {
 
     function validateSignInCredentials(){
         //checking for valid userName
-        const temp = props.users.filter( e => e.userName === userName )
-        if(temp[0] != undefined){
+        const temp = props.users.filter( (e) => e.userName === userName)
+        if(temp[0]){console.log(temp[0].userName.toString())}
+        if(temp[0] && temp[0].userName === userName){
+            console.log("we matched the username")
             //checking for valid password
-            const temp = props.users.filter( e => e.password === password)
-            temp[0] != undefined ? 
+            const temp2 = props.users.filter( e => e.password === password)
+            if(temp2[0]){console.log(temp2[0].password.toString())}
+            temp2[0] && temp2[0].password === password ? 
                 handleSignInSuccess() :
                 alert(passwordErrorMsg)
         }
@@ -52,8 +56,14 @@ export default function HomePage(props) {
 
 
     function createUser(){
-        
+        props.setUsers(()=>[...props.users,{ userName: userName, password: password}])
+        alert("Profile successfully created")
     }
+
+
+    useEffect(()=>{
+        console.log(props.users)
+    },[props.users])
 
 
     function handleEnterApp(){
