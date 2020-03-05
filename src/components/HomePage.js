@@ -56,8 +56,12 @@ export default function HomePage(props) {
 
 
     function createUser(){
-        props.setUsers(()=>[...props.users,{ userName: userName, password: password}])
-        alert("Profile successfully created")
+        const temp = props.users.filter( (e) => e.userName === userName)
+        if(temp[0]){ alert("This UserName is already taken. Please try a different name.")}
+        else{
+            props.setUsers(()=>[...props.users,{ userName: userName, password: password}]) 
+            alert("Profile successfully created")
+        }
     }
 
 
