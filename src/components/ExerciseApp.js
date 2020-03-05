@@ -99,7 +99,10 @@ export default function App(props) {
             if(currentSet < totalSets){
                 console.log("new set")
                 updateCoach(0,0,0,"And Rest! Great Job! you got through set " + currentSet.toString() + " We've got " +
-                restPeriods[currentExerciseIndex-1].toString() + " seconds to rest." +
+                (restPeriods[currentExerciseIndex-1] ? 
+                    restPeriods[currentExerciseIndex-1].toString() : 
+                    restPeriods[0].toString()) 
+                + " seconds to rest." +
                 " Make sure you are keeping hydrated and keep moving to keep your body loose!"
                 )
                 CoachCancelPrevAndSpeak()
