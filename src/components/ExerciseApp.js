@@ -54,6 +54,7 @@ export default function App(props) {
 
     function startRoutine(){
         if(exerciseList.length > 0){
+            setIsActiveTimer(true)
             updateCoach(0,0,0,"Here we go!" + exerciseList[currentExerciseIndex].toString() + " for" +
                 activePeriods[currentExerciseIndex].toString() + " seconds!")
             CoachCancelPrevAndSpeak()
@@ -77,7 +78,7 @@ export default function App(props) {
 
     function resetTimer(){
         //checking for what we are coming from and making sure we have more periods
-        if(isActiveTimer && currentExerciseIndex < activePeriods.length-1){
+        if(isActiveTimer && activePeriods.length > 1 && currentExerciseIndex < activePeriods.length-1){
             console.log("going to rest")
             setTimeRemaining(restPeriods[currentExerciseIndex])//rest Time
             setCurrentExerciseIndex(prev => prev+1)
@@ -99,15 +100,18 @@ export default function App(props) {
             if(currentSet < totalSets){
                 console.log("new set")
                 updateCoach(0,0,0,"And Rest! Great Job! you got through set " + currentSet.toString() + " We've got " +
-                (restPeriods[currentExerciseIndex-1] ? 
-                    restPeriods[currentExerciseIndex-1].toString() : 
+                (restPeriods[currentExerciseIndex] ? 
+                    restPeriods[currentExerciseIndex].toString() : 
                     restPeriods[0].toString()) 
                 + " seconds to rest." +
                 " Make sure you are keeping hydrated and keep moving to keep your body loose!"
                 )
                 CoachCancelPrevAndSpeak()
                 setCurrentSet(prev=> prev + 1)
-                setTimeRemaining(activePeriods[0])//starting over so 0 index works
+                setTimeRemaining(restPeriods[currentExerciseIndex] ? 
+                    restPeriods[currentExerciseIndex] :
+                    restPeriods[0]
+                    )//starting over so 0 index works
                 setCurrentExerciseIndex(0)
                 setTimerRunning(true) 
             }
