@@ -2,7 +2,7 @@ import React, {useState,useEffect} from 'react'
 import Exercises from './Exercises'
 import TimerComponent from './TimerComponent'
 import CreateWorkout from './CreateWorkout'
-import Speech from 'react-speech';
+import HomePage from './HomePage'
 import '../styles/exercises.css'
 export default function App(props) {
     const[timeRemaining, setTimeRemaining] = useState()
@@ -19,6 +19,8 @@ export default function App(props) {
     const [makeExercises, setMakeExercises] = useState(true)
     const [startedRoutine, setStartedRoutine] = useState(false)
     const [firstLoad, setFirstLoad] = useState(true)
+    const [loggedIn, setLoggedIn] = useState(false)
+    const [users, setUsers] = useState([])
     const myCoach = new SpeechSynthesisUtterance()
     myCoach.pitch = 1
     myCoach.volume = .4
@@ -129,12 +131,6 @@ export default function App(props) {
     }
 
 
-    function handleEnterApp(){
-        setFirstLoad(false)
-        setShowCreateWorkout(true)
-    }
-
-
     useEffect(() => {
         
         let interval = null
@@ -176,10 +172,14 @@ export default function App(props) {
     },[showCreateWorkout])
 
 
-    if(firstLoad){
+    if(firstLoad || !loggedIn){
         return(
             <>
-                <button onClick={handleEnterApp} className="home-page">Start App</button>
+                <HomePage 
+                    setloggedIn = {setLoggedIn}
+                    setFirstLoad = {setFirstLoad}
+                    setShowCreateWorkout = {setShowCreateWorkout}
+                />
             </>
         )
         
