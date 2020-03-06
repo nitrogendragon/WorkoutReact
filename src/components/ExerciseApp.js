@@ -33,13 +33,13 @@ export default function App(props) {
     function toggleActive(){
         setIsActiveTimer(!isActiveTimer)
     }
-    //Will take in pitch, volume, rate, text, and lang in that order as params.
+    //Will take in pitch, volume, rate, and text in that order as params.
     //If zero is passed for the first three it won't do anything and if "" is passed for the 
-    // last two it won't do anything to them either but always want to pass all five in some form
-    function updateCoach(pitch, volume, rate, text, lang){
-        if(pitch !== 0 && pitch !== undefined){myCoach.pitch = pitch}
-        if(volume !== 0 && volume !== undefined){myCoach.volume = volume}
-        if(rate !== 0 && rate !== undefined){myCoach.rate = rate}
+    // last one it won't do anything either but always want to pass all five in some form
+    function updateCoach(pitch , volume, rate, text){
+        if(pitch > 0 && pitch !== undefined){myCoach.pitch = pitch}
+        if(volume > 0 && volume !== undefined){myCoach.volume = volume}
+        if(rate > 0 && rate !== undefined){myCoach.rate = rate}
         if(text !== "" && text !== undefined){myCoach.text = text} 
     }
 
