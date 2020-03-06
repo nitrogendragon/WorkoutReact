@@ -3,7 +3,7 @@ import Exercises from './Exercises'
 import TimerComponent from './TimerComponent'
 import CreateWorkout from './CreateWorkout'
 import HomePage from './HomePage'
-import User from './User'
+import Logout from './Logout'
 import '../styles/exercises.css'
 export default function App(props) {
     const[timeRemaining, setTimeRemaining] = useState()
@@ -25,10 +25,11 @@ export default function App(props) {
     const [activeUserId, setActiveUserId] = useState(-1)
     const LOCAL_USERS_KEY = "_users"
     const myCoach = new SpeechSynthesisUtterance()
+    myCoach.lang = 'en-GB'
     myCoach.pitch = 1
     myCoach.volume = .4
     myCoach.rate = 1.1
-    myCoach.lang = 'en-GB'
+    
 
     function toggleActive(){
         setIsActiveTimer(!isActiveTimer)
@@ -36,7 +37,7 @@ export default function App(props) {
     //Will take in pitch, volume, rate, and text in that order as params.
     //If zero is passed for the first three it won't do anything and if "" is passed for the 
     // last one it won't do anything either but always want to pass all five in some form
-    function updateCoach(pitch , volume, rate, text){
+    function updateCoach(pitch , volume, rate, text,lang){
         if(pitch > 0 && pitch !== undefined){myCoach.pitch = pitch}
         if(volume > 0 && volume !== undefined){myCoach.volume = volume}
         if(rate > 0 && rate !== undefined){myCoach.rate = rate}
@@ -161,7 +162,7 @@ export default function App(props) {
             setTimeRemaining(activePeriods[0])//starting over so 0 index works
             setCurrentExerciseIndex(0)
         }
-        else if(!showCreateWorkout && !startedRoutine && !firstLoad){
+        else if(!showCreateWorkout && !startedRoutine && !firstLoad && loggedIn){
             updateCoach(0,0,0,"Get ready! We're about to get started. Make sure you are properly hydrated and warmed up!")
             CoachCancelPrevAndSpeak()
         }
@@ -190,6 +191,18 @@ export default function App(props) {
     else if(!showCreateWorkout){
     return (
         <>
+        <Logout 
+            setActiveUserId = {setActiveUserId} 
+            setLoggedIn = {setLoggedIn}
+            setTimerRunning = {setTimerRunning}
+            setCurrentSet = {setCurrentSet}
+            setTimeRemaining = {setTimeRemaining}
+            setCurrentExerciseIndex = {setCurrentExerciseIndex}
+            setStartedRoutine = {setStartedRoutine}
+            setShowCreateWorkout = {setShowCreateWorkout}
+            activePeriods = {activePeriods}
+            updateCoach = {updateCoach}
+            CoachCancelPrevAndSpeak = {CoachCancelPrevAndSpeak} />
         <div className="center-button">
             <button onClick={startRoutine}>Start</button>
             <button onClick={createWorkout}>Create Workout </button>
@@ -220,7 +233,18 @@ export default function App(props) {
     {
         return (
             <div className="workout-creation-body">
-                
+                <Logout 
+                    setActiveUserId = {setActiveUserId} 
+                    setLoggedIn = {setLoggedIn}
+                    setTimerRunning = {setTimerRunning}
+                    setCurrentSet = {setCurrentSet}
+                    setTimeRemaining = {setTimeRemaining}
+                    setCurrentExerciseIndex = {setCurrentExerciseIndex}
+                    setStartedRoutine = {setStartedRoutine}
+                    setShowCreateWorkout = {setShowCreateWorkout}
+                    activePeriods = {activePeriods}
+                    updateCoach = {updateCoach}
+                    CoachCancelPrevAndSpeak = {CoachCancelPrevAndSpeak} />
                 <div className="center-button">
                     <button onClick={goToWorkout} className="to-workout-btn">Go to Workout </button>
                 </div>
