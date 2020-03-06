@@ -68,7 +68,7 @@ export default function App(props) {
             setTimerRunning(true)
         }
         else{
-            alert("You don't have a routine made. Please go to the Workout Creation Station and make one first.")
+            alert("You don't have a routine made. Please go to the Workout Creation and make one first.")
         }
     }
 
