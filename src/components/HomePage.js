@@ -51,7 +51,6 @@ export default function HomePage(props) {
         //checking for valid userName
         const temp = props.users.filter( e => e.props.userName === userName) 
         if(temp[0] && temp[0].props.userName === userName){
-            console.log("we matched the username")
             //checking for valid password
             const temp2 = props.users.filter( e => e.props.password === password) 
             temp2[0] && temp2[0].props.password === password ? 
@@ -69,6 +68,7 @@ export default function HomePage(props) {
             props.setUsers(()=>[...props.users,<User userName = {userName} password = {password}/>]) 
             // props.setUsers(()=>[...props.users,{ userName: userName, password: password}]) 
             alert("Profile successfully created")
+            handleSignInSuccess()
         }
     }
 
