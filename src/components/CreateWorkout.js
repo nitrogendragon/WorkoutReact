@@ -236,6 +236,7 @@ export default function CreateWorkout(props) {
                         setRestPeriods = {props.setRestPeriods}
                         workoutNames = {workoutNames}
                         setWorkoutNames = {setWorkoutNames}
+                        activeUserId = {props.activeUserId}
                         />
                 </div>     
                 <div>{preview}</div>

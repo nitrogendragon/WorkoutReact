@@ -83,7 +83,6 @@ export default function HomePage(props) {
     
     
     useEffect(()=>{
-        console.log("updated for some reason?")
             localStorage.setItem(props.LOCAL_USERS_KEY, JSON.stringify(props.users))
     },[props.users])
 

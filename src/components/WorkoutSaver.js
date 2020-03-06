@@ -34,9 +34,9 @@ export default function WorkoutSaver(props) {
 
 
     function handleLoadWorkout(LOCAL_STORAGE_KEY){
-        const exercises = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY+ exercisesKey))
-        const restPeriods = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY + restPeriodsKey))
-        const activePeriods = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY + activePeriodsKey))
+        const exercises = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY+ exercisesKey + props.activeUserId))
+        const restPeriods = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY + restPeriodsKey + props.activeUserId))
+        const activePeriods = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY + activePeriodsKey + props.activeUserId))
         if(exercises && restPeriods && activePeriods){
             props.setExerciseList(exercises)
             props.setRestPeriods(restPeriods)    
@@ -53,10 +53,13 @@ export default function WorkoutSaver(props) {
     function handleSaveWorkout(LOCAL_STORAGE_KEY, id) {
         if(props.exerciseList && props.restPeriods && props.activePeriods){
             updateWorkoutName(id)
-            localStorage.setItem(LOCAL_STORAGE_KEY + exercisesKey, JSON.stringify(props.exerciseList))
-            localStorage.setItem(LOCAL_STORAGE_KEY + restPeriodsKey, JSON.stringify(props.restPeriods))
-            localStorage.setItem(LOCAL_STORAGE_KEY + activePeriodsKey, JSON.stringify(props.activePeriods))
-            localStorage.setItem(LOCAL_workoutNamesKey, JSON.stringify(props.workoutNames))
+            localStorage.setItem(LOCAL_STORAGE_KEY + exercisesKey + props.activeUserId,
+                 JSON.stringify(props.exerciseList))
+            localStorage.setItem(LOCAL_STORAGE_KEY + restPeriodsKey + props.activeUserId,
+                 JSON.stringify(props.restPeriods))
+            localStorage.setItem(LOCAL_STORAGE_KEY + activePeriodsKey + props.activeUserId, 
+                JSON.stringify(props.activePeriods))
+            localStorage.setItem(LOCAL_workoutNamesKey + props.activeUserId, JSON.stringify(props.workoutNames))
             alert(LOCAL_STORAGE_KEY + " was saved to")
             setChoosingWorkoutToSaveTo(false)
         } else{ alert("Please create a workout before trying to save")}
@@ -121,11 +124,11 @@ export default function WorkoutSaver(props) {
 
 
     useEffect(()=>{
-        // console.log(props.workoutNames)
+        console.log(props.workoutNames)
     },[props.workoutNames])
 
     useEffect(()=>{
-        let storedNames = JSON.parse(localStorage.getItem(LOCAL_workoutNamesKey))
+        let storedNames = JSON.parse(localStorage.getItem(LOCAL_workoutNamesKey + props.activeUserId))
         if(storedNames){
             props.setWorkoutNames(storedNames)
         }

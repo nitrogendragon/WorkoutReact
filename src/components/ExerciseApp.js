@@ -81,9 +81,8 @@ export default function App(props) {
     }
 
     function resetTimer(){
-        //checking for what we are coming from and making sure we have more periods
+        //if we are active and have more exercises we go to rest mode and +1 the exercise index
         if(isActiveTimer && activePeriods.length > 1 && currentExerciseIndex < activePeriods.length-1){
-            console.log("going to rest")
             setTimeRemaining(restPeriods[currentExerciseIndex])//rest Time
             setCurrentExerciseIndex(prev => prev+1)
             updateCoach(0,0,0,"And Rest! Good Work! We have " + 
@@ -92,17 +91,16 @@ export default function App(props) {
                 exerciseList[0].toString()))
             CoachCancelPrevAndSpeak()
         }
+        //if we are resting and there is another exericse we go to active
         else if(!isActiveTimer && currentExerciseIndex < activePeriods.length){
-            console.log("going to active")
             setTimeRemaining(activePeriods[currentExerciseIndex])//exercise Time
             updateCoach(0,0,0,"Heeerre we go!" + exerciseList[currentExerciseIndex].toString() + " for" +
                 activePeriods[currentExerciseIndex].toString() + " seconds!")
             CoachCancelPrevAndSpeak()
         }
         else{
-            //we are done with the set and maybe the routine 
+            //we are done with the set and maybe the routine so dependingly we will reset the workout and +1 current set or just default everything because we are done
             if(currentSet < totalSets){
-                console.log("new set")
                 updateCoach(0,0,0,"And Rest! Great Job! you got through set " + currentSet.toString() + " We've got " +
                 (restPeriods[currentExerciseIndex] ? 
                     restPeriods[currentExerciseIndex].toString() : 
@@ -120,7 +118,6 @@ export default function App(props) {
                 setTimerRunning(true) 
             }
             else{
-                console.log("final destination")
                 setTimerRunning(false)
                 setCurrentSet(1)
                 setTimeRemaining(activePeriods[0])//starting over so 0 index works
@@ -132,11 +129,9 @@ export default function App(props) {
         }
     }
 
-
-    useEffect(() => {
-        
+    //countdown timer logic for when the timer is running
+    useEffect(() => {      
         let interval = null
-        
         if(timerRunning){
             interval = setInterval( () => {
                 setTimeRemaining(timeLeft => Math.round((timeLeft -.1) * 100) / 100);
@@ -153,12 +148,7 @@ export default function App(props) {
         return () => clearInterval(interval);
     },[timerRunning, timeRemaining])
 
-
-    useEffect(()=>{
-        if(activeUserId != -1)
-        console.log("active id is : " + activeUserId)
-    },[activeUserId])
-    
+    // logic for initial setup and greeting message when createworkout is shown or the actual workout is ready to run
     useEffect(()=>{
         if(showCreateWorkout){
             speechSynthesis.cancel()
@@ -177,7 +167,7 @@ export default function App(props) {
         }
     },[showCreateWorkout])
 
-
+    //conditional rendering essentially
     if(firstLoad || !loggedIn){
         return(
             <>
@@ -243,6 +233,7 @@ export default function App(props) {
                     restPeriods = {restPeriods}
                     activePeriods = {activePeriods}
                     totalSets = {totalSets}
+                    activeUserId = {activeUserId}
                 />
             </div>
         )
