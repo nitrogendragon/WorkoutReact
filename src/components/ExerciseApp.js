@@ -21,7 +21,7 @@ export default function App(props) {
     const [firstLoad, setFirstLoad] = useState(true)
     const [loggedIn, setLoggedIn] = useState(false)
     const [users, setUsers] = useState([])
-    const [activeUserId, setActiveUserId] = useState(0)
+    const [activeUserId, setActiveUserId] = useState(-1)
     const myCoach = new SpeechSynthesisUtterance()
     myCoach.pitch = 1
     myCoach.volume = .4
@@ -153,6 +153,10 @@ export default function App(props) {
     },[timerRunning, timeRemaining])
 
 
+    useEffect(()=>{
+        if(activeUserId != -1)
+        console.log("active id is : " + activeUserId)
+    },[activeUserId])
     
     useEffect(()=>{
         if(showCreateWorkout){
@@ -177,7 +181,7 @@ export default function App(props) {
         return(
             <>
                 <HomePage 
-                    setloggedIn = {setLoggedIn}
+                    setLoggedIn = {setLoggedIn}
                     setFirstLoad = {setFirstLoad}
                     setShowCreateWorkout = {setShowCreateWorkout}
                     users = {users}

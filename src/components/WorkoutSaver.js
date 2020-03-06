@@ -121,7 +121,7 @@ export default function WorkoutSaver(props) {
 
 
     useEffect(()=>{
-        console.log(props.workoutNames)
+        // console.log(props.workoutNames)
     },[props.workoutNames])
 
     useEffect(()=>{
