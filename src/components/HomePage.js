@@ -5,7 +5,6 @@ export default function HomePage(props) {
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
-    const [needToCreateUser, setNeedToCreateUser] = useState(false)
     const userNameErrorMsg = "UserName does not exist."
     const passwordErrorMsg = "Password does not exist."
 
@@ -39,8 +38,9 @@ export default function HomePage(props) {
     }
 
 
-    function handleSignInSuccess(){
+    function handleSignInSuccess(userId){
         console.log("Succesfully signed in.")
+        props.setActiveUserId(userId)
         props.setloggedIn(true)
         props.setFirstLoad(false)
         props.setShowCreateWorkout(true)
@@ -54,7 +54,7 @@ export default function HomePage(props) {
             //checking for valid password
             const temp2 = props.users.filter( e => e.props.password === password) 
             temp2[0] && temp2[0].props.password === password ? 
-                handleSignInSuccess() :
+                handleSignInSuccess(temp2[0].props.id) :
                 alert(passwordErrorMsg)
         }
         else{alert(userNameErrorMsg)}
@@ -65,16 +65,19 @@ export default function HomePage(props) {
         const temp = props.users.filter( e => e.props.userName === userName) 
         if(temp[0]){ alert("This UserName is already taken. Please try a different name.")}
         else{
-            props.setUsers(()=>[...props.users,<User userName = {userName} password = {password}/>]) 
+            const tempId = props.users.length
+            props.setUsers(()=>[...props.users,<User userName = {userName} password = {password} id = {tempId}/>]) 
             // props.setUsers(()=>[...props.users,{ userName: userName, password: password}]) 
             alert("Profile successfully created")
-            handleSignInSuccess()
+            handleSignInSuccess(tempId)
         }
     }
 
 
     useEffect(()=>{
-        console.log(props.users)
+        if(props.users[0]){
+            console.log(props.users[0].props.id)
+        }
     },[props.users])
 
 

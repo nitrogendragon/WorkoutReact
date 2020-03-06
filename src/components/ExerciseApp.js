@@ -21,6 +21,7 @@ export default function App(props) {
     const [firstLoad, setFirstLoad] = useState(true)
     const [loggedIn, setLoggedIn] = useState(false)
     const [users, setUsers] = useState([])
+    const [activeUserId, setActiveUserId] = useState(0)
     const myCoach = new SpeechSynthesisUtterance()
     myCoach.pitch = 1
     myCoach.volume = .4
@@ -181,6 +182,8 @@ export default function App(props) {
                     setShowCreateWorkout = {setShowCreateWorkout}
                     users = {users}
                     setUsers = {setUsers}
+                    activeUserId = {activeUserId}
+                    setActiveUserId = {setActiveUserId}
                 />
             </>
         )
