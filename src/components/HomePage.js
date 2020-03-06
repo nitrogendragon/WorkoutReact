@@ -73,7 +73,7 @@ export default function HomePage(props) {
         }
     }
 
-
+    //For whatever reason it seems I need to make sure my get is always above my set for things to work right
     //This is for initializing our users data on first load
     useEffect(()=>{
         const tempUsers = JSON.parse(localStorage.getItem(props.LOCAL_USERS_KEY))
