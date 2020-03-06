@@ -28,7 +28,6 @@ export default function App(props) {
     myCoach.pitch = 1
     myCoach.volume = .4
     myCoach.rate = 1.1
-    myCoach.text="Welcome Corey, I'm excited to get started!"
     myCoach.lang = 'en-GB'
 
     function toggleActive(){
@@ -163,7 +162,7 @@ export default function App(props) {
     useEffect(()=>{
         if(showCreateWorkout){
             speechSynthesis.cancel()
-            myCoach.text="Welcome Corey, I'm excited to get started!"
+            myCoach.text="Welcome " + users[activeUserId].props.userName + ", I'm excited to get started!"
             CoachSpeak()
             updateCoach(1,.4,1.1," What would you like to do today!")
             CoachSpeak()
