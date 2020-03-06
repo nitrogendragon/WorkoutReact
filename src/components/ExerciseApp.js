@@ -9,9 +9,9 @@ export default function App(props) {
     const[timeRemaining, setTimeRemaining] = useState()
     const[isActiveTimer, setIsActiveTimer] = useState(true)
     const[timerRunning, setTimerRunning] = useState(false)
-    const [activePeriods,setActivePeriods] = useState([5,5,5,5])
-    const [restPeriods,setRestPeriods] = useState([5,5,5,5])
-    const [exerciseList, setExerciseList] = useState(["pushup", "situp", "planche", "crabwalk"])
+    const [activePeriods,setActivePeriods] = useState([])
+    const [restPeriods,setRestPeriods] = useState([])
+    const [exerciseList, setExerciseList] = useState([])
     const[totalSets, setTotalSets] = useState(3)
     const[currentSet, setCurrentSet] = useState(1)
     const[currentExerciseIndex, setCurrentExerciseIndex] = useState(0)
@@ -37,7 +37,7 @@ export default function App(props) {
     //Will take in pitch, volume, rate, and text in that order as params.
     //If zero is passed for the first three it won't do anything and if "" is passed for the 
     // last one it won't do anything either but always want to pass all five in some form
-    function updateCoach(pitch , volume, rate, text,lang){
+    function updateCoach(pitch , volume, rate, text){
         if(pitch > 0 && pitch !== undefined){myCoach.pitch = pitch}
         if(volume > 0 && volume !== undefined){myCoach.volume = volume}
         if(rate > 0 && rate !== undefined){myCoach.rate = rate}
