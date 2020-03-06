@@ -46,7 +46,7 @@ export default function HomePage(props) {
 
     function validateSignInCredentials(){
         //checking for valid userName
-        const temp = props.users.filter( e => e.props.userName === userName) 
+        const temp = props.users != null ? props.users.filter( e => e.props.userName === userName) : []
         if(temp[0] && temp[0].props.userName === userName){
             const tempId = temp[0].props.id
             //checking for valid password
@@ -57,22 +57,34 @@ export default function HomePage(props) {
         }
         else{alert(userNameErrorMsg)}
     }
+    
 
 
     function createUser(){
-        const temp = props.users.filter( e => e.props.userName === userName) 
+        const temp = props.users != null ? props.users.filter( e => e.props.userName === userName) : []
         if(temp[0]){ alert("This UserName is already taken. Please try a different name.")}
         else{
-            props.setUsers(()=>[...props.users,<User userName = {userName} password = {password} id = {props.users.length}/>]) 
-            // props.setUsers(()=>[...props.users,{ userName: userName, password: password}]) 
+            props.users != null ?
+            props.setUsers(()=>[...props.users,
+            <User key = {props.users.length} userName = {userName} password = {password} id = {props.users.length}/>]) :
+            props.setUsers(() => [<User key = {0} userName = {userName} password = {password} id = {0}/>])
             alert("Profile successfully created")
-            handleSignInSuccess(props.users[0].props.id)
+            // handleSignInSuccess(props.users[props.users.length].props.id)
         }
     }
 
 
+    //This is for initializing our users data on first load
     useEffect(()=>{
-        // console.log(props.users)
+        const tempUsers = JSON.parse(localStorage.getItem(props.LOCAL_USERS_KEY))
+        props.setUsers(tempUsers)
+            
+    },[])
+    
+    
+    useEffect(()=>{
+        console.log("updated for some reason?")
+            localStorage.setItem(props.LOCAL_USERS_KEY, JSON.stringify(props.users))
     },[props.users])
 
 

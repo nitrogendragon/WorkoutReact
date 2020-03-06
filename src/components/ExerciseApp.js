@@ -3,6 +3,7 @@ import Exercises from './Exercises'
 import TimerComponent from './TimerComponent'
 import CreateWorkout from './CreateWorkout'
 import HomePage from './HomePage'
+import User from './User'
 import '../styles/exercises.css'
 export default function App(props) {
     const[timeRemaining, setTimeRemaining] = useState()
@@ -22,6 +23,7 @@ export default function App(props) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [users, setUsers] = useState([])
     const [activeUserId, setActiveUserId] = useState(-1)
+    const LOCAL_USERS_KEY = "_users"
     const myCoach = new SpeechSynthesisUtterance()
     myCoach.pitch = 1
     myCoach.volume = .4
@@ -188,6 +190,7 @@ export default function App(props) {
                     setUsers = {setUsers}
                     activeUserId = {activeUserId}
                     setActiveUserId = {setActiveUserId}
+                    LOCAL_USERS_KEY = {LOCAL_USERS_KEY}
                 />
             </>
         )
