@@ -4,7 +4,7 @@ export default function Logout(props) {
 
 
     function handleLogout(){
-        props.updateCoach(0,0,0,"Alright, see ya later!")
+        props.updateCoach(0,0,0,"See you later!")
         props.CoachCancelPrevAndSpeak()
         props.setTimerRunning(false)
         props.setCurrentSet(1)
