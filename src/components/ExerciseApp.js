@@ -4,6 +4,7 @@ import TimerComponent from './TimerComponent'
 import CreateWorkout from './CreateWorkout'
 import HomePage from './HomePage'
 import Logout from './Logout'
+import Stats from './Stats'
 import '../styles/exercises.css'
 export default function App(props) {
     const[timeRemaining, setTimeRemaining] = useState()
@@ -87,9 +88,9 @@ export default function App(props) {
             setTimeRemaining(restPeriods[currentExerciseIndex])//rest Time
             setCurrentExerciseIndex(prev => prev+1)
             updateCoach(0,0,0,"And Rest! Good Work! We have " + 
-                restPeriods[currentExerciseIndex].toString() + " seconds to rest." + " The next exercise is " + 
-                (exerciseList[currentExerciseIndex+1] ? exerciseList[currentExerciseIndex+1].toString() :
-                exerciseList[0].toString()))
+            restPeriods[currentExerciseIndex].toString() + " seconds to rest." + " The next exercise is " + 
+            (exerciseList[currentExerciseIndex+1] ? exerciseList[currentExerciseIndex+1].toString() :
+            exerciseList[0].toString()))
             CoachCancelPrevAndSpeak()
         }
         //if we are resting and there is another exericse we go to active
@@ -189,45 +190,44 @@ export default function App(props) {
 
 
     else if(!showCreateWorkout){
-    return (
-        <>
-        <Logout 
-            setActiveUserId = {setActiveUserId} 
-            setLoggedIn = {setLoggedIn}
-            setTimerRunning = {setTimerRunning}
-            setCurrentSet = {setCurrentSet}
-            setTimeRemaining = {setTimeRemaining}
-            setCurrentExerciseIndex = {setCurrentExerciseIndex}
-            setStartedRoutine = {setStartedRoutine}
-            setShowCreateWorkout = {setShowCreateWorkout}
-            activePeriods = {activePeriods}
-            updateCoach = {updateCoach}
-            CoachCancelPrevAndSpeak = {CoachCancelPrevAndSpeak} />
-        <div className="center-button">
-            <button onClick={startRoutine}>Start</button>
-            <button onClick={createWorkout}>Create Workout </button>
-        </div>
-        <div className = "exercise-app-container">
-            <Exercises 
-                exercisesCompleted = {currentExerciseIndex}
-                exercises = {exercises}
-                exerciseList = {exerciseList}
-                makeExercises = {makeExercises}
-                setExerciseList = {setExerciseList}
-                setMakeExercises = {setMakeExercises}
-                setExercises = {setExercises}
-            
-            />
-            <p className="directions">{timerRunning ? isActiveTimer ? "PUSH IT!!!" : "REST" : "Get Ready"}</p>
-            <TimerComponent timeRemaining = {timeRemaining} timerRunning = {timerRunning}/>
-            <div>
-                <p className = "p-bold">The current Exercise number is: {currentExerciseIndex}</p>
-                <p className = "p-bold">Set {currentSet}</p>
-                <p className = "p-bold">Sets Remaining {totalSets - currentSet}</p>
+        return (
+            <>
+            <Logout 
+                setActiveUserId = {setActiveUserId} 
+                setLoggedIn = {setLoggedIn}
+                setTimerRunning = {setTimerRunning}
+                setCurrentSet = {setCurrentSet}
+                setTimeRemaining = {setTimeRemaining}
+                setCurrentExerciseIndex = {setCurrentExerciseIndex}
+                setStartedRoutine = {setStartedRoutine}
+                setShowCreateWorkout = {setShowCreateWorkout}
+                activePeriods = {activePeriods}
+                updateCoach = {updateCoach}
+                CoachCancelPrevAndSpeak = {CoachCancelPrevAndSpeak} />
+            <div className="center-button">
+                <button onClick={startRoutine}>Start</button>
+                <button onClick={createWorkout}>Create Workout </button>
             </div>
-        </div>
-        </>
-    )
+            <div className = "exercise-app-container">
+                <Exercises 
+                    exercisesCompleted = {currentExerciseIndex}
+                    exercises = {exercises}
+                    exerciseList = {exerciseList}
+                    makeExercises = {makeExercises}
+                    setExerciseList = {setExerciseList}
+                    setMakeExercises = {setMakeExercises}
+                    setExercises = {setExercises}            
+                />
+                <p className="directions">{timerRunning ? isActiveTimer ? "PUSH IT!!!" : "REST" : "Get Ready"}</p>
+                <TimerComponent timeRemaining = {timeRemaining} timerRunning = {timerRunning}/>
+                <div>
+                    <p className = "p-bold">The current Exercise number is: {currentExerciseIndex}</p>
+                    <p className = "p-bold">Set {currentSet}</p>
+                    <p className = "p-bold">Sets Remaining {totalSets - currentSet}</p>
+                </div>
+            </div>
+            </>
+        )
     }
     else
     {
@@ -244,7 +244,14 @@ export default function App(props) {
                     setShowCreateWorkout = {setShowCreateWorkout}
                     activePeriods = {activePeriods}
                     updateCoach = {updateCoach}
-                    CoachCancelPrevAndSpeak = {CoachCancelPrevAndSpeak} />
+                    CoachCancelPrevAndSpeak = {CoachCancelPrevAndSpeak} 
+                />
+                <Stats 
+                    exerciseList = {exerciseList}
+                    activePeriods = {activePeriods}
+                    users = {users}
+                    activeUserId = {activeUserId}
+                />
                 <div className="center-button">
                     <button onClick={goToWorkout} className="to-workout-btn">Go to Workout </button>
                 </div>

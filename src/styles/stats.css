@@ -1,0 +1,24 @@
+.divider{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-color:silver;
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.bar-container{
+    height: 200px;
+    background-color: gray;
+    display:flex;
+    align-items: flex-end;
+}
+
+.bar{
+    width:30px;
+    height:20%;
+    background-color: green;
+    transition: height 1000ms ease-in-out;
+}

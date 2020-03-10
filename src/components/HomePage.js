@@ -88,20 +88,20 @@ export default function HomePage(props) {
 
 
     return (
-        <div className="home-page">
-            <button onClick={handleEnterApp} >Start App</button>
-            <input type="text" placeholder = "Enter UserName" value = {userName} 
-                onChange = {e => setUserName(e.target.value)}
-                onKeyDown = {e => handleKeyDown(e)}>
-            </input>
-            <input type="text" placeholder = "Enter Password" value = {password} 
-                onChange = {e => setPassword(e.target.value)}
-                onKeyDown = {e => handleKeyDown(e)}>
-            </input>
-            <input type="text" placeholder = "Confirm Password (For user creation only)" value = {confirmPassword} 
-                onChange = {e => setConfirmPassword(e.target.value)}
-                onKeyDown = {e => handleKeyDown(e)}>
-            </input>
-        </div>
+            <div className="home-page">
+                <button onClick={handleEnterApp} >Start App</button>
+                <input type="text" placeholder = "Enter UserName" value = {userName} 
+                    onChange = {e => setUserName(e.target.value)}
+                    onKeyDown = {e => handleKeyDown(e)}>
+                </input>
+                <input type="text" placeholder = "Enter Password" value = {password} 
+                    onChange = {e => setPassword(e.target.value)}
+                    onKeyDown = {e => handleKeyDown(e)}>
+                </input>
+                <input type="text" placeholder = "Confirm Password (For user creation only)" value = {confirmPassword} 
+                    onChange = {e => setConfirmPassword(e.target.value)}
+                    onKeyDown = {e => handleKeyDown(e)}>
+                </input>
+            </div>
     )
 }
