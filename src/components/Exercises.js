@@ -20,10 +20,11 @@ export default function Exercises(props) {
     },[props.exercisesCompleted])
 
 
-    if(props.makeExercises){
-        props.setMakeExercises(false)
-        createExerciseList(props.exerciseList)
-    }
+    useEffect(()=>{
+        if(!props.showCreateWorkout){
+            createExerciseList(props.exerciseList)
+        }
+    },[props.showCreateWorkout])
 
 
     return (

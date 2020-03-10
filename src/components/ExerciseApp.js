@@ -215,9 +215,8 @@ export default function App(props) {
                     exercisesCompleted = {currentExerciseIndex}
                     exercises = {exercises}
                     exerciseList = {exerciseList}
-                    makeExercises = {makeExercises}
                     setExerciseList = {setExerciseList}
-                    setMakeExercises = {setMakeExercises}
+                    showCreateWorkout = {showCreateWorkout}
                     setExercises = {setExercises}            
                 />
                 <p className="directions">{timerRunning ? isActiveTimer ? "PUSH IT!!!" : "REST" : "Get Ready"}</p>
