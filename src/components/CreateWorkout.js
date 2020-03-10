@@ -183,7 +183,6 @@ export default function CreateWorkout(props) {
     return (
         <>
             <div style={workoutContainer}>
-                <h1>Workout Creation</h1>
                 <p className="bigger-text">Set the number of sets you want to do</p>
                 <input 
                     type = "number" 
