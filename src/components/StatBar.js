@@ -3,7 +3,7 @@ import '../styles/stats.css'
 export default function StatBar(props) {
     return (
         <div className = "bar-container">
-            <div className = "bar"></div>
+            <div className = "bar" style={{height: props.activePeriods[props.index]}}></div>
         </div>
     )
 }

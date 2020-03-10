@@ -4,7 +4,8 @@
     align-items: center;
     text-align: center;
     flex-direction: column;
-    background-color: lightgreen;
+    background-color: ghostwhite;
+    background-image: radial-gradient( rgb(35, 59, 35),darkorange,darkred,darkorange, rgb(35, 59, 35),whitesmoke,rgb(35, 59, 35));
     position: absolute;
     top:0px;
     left:0px;

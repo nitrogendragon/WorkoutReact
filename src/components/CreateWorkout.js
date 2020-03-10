@@ -11,8 +11,8 @@ import WorkoutSaver from './WorkoutSaver'
 // activePeriods = {activePeriods}
 // totalSets = {totalSets}
 export default function CreateWorkout(props) {
-    const [restPeriodTemp,setRestPeriodTemp] = useState(10)
-    const [activePeriodTemp,setActivePeriodTemp] = useState(10)
+    const [restPeriodTemp,setRestPeriodTemp] = useState(1)
+    const [activePeriodTemp,setActivePeriodTemp] = useState(1)
     const [exerciseTemp,setExerciseTemp] = useState("")
     const [preview, setPreview] = useState ([])
     const [workoutNames, setWorkoutNames] = useState ([])
@@ -104,8 +104,8 @@ export default function CreateWorkout(props) {
                 props.setRestPeriods((prev)=> [...prev, restPeriodTemp])
                 props.setActivePeriods((prev)=> [...prev, activePeriodTemp])
                 props.setExerciseList((prev)=> [...prev, exerciseTemp])
-                setRestPeriodTemp(10)
-                setActivePeriodTemp(10)
+                // setRestPeriodTemp(10)
+                // setActivePeriodTemp(10)
             }
             else{alert("Check to make sure all necessary fields have been properly filled")}
         }
@@ -207,7 +207,7 @@ export default function CreateWorkout(props) {
                     type = "number" 
                     className="rounded-big-input"
                     value = {restPeriodTemp}
-                    onChange={e => setRestPeriodTemp(e.target.value >= 10 ? e.target.value : 10) 
+                    onChange={e => setRestPeriodTemp(e.target.value >= 1 ? e.target.value : 1) 
                     }
                     onKeyDown={e => handleKeyDown(e,"add")}
                 />

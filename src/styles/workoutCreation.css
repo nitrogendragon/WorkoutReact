@@ -17,22 +17,27 @@ button{
     margin: 15px;
     min-height: 80px;
     min-width: 200px;
-    transition: background-color 400ms, font-size 400ms ease-in-out;
-    box-shadow: 0px 0px 0px 2px black;
+    transition: box-shadow 1400ms, font-size 400ms ease-in-out;
+    background-color: ghostwhite;
+    background-image: linear-gradient(90deg, rgb(150, 16, 16), darkorange);
+    box-shadow: 0px 0px 0px 2px lightgreen;
     font-weight:bold;
     font-size: 18px;
     overflow:hidden;
+    color: ghostwhite;
 }
 
 button:hover{
-    background-color: rgba(25,25,25,.5);
-    box-shadow: 0px 0px 0px 4px black;
-    color:white;
+    background-color: darkgreen;
+    background-image: linear-gradient(-90deg, rgb(202, 39, 39), rgb(247, 165, 66));
+    box-shadow: 0px 0px 0px 4px lightgreen;
+    color:ghostwhite;
     font-size: 22px;
 }
 
 .bigger-text{
     font-size: 18px;
+    color:ghostwhite;
     
 }
 
@@ -41,7 +46,8 @@ button:hover{
     min-height: 20px;
     font-size: 16px;
     font-weight: bold;
+    color:black;
 }
 
-
+h1{color:white;}
 

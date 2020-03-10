@@ -18,6 +18,7 @@
     z-index: -1;
     width: 100%;
     top:0;
+    left:0;
     bottom:0;
     margin:0;
     display: grid;
@@ -25,9 +26,10 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 1000px;
-    background-color: rgba(65, 184, 87, .3);
-    border-radius: 15px;
+    min-height: 100%;
+    background-color: ghostwhite;
+    /* background-image: radial-gradient( rgb(35, 59, 35),darkgreen,darkgreen, green, lightgreen); */
+    background-image: linear-gradient( rgb(35, 59, 35),darkgreen,darkgreen, green, lightgreen);
 }
 
 .exercises-container{
@@ -71,11 +73,15 @@
     min-height:100%;
     max-height:auto;
     z-index: -1;
-    background-color: rgba(173, 238, 211, 0.5);
+    background-color: ghostwhite;
+    /* background-image: radial-gradient( rgb(35, 59, 35),darkgreen,darkgreen, whitesmoke); */
+    background-image: linear-gradient( rgb(35, 59, 35),darkgreen,green,lightgreen, whitesmoke);
+
 }
 
 .p-bold{
     font-size: 24px;
     font-weight:bold;
+    color: ghostwhite;
 }
 

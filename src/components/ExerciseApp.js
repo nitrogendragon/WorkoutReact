@@ -5,6 +5,7 @@ import CreateWorkout from './CreateWorkout'
 import HomePage from './HomePage'
 import Logout from './Logout'
 import Stats from './Stats'
+import ShowStatsButton from './ShowStatsButton'
 import '../styles/exercises.css'
 export default function App(props) {
     const[timeRemaining, setTimeRemaining] = useState()
@@ -23,6 +24,7 @@ export default function App(props) {
     const [firstLoad, setFirstLoad] = useState(true)
     const [loggedIn, setLoggedIn] = useState(false)
     const [users, setUsers] = useState([])
+    const [showStats, setShowStats] = useState(false)
     const [activeUserId, setActiveUserId] = useState(-1)
     const LOCAL_USERS_KEY = "_users"
     const myCoach = new SpeechSynthesisUtterance()
@@ -246,11 +248,13 @@ export default function App(props) {
                     updateCoach = {updateCoach}
                     CoachCancelPrevAndSpeak = {CoachCancelPrevAndSpeak} 
                 />
+                <ShowStatsButton setShowStats = {setShowStats} showStats = {showStats}/>
                 <Stats 
                     exerciseList = {exerciseList}
                     activePeriods = {activePeriods}
                     users = {users}
                     activeUserId = {activeUserId}
+                    showStats = {showStats}
                 />
                 <div className="center-button">
                     <button onClick={goToWorkout} className="to-workout-btn">Go to Workout </button>
