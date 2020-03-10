@@ -198,7 +198,7 @@ export default function CreateWorkout(props) {
                     className="rounded-big-input"
                     value = {exerciseTemp}
                     placeholder = "Enter the name of the exercise here"
-                    onChange={e => setExerciseTemp( e.target.value)
+                    onChange={e => setExerciseTemp( e.target.value.toUpperCase())
                     }
                     onKeyDown={e => handleKeyDown(e,"add")}
                 />
