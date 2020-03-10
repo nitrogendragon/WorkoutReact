@@ -16,9 +16,3 @@
     align-items: flex-end;
 }
 
-.bar{
-    width:30px;
-    height:20%;
-    background-color: green;
-    transition: height 1000ms ease-in-out;
-}

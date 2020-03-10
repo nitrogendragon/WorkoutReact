@@ -109,23 +109,19 @@ export default function WorkoutSaver(props) {
         let val = "workout_" + id.toString()
         temp = theSaveButtons
         temp[id] = 
-            <button value = {val} id = {i} onClick={e => handleSaveWorkout(e.target.value, e.target.id)}>
+            <button value = {val} key = {i} id = {i} onClick={e => handleSaveWorkout(e.target.value, e.target.id)}>
                     {props.workoutNames[i] ? props.workoutNames[i]: val}
             </button>
         setTheSaveButtons(temp)
         temp = theLoadButtons
         temp[id] = 
-            <button value = {val} id = {i} onClick={e => handleLoadWorkout(e.target.value, e.target.id)}>
+            <button value = {val} key = {i} id = {i} onClick={e => handleLoadWorkout(e.target.value, e.target.id)}>
                     {props.workoutNames[i] ? props.workoutNames[i]: val}
             </button>
         setTheLoadButtons(temp)
         setWorkoutName("")
     }
 
-
-    useEffect(()=>{
-        console.log(props.workoutNames)
-    },[props.workoutNames])
 
     useEffect(()=>{
         let storedNames = JSON.parse(localStorage.getItem(LOCAL_workoutNamesKey + props.activeUserId))

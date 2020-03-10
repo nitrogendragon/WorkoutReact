@@ -6,7 +6,7 @@ export default function Stats(props) {
             <StatBar 
                 exerciseList = {props.exerciseList}
                 activePeriods = {props.activePeriods}
-                index = {1}
+                index = {0}
             />
         </div>
     )
