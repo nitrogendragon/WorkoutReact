@@ -215,7 +215,7 @@ export default function CreateWorkout(props) {
                     type = "number" 
                     className="rounded-big-input"
                     value = {activePeriodTemp}
-                    onChange={e => setActivePeriodTemp(e.target.value >= 10 ? e.target.value : 10) 
+                    onChange={e => setActivePeriodTemp(e.target.value >= 1 ? e.target.value : 1) 
                         
                         
                     }

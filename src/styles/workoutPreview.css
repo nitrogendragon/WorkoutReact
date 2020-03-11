@@ -15,6 +15,7 @@
     font-size: 18px;
     border-radius: 5px;
     color:ghostwhite;
+    overflow: hidden;
 }
 
 .alert-background{

@@ -5,12 +5,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: font-weight font-size 1000ms ease-in-out;
-}
-
-.exercise-card-highlighted{
-    font-weight:bolder;
-    font-size:50px;
+    color:ghostwhite;
+    overflow:hidden;
 }
 
 .exercise-app-container{
@@ -48,6 +44,7 @@
 
 .directions{
     font-size: 60px;
+    color: white;
 }
 
 
