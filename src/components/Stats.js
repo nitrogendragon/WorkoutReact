@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import StatBar from './StatBar'
+import StatBarsChart from './StatBarsChart'
+import'../styles/stats.css'
 export default function Stats(props) {
     const [usersExercises, setUsersExercises] = useState(["PUSH UP"])
     const [usersExercisesDurations, setUsersExercisesDurations] = useState([0])
     const LOCAL_USERS_EXERCISES = "_myExercises"
     const LOCAL_USERS_EXERCISES_DURATIONS = "_myExercisesDurations"
-
+    const [updatedUserStats, setUpdatedUserStats] = useState(false)
     function getIndex(value, arr){
         let i = 0
         for(i; i < arr.length; i++){
@@ -14,6 +15,15 @@ export default function Stats(props) {
             }
         }
         return -1
+    }
+
+    function updateStorage(){
+        console.log("The users exercises are: " + usersExercises)
+        localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES,
+        JSON.stringify(usersExercises))
+        console.log("The users exercises durations are: " + usersExercisesDurations)
+        localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS, 
+        JSON.stringify(usersExercisesDurations))
     }
 
 
@@ -46,14 +56,7 @@ export default function Stats(props) {
         console.log(tempExercises)
         setUsersExercisesDurations(()=>tempDurations)
         setUsersExercises(()=>tempExercises)
-        console.log("The users exercises are: " + usersExercises)
-        localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES,
-            JSON.stringify(usersExercises))
-        console.log("The users exercises durations are: " + usersExercisesDurations)
-        localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS, 
-            JSON.stringify(usersExercisesDurations))
-        setTimeout(()=>{
-        },200)
+        setUpdatedUserStats(true)
     }
 
 
@@ -64,6 +67,14 @@ export default function Stats(props) {
             updateStats()
         }
     },[props.updateStats])
+    
+    
+    useEffect(()=>{
+        if(updatedUserStats){
+            setUpdatedUserStats(false)
+            updateStorage()
+        }
+    },[updatedUserStats])
 
 
     useEffect(()=>{
@@ -74,28 +85,19 @@ export default function Stats(props) {
             props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS))
         setUsersExercisesDurations(tempUserExercisesDurations)
     },[])
-    
-    
-    // useEffect(()=>{
-    //     console.log(usersExercises)
-    //         localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES,
-    //              JSON.stringify(usersExercises))
-    // },[usersExercises])
-    
-    
-    // useEffect(()=>{
-    //     console.log(usersExercisesDurations)
-    //         localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS, 
-    //             JSON.stringify(usersExercisesDurations))
-    // },[usersExercisesDurations])
 
 
     return (
-        <div className="divider" style={{display: props.showStats ? 'grid' : 'none'}}>
-            <StatBar 
-                exerciseList = {props.exerciseList}
-                activePeriods = {props.activePeriods}
-                index = {0}
+        <div style={{display: props.showStats ? 'grid' : 'none'}}>
+            <div className = "stats-chart-buttons-container">
+                <button style = {{zIndex:'1' }}>Clear Stats</button>
+            </div>
+            <StatBarsChart 
+                userExercises ={JSON.parse(localStorage.getItem(
+                    props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES))}
+                userExercisesDurations = {JSON.parse(localStorage.getItem(
+                    props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS))}
+                updatedUserStats = {updatedUserStats}
             />
         </div>
     )

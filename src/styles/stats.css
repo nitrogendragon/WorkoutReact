@@ -1,18 +1,49 @@
 .divider{
     position:absolute;
-    width:100%;
-    height:100%;
-    background-color:ghostwhite;
-    display: grid;
-    grid-template-columns: auto;
-    justify-content: center;
+    margin-left: 1%;
+    width:98%;
+    min-height:calc(87%);
+    background-image: linear-gradient( rgb(35, 59, 35),whitesmoke, lightgreen, green, darkgreen);
+    display: flex;
+    flex-direction: row;
+    column-gap: 1px;
+    overflow:hidden;
+    justify-content: flex-start;
     align-items: center;
+    border-radius:10px;
 }
 
 .bar-container{
-    height: 200px;
+    height: 650px;
     background-color: grey;
     display:flex;
-    align-items: flex-end;
+    align-items: flex-end;  
+    justify-content: center;
 }
 
+
+.bar-label{
+    display:flex;
+    position:absolute;
+    margin-top:50px;
+    justify-content: center;
+    align-items: center;
+    text-align:center;
+    overflow:hidden;
+    word-wrap: break-word;
+    
+    min-width:96px;
+    height:50px;
+    /* background-image: linear-gradient(90deg, rgb(150, 16, 16), darkorange); */
+    background-color: darkgreen;
+    border-left: 1px solid orange;
+    border-right: 1px solid orange;
+    border-bottom: 1px solid orange;
+    border-top: 2px solid orange;
+    color: ghostwhite;
+}
+
+.stats-chart-buttons-container{
+    width:100%;
+    border:2px solid black;
+}
