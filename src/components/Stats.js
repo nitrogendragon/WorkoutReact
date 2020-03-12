@@ -17,6 +17,13 @@ export default function Stats(props) {
         return -1
     }
 
+    function handleClearUserStats(){
+        console.log("we cleared it... tabun")
+        setUsersExercises(["PUSH UP"])
+        setUsersExercisesDurations([0])
+        setUpdatedUserStats(true)
+    }
+
     function updateStorage(){
         console.log("The users exercises are: " + usersExercises)
         localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES,
@@ -90,7 +97,10 @@ export default function Stats(props) {
     return (
         <div style={{display: props.showStats ? 'grid' : 'none'}}>
             <div className = "stats-chart-buttons-container">
-                <button style = {{zIndex:'1' }}>Clear Stats</button>
+                <button onClick = {handleClearUserStats}>Clear Stats</button>
+                <button >Clear Stats</button>
+                <button >Clear Stats</button>
+                <button >Clear Stats</button>
             </div>
             <StatBarsChart 
                 userExercises ={JSON.parse(localStorage.getItem(
@@ -99,6 +109,7 @@ export default function Stats(props) {
                     props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS))}
                 updatedUserStats = {updatedUserStats}
             />
+            
         </div>
     )
 }
