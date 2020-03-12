@@ -75,7 +75,7 @@ export default function WorkoutSaver(props) {
         while(i != maxWorkoutsCount){
             val = "workout_" + i.toString()
             tempButtons[i] = 
-                <button value = {val} onClick={e => handleLoadWorkout(e.target.value)}>
+                <button value = {val} key = {i} onClick={e => handleLoadWorkout(e.target.value)}>
                     {props.workoutNames[i] ? props.workoutNames[i]: val}
                 </button>
                 ++i

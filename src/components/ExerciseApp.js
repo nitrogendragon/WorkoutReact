@@ -19,13 +19,13 @@ export default function App(props) {
     const[currentExerciseIndex, setCurrentExerciseIndex] = useState(0)
     const[showCreateWorkout,setShowCreateWorkout] = useState(false)
     const [exercises, setExercises] = useState([])
-    const [makeExercises, setMakeExercises] = useState(true)
     const [startedRoutine, setStartedRoutine] = useState(false)
     const [firstLoad, setFirstLoad] = useState(true)
     const [loggedIn, setLoggedIn] = useState(false)
     const [users, setUsers] = useState([])
     const [showStats, setShowStats] = useState(false)
     const [activeUserId, setActiveUserId] = useState(-1)
+    const [updateStats,setUpdateStats] = useState(false)
     const LOCAL_USERS_KEY = "_users"
     const myCoach = new SpeechSynthesisUtterance()
     myCoach.lang = 'en-GB'
@@ -122,6 +122,7 @@ export default function App(props) {
                 setTimerRunning(true) 
             }
             else{
+                setUpdateStats(true)
                 setTimerRunning(false)
                 setCurrentSet(1)
                 setTimeRemaining(activePeriods[0])//starting over so 0 index works
@@ -205,7 +206,18 @@ export default function App(props) {
                 setShowCreateWorkout = {setShowCreateWorkout}
                 activePeriods = {activePeriods}
                 updateCoach = {updateCoach}
-                CoachCancelPrevAndSpeak = {CoachCancelPrevAndSpeak} />
+                CoachCancelPrevAndSpeak = {CoachCancelPrevAndSpeak} 
+            />
+            <ShowStatsButton setShowStats = {setShowStats} showStats = {showStats}/>
+            <Stats 
+                    exerciseList = {exerciseList}
+                    activePeriods = {activePeriods}
+                    users = {users}
+                    activeUserId = {activeUserId}
+                    showStats = {showStats}
+                    updateStats = {updateStats}
+                    setUpdateStats = {setUpdateStats}
+            />
             <div className="center-button">
                 <button onClick={startRoutine}>Start</button>
                 <button onClick={createWorkout}>Create Workout </button>
@@ -254,6 +266,8 @@ export default function App(props) {
                     users = {users}
                     activeUserId = {activeUserId}
                     showStats = {showStats}
+                    updateStats = {updateStats}
+                    setUpdateStats = {setUpdateStats}
                 />
                 <div className="center-button">
                     <button onClick={goToWorkout} className="to-workout-btn">Go to Workout </button>

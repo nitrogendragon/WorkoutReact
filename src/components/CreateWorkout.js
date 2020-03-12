@@ -2,14 +2,6 @@ import React, {useState,useEffect} from 'react'
 import '../styles/workoutCreation.css'
 import '../styles/workoutPreview.css'
 import WorkoutSaver from './WorkoutSaver'
-// setExerciseList = {setExerciseList}
-// setRestPeriods = {setRestPeriods}
-// setActivePeriods = {setActivePeriods}
-// setTotalSets = {setTotalSets}
-// exerciseList = {exerciseList}
-// restPeriods = {restPeriods}
-// activePeriods = {activePeriods}
-// totalSets = {totalSets}
 export default function CreateWorkout(props) {
     const [restPeriodTemp,setRestPeriodTemp] = useState(1)
     const [activePeriodTemp,setActivePeriodTemp] = useState(1)

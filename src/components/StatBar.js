@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import '../styles/stats.css'
 export default function StatBar(props) {
-    const test = 50
+    
 
     const bar ={
         width : '30px',
@@ -11,9 +11,6 @@ export default function StatBar(props) {
     }
 
 
-    useEffect(() => {
-        console.log('activeValue value is: ' + props.activePeriods[props.index] )
-    }, [props.activePeriods])
     return (
         <div className = "bar-container">
             <div style = {bar}></div>
