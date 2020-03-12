@@ -217,6 +217,7 @@ export default function App(props) {
                     showStats = {showStats}
                     updateStats = {updateStats}
                     setUpdateStats = {setUpdateStats}
+                    totalSets = {totalSets}
             />
             <div className="center-button">
                 <button onClick={startRoutine}>Start</button>
