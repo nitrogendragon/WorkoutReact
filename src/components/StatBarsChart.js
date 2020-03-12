@@ -22,7 +22,7 @@ export default function StatBarsChart(props) {
     function createBasicChart(){
         let i = 0
         let tempArr = []
-        for(i; i < props.userExercises.length && i < 15; i++){
+        for(i; i < props.userExercises.length && i < 18; i++){
             tempArr[i] = <StatBar key = {i}
             exerciseName = {props.userExercises[i]}
             activePeriod = {props.userExercisesDurations[i] * modifier}
