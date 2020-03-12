@@ -3,7 +3,8 @@ import StatBar from './StatBar'
 export default function Stats(props) {
     const [usersExercises, setUsersExercises] = useState(["PUSH UP"])
     const [usersExercisesDurations, setUsersExercisesDurations] = useState([0])
-
+    const LOCAL_USERS_EXERCISES = "_myExercises"
+    const LOCAL_USERS_EXERCISES_DURATIONS = "_myExercisesDurations"
 
     function getIndex(value, arr){
         let i = 0
@@ -35,28 +36,25 @@ export default function Stats(props) {
                 insertionIndex = getIndex(props.exerciseList[i],usersExercises)
                 if(insertionIndex != -1){
                     tempDurations[insertionIndex] = props.activePeriods[i] * props.totalSets
+                    console.log(insertionIndex)
                 }
+
             }
         }
-        setUsersExercises(tempExercises)
-        setUsersExercisesDurations(tempDurations)
+        
         console.log(tempDurations)
         console.log(tempExercises)
+        setUsersExercisesDurations(()=>tempDurations)
+        setUsersExercises(()=>tempExercises)
+        console.log("The users exercises are: " + usersExercises)
+        localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES,
+            JSON.stringify(usersExercises))
+        console.log("The users exercises durations are: " + usersExercisesDurations)
+        localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS, 
+            JSON.stringify(usersExercisesDurations))
+        setTimeout(()=>{
+        },200)
     }
-
-
-    useEffect(()=>{
-        if(usersExercises[0]){
-            console.log(usersExercises)
-        }
-    },[usersExercises])
-
-
-    useEffect(()=>{
-        if(usersExercisesDurations[0]){
-            console.log(usersExercisesDurations)
-        }
-    },[usersExercisesDurations])
 
 
     useEffect(()=>{
@@ -66,6 +64,30 @@ export default function Stats(props) {
             updateStats()
         }
     },[props.updateStats])
+
+
+    useEffect(()=>{
+        const tempUserExercises = JSON.parse(localStorage.getItem(
+            props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES))
+        setUsersExercises(tempUserExercises)
+        const tempUserExercisesDurations = JSON.parse(localStorage.getItem(
+            props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS))
+        setUsersExercisesDurations(tempUserExercisesDurations)
+    },[])
+    
+    
+    // useEffect(()=>{
+    //     console.log(usersExercises)
+    //         localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES,
+    //              JSON.stringify(usersExercises))
+    // },[usersExercises])
+    
+    
+    // useEffect(()=>{
+    //     console.log(usersExercisesDurations)
+    //         localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS, 
+    //             JSON.stringify(usersExercisesDurations))
+    // },[usersExercisesDurations])
 
 
     return (

@@ -218,6 +218,7 @@ export default function App(props) {
                     updateStats = {updateStats}
                     setUpdateStats = {setUpdateStats}
                     totalSets = {totalSets}
+                    LOCAL_USERS_KEY = {LOCAL_USERS_KEY}
             />
             <div className="center-button">
                 <button onClick={startRoutine}>Start</button>
@@ -269,6 +270,8 @@ export default function App(props) {
                     showStats = {showStats}
                     updateStats = {updateStats}
                     setUpdateStats = {setUpdateStats}
+                    totalSets = {totalSets}
+                    LOCAL_USERS_KEY = {LOCAL_USERS_KEY}
                 />
                 <div className="center-button">
                     <button onClick={goToWorkout} className="to-workout-btn">Go to Workout </button>
