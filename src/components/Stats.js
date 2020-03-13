@@ -85,12 +85,18 @@ export default function Stats(props) {
 
 
     useEffect(()=>{
-        const tempUserExercises = JSON.parse(localStorage.getItem(
-            props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES))
-        setUsersExercises(tempUserExercises)
-        const tempUserExercisesDurations = JSON.parse(localStorage.getItem(
-            props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS))
-        setUsersExercisesDurations(tempUserExercisesDurations)
+        if(usersExercises != null && usersExercises != undefined){
+            const tempUserExercises = JSON.parse(localStorage.getItem(
+                props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES))
+            setUsersExercises(tempUserExercises)
+            const tempUserExercisesDurations = JSON.parse(localStorage.getItem(
+                props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS))
+            setUsersExercisesDurations(tempUserExercisesDurations)
+        }
+        else{
+            //if we have nothing we will default stuff
+            handleClearUserStats()
+        }
     },[])
 
 

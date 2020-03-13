@@ -13,14 +13,6 @@ export default function WorkoutSaver(props) {
     const maxWorkoutsCount = 50
     // const LOCAL_STORAGE_KEY = 'savedWorkouts'
     let i
-    const workoutButtonsContainer = {
-        display: "flex",
-        flexDirection: "row",
-        textAlign: "center",
-        justifyContent: "center",
-        alignItems: "center",
-
-    }
 
 
     const saveLoadBackButton = {
@@ -142,14 +134,16 @@ export default function WorkoutSaver(props) {
 
     if(!choosingWorkoutToSaveTo && !choosingWorkoutToLoad)
         return (
-            <div style={workoutButtonsContainer} >
+            <div >
                 <button value = "true" onClick={e => setChoosingWorkoutToLoad(e.target.value)}>
                     Load {props.workoutValue}
                 </button>
+
                 <button value = "true" onClick={e =>setChoosingWorkoutToSaveTo(e.target.value)}>
                     Save {props.workoutValue}
                 </button>
             </div>
+
         )
     else if(choosingWorkoutToLoad)
         return (

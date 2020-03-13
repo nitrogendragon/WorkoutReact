@@ -33,8 +33,10 @@ export default function StatBarsChart(props) {
 
 
     useEffect(()=>{
-        console.log(props.userExercises)
+        if(props.userExercises != undefined && props.userExercises != null){
+            // console.log(props.userExercises)
             createBasicChart()
+        }
     },[props.updatedUserStats])
 
 

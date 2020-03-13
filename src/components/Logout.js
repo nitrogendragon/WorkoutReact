@@ -18,8 +18,8 @@ export default function Logout(props) {
 
 
     return (
-        <div className="workout-buttons-container">
-            <button className="logout-button" onClick={ handleLogout}>Log Out</button>
+        <div className="logout-button">
+            <button onClick={ handleLogout}>Log Out</button>
         </div>
     )
 }

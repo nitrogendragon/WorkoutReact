@@ -2,13 +2,31 @@ p{
     display:flex;
     font-weight:bold;
     justify-content: center;
-    
-
 }
 
 input{
     width:40%;
     text-align: center;
+}
+
+.workout-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100%;
+}
+
+
+.workout-buttons-container{
+    display: flex;
+    margin-top: 10px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 button{

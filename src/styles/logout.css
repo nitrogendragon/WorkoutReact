@@ -1,18 +1,20 @@
-.workoutButtonsContainer{
+.workout-buttons-container{
     display: flex;
     flex-direction:  row;
     text-align: center;
     justify-content : center;
     align-items : center;
+    border: 1px solid red;
+    width:100%;
+}
 
+
+.workout-buttons-container button{
+    max-width:20%;
 }
 
 
 .logout-button  {
-    position : absolute;
-    top: 0;
-    right :10px;
-    margin :0;
-    margin-top: 10px;
     border-radius: 50px
 }
+

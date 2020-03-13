@@ -195,6 +195,8 @@ export default function App(props) {
     else if(!showCreateWorkout){
         return (
             <>
+            <div className = "nav-bar">
+            <ShowStatsButton setShowStats = {setShowStats} showStats = {showStats}/>
             <Logout 
                 setActiveUserId = {setActiveUserId} 
                 setLoggedIn = {setLoggedIn}
@@ -208,7 +210,7 @@ export default function App(props) {
                 updateCoach = {updateCoach}
                 CoachCancelPrevAndSpeak = {CoachCancelPrevAndSpeak} 
             />
-            <ShowStatsButton setShowStats = {setShowStats} showStats = {showStats}/>
+            </div>
             <Stats 
                     exerciseList = {exerciseList}
                     activePeriods = {activePeriods}
@@ -248,20 +250,23 @@ export default function App(props) {
     {
         return (
             <div className="workout-creation-body">
-                <Logout 
-                    setActiveUserId = {setActiveUserId} 
-                    setLoggedIn = {setLoggedIn}
-                    setTimerRunning = {setTimerRunning}
-                    setCurrentSet = {setCurrentSet}
-                    setTimeRemaining = {setTimeRemaining}
-                    setCurrentExerciseIndex = {setCurrentExerciseIndex}
-                    setStartedRoutine = {setStartedRoutine}
-                    setShowCreateWorkout = {setShowCreateWorkout}
-                    activePeriods = {activePeriods}
-                    updateCoach = {updateCoach}
-                    CoachCancelPrevAndSpeak = {CoachCancelPrevAndSpeak} 
-                />
-                <ShowStatsButton setShowStats = {setShowStats} showStats = {showStats}/>
+                <div className = "nav-bar">
+                    <ShowStatsButton setShowStats = {setShowStats} showStats = {showStats}/>
+                    <Logout 
+                        setActiveUserId = {setActiveUserId} 
+                        setLoggedIn = {setLoggedIn}
+                        setTimerRunning = {setTimerRunning}
+                        setCurrentSet = {setCurrentSet}
+                        setTimeRemaining = {setTimeRemaining}
+                        setCurrentExerciseIndex = {setCurrentExerciseIndex}
+                        setStartedRoutine = {setStartedRoutine}
+                        setShowCreateWorkout = {setShowCreateWorkout}
+                        activePeriods = {activePeriods}
+                        updateCoach = {updateCoach}
+                        CoachCancelPrevAndSpeak = {CoachCancelPrevAndSpeak} 
+                    />
+                    
+                </div>
                 <Stats 
                     exerciseList = {exerciseList}
                     activePeriods = {activePeriods}

@@ -14,24 +14,26 @@ export default function CreateWorkout(props) {
         for(let i =  0; i < props.exerciseList.length; i ++){
             arr[i] = 
             <div key = {i}>
-                <div className = "grid-5">
-                    <button 
-                        className="grid-item"
-                        onClick ={e => handleUpdateWorkout(e.target.value, e.target.id)} 
-                        value ="replaceAtIndex" 
-                        id = {i}>
-                        Replace
-                    </button>
-                    <p className="grid-item">Exercise: {props.exerciseList[i]}</p>
-                    <p className="grid-item">Active Time: {props.activePeriods[i]} seconds</p>
-                    <p className="grid-item">Rest Time: {props.restPeriods[i]} seconds</p>
-                    <button 
-                        className="grid-item"
-                        onClick ={e => handleUpdateWorkout(e.target.value, e.target.id)} 
-                        value ="removeAtIndex" 
-                        id = {i}>
-                        Remove
-                    </button>
+                <div>
+                    <div className ="adjusted-button">
+                        <button 
+                            onClick ={e => handleUpdateWorkout(e.target.value, e.target.id)} 
+                            value ="replaceAtIndex" 
+                            id = {i}>
+                            Replace
+                        </button>
+                        <button 
+                            onClick ={e => handleUpdateWorkout(e.target.value, e.target.id)} 
+                            value ="removeAtIndex" 
+                            id = {i}>
+                            Remove
+                        </button>
+                    </div>
+                    <div className = "flex-item">
+                        <p >Exercise: {props.exerciseList[i]}</p>
+                        <p >Active Time: {props.activePeriods[i]} seconds</p>
+                        <p >Rest Time: {props.restPeriods[i]} seconds</p>
+                    </div>
                 </div>
             </div>
         }
@@ -52,26 +54,6 @@ export default function CreateWorkout(props) {
     useEffect(()=>{
         thePreview()
     },[exerciseTemp,activePeriodTemp,restPeriodTemp])
-
-
-    const workoutContainer = {
-        display: "flex",
-        flexDirection: "column",
-        marginTop: "10px",
-        textAlign: "center",
-        justifyContent: "center",
-        alignItems: "center",
-        height:'auto',
-    }
-
-
-    const workoutButtonsContainer = {
-        display: "flex",
-        marginTop: "10px",
-        textAlign: "center",
-        justifyContent: "center",
-        alignItems: "center",
-    }
 
 
     function handleKeyDown(e, val){
@@ -174,7 +156,7 @@ export default function CreateWorkout(props) {
 
     return (
         <>
-            <div style={workoutContainer}>
+            <div className="workout-container">
                 <p className="bigger-text">Set the number of sets you want to do</p>
                 <input 
                     type = "number" 
@@ -214,10 +196,7 @@ export default function CreateWorkout(props) {
                     onKeyDown={e => handleKeyDown(e,"add")}
                 />
             
-                <div style={workoutButtonsContainer}>
-                    <button onClick={e => handleUpdateWorkout(e.target.value)} value = "add">Add Exercise</button>
-                    <button onClick={e => handleUpdateWorkout(e.target.value)} value= "remove">Remove Last</button>
-                    <button onClick={e => handleUpdateWorkout(e.target.value)} value = "clear">Clear All</button>
+                <div className="workout-buttons-container">
                     <WorkoutSaver 
                         exerciseList = {props.exerciseList} 
                         activePeriods = {props.activePeriods}
@@ -229,6 +208,9 @@ export default function CreateWorkout(props) {
                         setWorkoutNames = {setWorkoutNames}
                         activeUserId = {props.activeUserId}
                         />
+                    <button onClick={e => handleUpdateWorkout(e.target.value)} value = "add">Add Exercise</button>
+                    <button onClick={e => handleUpdateWorkout(e.target.value)} value= "remove">Remove Last</button>
+                    <button onClick={e => handleUpdateWorkout(e.target.value)} value = "clear">Clear All</button>
                 </div>     
                 <div>{preview}</div>
             </div>

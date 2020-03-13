@@ -9,9 +9,14 @@
     overflow:hidden;
 }
 
+body{
+    margin:0px;
+}
+
 .exercise-app-container{
     position: absolute;
     z-index: -1;
+    min-width:300px;
     width: 100%;
     top:0;
     left:0;
@@ -36,6 +41,24 @@
     text-align: center;
     
 }
+.nav-bar{
+    display: grid;
+    margin: 0px;
+    grid-template-columns: repeat(2,50%);
+
+    padding:50px;
+    column-gap: 4.5px;
+}
+
+.nav-bar button, .nav-bar button:hover{
+    width: 100%;
+    margin: 0px;
+    margin-top:5px;
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px 3px lightgreen;
+}
+
+
 
 .exercise-card:first-child{
     font-size:50px;
@@ -61,19 +84,24 @@
 }
 
 
+
 .workout-creation-body{
     position:absolute;
     top:0;
     left:0;
     margin:0px;
-    width:100%;
+    min-width: 100%;
     min-height:100%;
-    max-height:auto;
-    z-index: -1;
     background-color: ghostwhite;
     /* background-image: radial-gradient( rgb(35, 59, 35),darkgreen,darkgreen, whitesmoke); */
     background-image: linear-gradient( rgb(35, 59, 35),darkgreen,green,lightgreen, whitesmoke);
 
+}
+
+@media (max-width: 1000px){
+    .workout-creation-body{
+        min-height:1700px;
+    }
 }
 
 .p-bold{
