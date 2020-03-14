@@ -194,56 +194,56 @@ export default function App(props) {
 
     else if(!showCreateWorkout){
         return (
-            <>
-            <div className = "nav-bar">
-            <ShowStatsButton setShowStats = {setShowStats} showStats = {showStats}/>
-            <Logout 
-                setActiveUserId = {setActiveUserId} 
-                setLoggedIn = {setLoggedIn}
-                setTimerRunning = {setTimerRunning}
-                setCurrentSet = {setCurrentSet}
-                setTimeRemaining = {setTimeRemaining}
-                setCurrentExerciseIndex = {setCurrentExerciseIndex}
-                setStartedRoutine = {setStartedRoutine}
-                setShowCreateWorkout = {setShowCreateWorkout}
-                activePeriods = {activePeriods}
-                updateCoach = {updateCoach}
-                CoachCancelPrevAndSpeak = {CoachCancelPrevAndSpeak} 
-            />
-            </div>
-            <Stats 
-                    exerciseList = {exerciseList}
-                    activePeriods = {activePeriods}
-                    users = {users}
-                    activeUserId = {activeUserId}
-                    showStats = {showStats}
-                    updateStats = {updateStats}
-                    setUpdateStats = {setUpdateStats}
-                    totalSets = {totalSets}
-                    LOCAL_USERS_KEY = {LOCAL_USERS_KEY}
-            />
-            <div className="center-button">
-                <button onClick={startRoutine}>Start</button>
-                <button onClick={createWorkout}>Create Workout </button>
-            </div>
-            <div className = "exercise-app-container">
-                <Exercises 
-                    exercisesCompleted = {currentExerciseIndex}
-                    exercises = {exercises}
-                    exerciseList = {exerciseList}
-                    setExerciseList = {setExerciseList}
-                    showCreateWorkout = {showCreateWorkout}
-                    setExercises = {setExercises}            
-                />
-                <p className="directions">{timerRunning ? isActiveTimer ? "PUSH IT!!!" : "REST" : "Get Ready"}</p>
-                <TimerComponent timeRemaining = {timeRemaining} timerRunning = {timerRunning}/>
-                <div>
-                    <p className = "p-bold">The current Exercise number is: {currentExerciseIndex}</p>
-                    <p className = "p-bold">Set {currentSet}</p>
-                    <p className = "p-bold">Sets Remaining {totalSets - currentSet}</p>
+            <div className="workout-creation-body">>
+                <div className = "nav-bar">
+                    <ShowStatsButton setShowStats = {setShowStats} showStats = {showStats}/>
+                    <Logout 
+                        setActiveUserId = {setActiveUserId} 
+                        setLoggedIn = {setLoggedIn}
+                        setTimerRunning = {setTimerRunning}
+                        setCurrentSet = {setCurrentSet}
+                        setTimeRemaining = {setTimeRemaining}
+                        setCurrentExerciseIndex = {setCurrentExerciseIndex}
+                        setStartedRoutine = {setStartedRoutine}
+                        setShowCreateWorkout = {setShowCreateWorkout}
+                        activePeriods = {activePeriods}
+                        updateCoach = {updateCoach}
+                        CoachCancelPrevAndSpeak = {CoachCancelPrevAndSpeak} 
+                    />
                 </div>
-            </div>
-            </>
+                <Stats 
+                        exerciseList = {exerciseList}
+                        activePeriods = {activePeriods}
+                        users = {users}
+                        activeUserId = {activeUserId}
+                        showStats = {showStats}
+                        updateStats = {updateStats}
+                        setUpdateStats = {setUpdateStats}
+                        totalSets = {totalSets}
+                        LOCAL_USERS_KEY = {LOCAL_USERS_KEY}
+                />
+                <div className="center-button">
+                    <button onClick={startRoutine}>Start</button>
+                    <button onClick={createWorkout}>Create Workout </button>
+                </div>
+                {/* <div className = "exercise-app-container"> */}
+                    <Exercises 
+                        exercisesCompleted = {currentExerciseIndex}
+                        exercises = {exercises}
+                        exerciseList = {exerciseList}
+                        setExerciseList = {setExerciseList}
+                        showCreateWorkout = {showCreateWorkout}
+                        setExercises = {setExercises}            
+                    />
+                    <p className="directions">{timerRunning ? isActiveTimer ? "PUSH IT!!!" : "REST" : "Get Ready"}</p>
+                    <TimerComponent timeRemaining = {timeRemaining} timerRunning = {timerRunning}/>
+                    <div>
+                        <p className = "p-bold">The current Exercise number is: {currentExerciseIndex}</p>
+                        <p className = "p-bold">Set {currentSet}</p>
+                        <p className = "p-bold">Sets Remaining {totalSets - currentSet}</p>
+                    </div>
+                </div>
+            // </div>
         )
     }
     else

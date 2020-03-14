@@ -8,7 +8,7 @@ export default function Exercises(props) {
     function createExerciseList(exercises){
         let i  = props.exercisesCompleted
         let tempArray = []
-        while(i< exercises.length && i < props.exercisesCompleted+4 ){
+        while(i< exercises.length && i < props.exercisesCompleted+2 ){
             tempArray[i] = <Exercise key ={i} exerciseName = {exercises[i]}/>
             i++
         }
