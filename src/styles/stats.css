@@ -2,7 +2,7 @@
     position:absolute;
     margin-left: 1%;
     width:98%;
-    min-height:calc(87%);
+    min-height:750px;
     background-image: linear-gradient( rgb(35, 59, 35),whitesmoke, lightgreen, green, darkgreen);
     display: flex;
     flex-direction: row;
@@ -13,14 +13,47 @@
     border-radius:10px;
 }
 
+.divider :nth-child(6){
+    padding-left:80px;
+}
+
 .bar-container{
     height: 650px;
     background-color: grey;
     display:flex;
     align-items: flex-end;  
     justify-content: center;
-    padding-left:10px;
 }
+
+.bar-line{
+    position:absolute;
+    height:5px;
+    width: 98px;
+    background-color: black;
+}
+
+.totals{
+    position:absolute;
+    padding-left:10px;
+    font-size:18px;
+}
+/* odd numbers are coming from margin or padding */
+.b1{
+    bottom: 150px;
+}
+.b2{
+    bottom: 250px;
+}
+.b3{
+    bottom: 350px;
+}
+.b4{
+    bottom: 450px;
+}
+.b5{
+    bottom: 550px;
+}
+
 
 
 

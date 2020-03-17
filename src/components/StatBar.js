@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import '../styles/stats.css'
+import { findRenderedComponentWithType } from 'react-dom/test-utils'
 export default function StatBar(props) {
     
 
@@ -12,11 +13,23 @@ export default function StatBar(props) {
         height : props.activePeriod >= 1 ? props.activePeriod.toString() + 'px' : '0px'
     }
 
+    const barCount={
+        color: 'white',
+
+    }
+
+
 
     return (
         <>
             <div className = "bar-container">
-                <div style = {bar}></div>
+                <div style = {bar}>
+                    <div className = "bar-line b1"></div>
+                    <div className = "bar-line b2"></div>
+                    <div className = "bar-line b3"></div>
+                    <div className = "bar-line b4"></div>
+                    <div className = "bar-line b5"></div>
+                </div>
             <div className = "bar-label">{props.exerciseName}</div>
             </div>
         </>

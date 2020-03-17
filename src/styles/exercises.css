@@ -36,7 +36,6 @@ body{
     justify-content: center;
     text-align: center;
     min-height:240px;
-    border: 1px solid red;
 }
 .nav-bar{
     display: grid;

@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import StatBar from './StatBar'
 import '../styles/stats.css'
 export default function StatBarsChart(props) {
-    const modifier = 10
+    const modifier = 1
 
 
     const centerer = {
@@ -42,6 +42,11 @@ export default function StatBarsChart(props) {
 
     return (
             <div className="divider">
+                <div className="totals b1">100s</div>
+                <div className="totals b2">200s</div>
+                <div className="totals b3">300s</div>
+                <div className="totals b4">400s</div>
+                <div className="totals b5">500s</div>
                 {theBars}
             </div>
 
