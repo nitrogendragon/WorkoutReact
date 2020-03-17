@@ -17,7 +17,8 @@ export default function StatBar(props) {
         color: 'white',
         fontWeight: 'bolder',
         position: 'absolute',
-        height : props.activePeriod >= 1 ? (props.activePeriod + 20).toString() + 'px' : '0px'
+        transition : 'height 1000ms ease-in-out',
+        height : props.activePeriod >= 1 ? (props.activePeriod + 20).toString() + 'px' : '20px'
     }
 
 

@@ -20,7 +20,7 @@ export default function Stats(props) {
     function handleClearUserStats(){
         console.log("we cleared it... tabun")
         setUsersExercises(["PUSH UP"])
-        setUsersExercisesDurations([50])
+        setUsersExercisesDurations([0])
         setUpdatedUserStats(true)
     }
 

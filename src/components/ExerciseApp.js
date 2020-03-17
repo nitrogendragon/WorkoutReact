@@ -32,6 +32,15 @@ export default function App(props) {
     myCoach.pitch = 1
     myCoach.volume = .4
     myCoach.rate = 1.1
+    //best function ever
+//https://stackoverflow.com/questions/22639296/force-mobile-browser-zoom-out-with-javascript
+    function zoomReset() {
+        var viewport = document.querySelector("meta[name='viewport']");
+        viewport.content = "width=device-width, maximum-scale=0.635";
+        setTimeout(function() {
+            viewport.content = "width=device-width, maximum-scale=1";
+        }, 350);
+    }
     
 
     function toggleActive(){
@@ -170,6 +179,9 @@ export default function App(props) {
             updateCoach(0,0,0,"Get ready! We're about to get started. Make sure you are properly hydrated and warmed up!")
             CoachCancelPrevAndSpeak()
         }
+
+        setTimeout(zoomReset(),150)
+        
     },[showCreateWorkout])
 
     //conditional rendering essentially

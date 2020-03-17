@@ -94,15 +94,29 @@ body{
 
 }
 
-@media (max-width: 1000px){
-    .workout-creation-body{
-        min-height:1700px;
-    }
-}
-
 .p-bold{
     font-size: 24px;
     font-weight:bold;
     color: ghostwhite;
 }
+
+@media (max-width: 1000px){
+    .workout-creation-body{
+        min-width:1000px;
+        min-height:2500px;
+    }
+    .directions{
+        font-size:30px;
+    }
+    .p-bold{
+        font-size: 12px;
+    }
+
+    .exercises-container{
+        min-height:120px;
+    }
+
+}
+
+
 
