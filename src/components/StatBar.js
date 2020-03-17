@@ -15,7 +15,9 @@ export default function StatBar(props) {
 
     const barCount={
         color: 'white',
-
+        fontWeight: 'bolder',
+        position: 'absolute',
+        height : props.activePeriod >= 1 ? (props.activePeriod + 20).toString() + 'px' : '0px'
     }
 
 
@@ -30,6 +32,7 @@ export default function StatBar(props) {
                     <div className = "bar-line b4"></div>
                     <div className = "bar-line b5"></div>
                 </div>
+                <div style = {barCount}>{props.activePeriod}s</div>
             <div className = "bar-label">{props.exerciseName}</div>
             </div>
         </>
