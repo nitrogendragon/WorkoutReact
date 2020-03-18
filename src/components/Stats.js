@@ -16,7 +16,7 @@ export default function Stats(props) {
     
 
     function getCurrentDay(){
-        return Math.floor(Date.now() / 86400000) //not perfect but works if we focus on pure 24 hour periods
+        return Math.Floor(Date.now() / 86400000) //not perfect but works if we focus on pure 24 hour periods
     }
 
 
@@ -85,7 +85,7 @@ export default function Stats(props) {
         if(startDate === 0){
             setStartDate(()=>getCurrentDay())
         }
-        if(currentDate === 0){
+        if(currentDate === 0 || currentDate < getCurrentDay()){
             setCurrentDate(()=> getCurrentDay())
         }
         setUsersExercisesDurations(()=>tempDurations)
