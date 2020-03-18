@@ -68,8 +68,7 @@ export default function Stats(props) {
     }
 
     //just going to try lowest to highest
-    function sortStats(){
-        console.log(usersExercisesDurations)
+    function sortStats(isLowToHigh){
         let tempExercises = [""]
         
         let tempDur = [0]
@@ -86,16 +85,21 @@ export default function Stats(props) {
             tempSortedDur.map((tempVal, targetIndex) => {
                 console.log(tempExercises)
                 if(matchfound != true && val.toString() === tempVal.toString() &&  tempExercises[targetIndex].toString() === "a"){
-                    console.log("true")
                     tempExercises[targetIndex] = usersExercises[index]
-                    console.log(tempExercises[targetIndex] + "index is: " + targetIndex)
                     matchfound = true
                 }
-                else{console.log("userVal is: "  + val + "tempVal is: " + val)}
+                // else{console.log("userVal is: "  + val + "tempVal is: " + val)}
             })
         
         })
+        if(!isLowToHigh){
+            tempExercises.reverse()
+            tempSortedDur.reverse()
+        }
         console.log(tempExercises)
+        setUsersExercisesDurations(()=>tempSortedDur)
+        setUsersExercises(()=>tempExercises)
+        setUpdatedUserStats(true)
         // console.log("original")
         // console.log(usersExercisesDurations)
         // console.log("basic ascending sort version")
@@ -142,8 +146,8 @@ export default function Stats(props) {
         <div style={{display: props.showStats ? 'grid' : 'none'}}>
             <div className = "stats-chart-buttons-container">
                 <button onClick = {handleClearUserStats}>Clear Stats</button>
-                <button onClick = {sortStats}>Sort Stats</button>
-                <button >Clear Stats</button>
+                <button onClick = {e=> sortStats(true)}>Sort L-H</button>
+                <button onClick = {e => sortStats(false)}>Sort H-L</button>
                 <button >Clear Stats</button>
             </div>
             <StatBarsChart 
