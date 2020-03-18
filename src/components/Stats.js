@@ -1,13 +1,35 @@
 import React, {useState, useEffect} from 'react'
 import StatBarsChart from './StatBarsChart'
 import'../styles/stats.css'
-import { isCompositeComponent } from 'react-dom/test-utils'
 export default function Stats(props) {
     const [usersExercises, setUsersExercises] = useState(["PUSH UP"])
     const [usersExercisesDurations, setUsersExercisesDurations] = useState([0])
+    const [usersExercisesDurationsPrevDay, setUsersExercisesDurationsPrevDay] = useState([0])
+    const [startDate, setStartDate] = useState(0)// will be measuring in whole numbers
+    const [currentDate, setCurrentDate] = useState(0)// will be measuring in whole numbers
     const LOCAL_USERS_EXERCISES = "_myExercises"
     const LOCAL_USERS_EXERCISES_DURATIONS = "_myExercisesDurations"
+    const LOCAL_USERS_EXERCISES_Durations_PREV_DAY_MODIFIER = "_prevDay"
     const [updatedUserStats, setUpdatedUserStats] = useState(false)
+    
+
+    function createStartDate(){
+        let tempNow = Date.now()
+        let tempNowSeconds = tempNow / 1000
+        let tempNowMinutes = tempNowSeconds / 60
+        let tempNowHours = tempNowMinutes / 60
+        let tempNowDays = Math.floor(tempNowHours /24)
+        console.log(tempNow + "milliseconds")
+        console.log(tempNowSeconds + "seconds")
+        console.log(tempNowMinutes + "minutes")
+        console.log(tempNowHours + "hours")
+        console.log(tempNowDays + "days")
+    }
+    setTimeout(()=>{
+        createStartDate()
+    },150)
+
+    
     function getIndex(value, arr){
         let i = 0
         for(i; i < arr.length; i++){
@@ -19,9 +41,9 @@ export default function Stats(props) {
     }
 
     function handleClearUserStats(){
-        console.log("we cleared it... tabun")
         setUsersExercises(["PUSH UP"])
         setUsersExercisesDurations([0])
+        setUsersExercisesDurationsPrevDay([0])
         setUpdatedUserStats(true)
     }
 
@@ -67,10 +89,9 @@ export default function Stats(props) {
         setUpdatedUserStats(true)
     }
 
-    //just going to try lowest to highest
+    //depending on isLowToHigh changes the direction things are sorted
     function sortStats(isLowToHigh){
         let tempExercises = [""]
-        
         let tempDur = [0]
         let i
         let matchfound 
