@@ -11,13 +11,12 @@ export default function Stats(props) {
     const LOCAL_USERS_EXERCISES_DURATIONS = "_myExercisesDurations"
     const LOCAL_USERS_PREV_DAY = "_prevDay"
     const LOCAL_USERS_START_DATE = "_startDate"
+    const LOCAL_USERS_CURRENT_DATE = "_currentDate"
     const [updatedUserStats, setUpdatedUserStats] = useState(false)
     
 
-    function createStartDate(){
+    function getCurrentDay(){
         return Math.floor(Date.now() / 86400000) //not perfect but works if we focus on pure 24 hour periods
-        
-        
     }
 
 
@@ -36,8 +35,8 @@ export default function Stats(props) {
         setUsersExercises(["PUSH UP"])
         setUsersExercisesDurations([0])
         setUsersExercisesDurationsPrevDay([0])
-        setStartDate(createStartDate)
-        setCurrentDate(createStartDate)
+        setStartDate(getCurrentDay)
+        setCurrentDate(getCurrentDay)
         setUpdatedUserStats(true)
     }
 
@@ -55,6 +54,9 @@ export default function Stats(props) {
         console.log("The start date is: " + startDate)
         localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_START_DATE,
         JSON.stringify(startDate))
+        console.log("The current date is: " + currentDate)
+        localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_CURRENT_DATE,
+        JSON.stringify(currentDate))
     }
 
 
@@ -81,7 +83,10 @@ export default function Stats(props) {
             }
         }
         if(startDate === 0){
-            setStartDate(()=>createStartDate())
+            setStartDate(()=>getCurrentDay())
+        }
+        if(currentDate === 0){
+            setCurrentDate(()=> getCurrentDay())
         }
         setUsersExercisesDurations(()=>tempDurations)
         setUsersExercises(()=>tempExercises)
@@ -131,7 +136,6 @@ export default function Stats(props) {
     
     useEffect(()=>{
         if(updatedUserStats){
-            console.log(startDate)
             setUpdatedUserStats(false)
             updateStorage()
         }
@@ -159,6 +163,9 @@ export default function Stats(props) {
             const tempUserStartDate = JSON.parse(localStorage.getItem(
                 props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_START_DATE))
             setStartDate(tempUserStartDate)
+            const tempUserCurrentDate = JSON.parse(localStorage.getItem(
+                props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_CURRENT_DATE))
+            setCurrentDate(tempUserCurrentDate)
         }
 
         
