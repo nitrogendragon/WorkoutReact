@@ -9,21 +9,15 @@ export default function Stats(props) {
     const [currentDate, setCurrentDate] = useState(0)// will be measuring in whole numbers
     const LOCAL_USERS_EXERCISES = "_myExercises"
     const LOCAL_USERS_EXERCISES_DURATIONS = "_myExercisesDurations"
-    const LOCAL_USERS_EXERCISES_Durations_PREV_DAY_MODIFIER = "_prevDay"
+    const LOCAL_USERS_PREV_DAY = "_prevDay"
+    const LOCAL_USERS_START_DATE = "_startDate"
     const [updatedUserStats, setUpdatedUserStats] = useState(false)
     
 
     function createStartDate(){
-        let tempNow = Date.now()
-        let tempNowSeconds = tempNow / 1000
-        let tempNowMinutes = tempNowSeconds / 60
-        let tempNowHours = tempNowMinutes / 60
-        let tempNowDays = Math.floor(tempNowHours /24)
-        console.log(tempNow + "milliseconds")
-        console.log(tempNowSeconds + "seconds")
-        console.log(tempNowMinutes + "minutes")
-        console.log(tempNowHours + "hours")
-        console.log(tempNowDays + "days")
+        return Math.floor(Date.now() / 86400000) //not perfect but works if we focus on pure 24 hour periods
+        
+        
     }
 
 
@@ -42,6 +36,8 @@ export default function Stats(props) {
         setUsersExercises(["PUSH UP"])
         setUsersExercisesDurations([0])
         setUsersExercisesDurationsPrevDay([0])
+        setStartDate(createStartDate)
+        setCurrentDate(createStartDate)
         setUpdatedUserStats(true)
     }
 
@@ -52,6 +48,13 @@ export default function Stats(props) {
         console.log("The users exercises durations are: " + usersExercisesDurations)
         localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS, 
         JSON.stringify(usersExercisesDurations))
+        console.log("The users previous days exercises durations are: " + usersExercisesDurations)
+        localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS + 
+            LOCAL_USERS_PREV_DAY, 
+        JSON.stringify(usersExercisesDurations))
+        console.log("The start date is: " + startDate)
+        localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_START_DATE,
+        JSON.stringify(startDate))
     }
 
 
@@ -77,7 +80,9 @@ export default function Stats(props) {
 
             }
         }
-        
+        if(startDate === 0){
+            setStartDate(()=>createStartDate())
+        }
         setUsersExercisesDurations(()=>tempDurations)
         setUsersExercises(()=>tempExercises)
         setUpdatedUserStats(true)
@@ -126,6 +131,7 @@ export default function Stats(props) {
     
     useEffect(()=>{
         if(updatedUserStats){
+            console.log(startDate)
             setUpdatedUserStats(false)
             updateStorage()
         }
@@ -133,18 +139,28 @@ export default function Stats(props) {
 
 
     useEffect(()=>{
-        if(usersExercises[0] === "PUSH UP" && usersExercisesDurations[0] === 0 )
+        const tempUserExercises = JSON.parse(localStorage.getItem(
+            props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES))
+        if(tempUserExercises === null || tempUserExercises === undefined)
         {
+            console.log("clearing")
             handleClearUserStats()
         }
-        else if(usersExercises != null && usersExercises != undefined){
-            const tempUserExercises = JSON.parse(localStorage.getItem(
-                props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES))
+        else {
+            console.log("get")
             setUsersExercises(tempUserExercises)
             const tempUserExercisesDurations = JSON.parse(localStorage.getItem(
                 props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS))
             setUsersExercisesDurations(tempUserExercisesDurations)
+            const tempUserExercisesDurationsPrevDay = JSON.parse(localStorage.getItem(
+                props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS + 
+                LOCAL_USERS_PREV_DAY))
+            setUsersExercisesDurationsPrevDay(tempUserExercisesDurationsPrevDay)
+            const tempUserStartDate = JSON.parse(localStorage.getItem(
+                props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_START_DATE))
+            setStartDate(tempUserStartDate)
         }
+
         
     },[])
 
