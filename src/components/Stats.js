@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import StatBarsChart from './StatBarsChart'
 import'../styles/stats.css'
+import { isCompositeComponent } from 'react-dom/test-utils'
 export default function Stats(props) {
     const [usersExercises, setUsersExercises] = useState(["PUSH UP"])
     const [usersExercisesDurations, setUsersExercisesDurations] = useState([0])
@@ -48,11 +49,11 @@ export default function Stats(props) {
                 tempExercises= [...tempExercises, tempExercise]
                 tempDurations = [...tempDurations, props.activePeriods[i] * props.totalSets]
             }
-            //handling updating an exercise we have done before
+            //handling updating an exercise we have done before We want to make sure we are compounding total time
             else{
                 insertionIndex = getIndex(props.exerciseList[i],usersExercises)
                 if(insertionIndex != -1){
-                    tempDurations[insertionIndex] = props.activePeriods[i] * props.totalSets
+                    tempDurations[insertionIndex] = props.activePeriods[i] * props.totalSets + tempDurations[insertionIndex]
                     console.log(insertionIndex)
                 }
 
@@ -64,6 +65,43 @@ export default function Stats(props) {
         setUsersExercisesDurations(()=>tempDurations)
         setUsersExercises(()=>tempExercises)
         setUpdatedUserStats(true)
+    }
+
+    //just going to try lowest to highest
+    function sortStats(){
+        console.log(usersExercisesDurations)
+        let tempExercises = [""]
+        
+        let tempDur = [0]
+        let i
+        let matchfound 
+        for(i = 0; i < usersExercisesDurations.length; i++){
+            tempDur[i] = usersExercisesDurations[i]
+            tempExercises[i] = "a"
+        }
+        const tempSortedDur = usersExercisesDurations.sort()
+        //using tempDur because it doesn't get force sorted
+        tempDur.map((val, index) =>{
+            matchfound = false
+            tempSortedDur.map((tempVal, targetIndex) => {
+                console.log(tempExercises)
+                if(matchfound != true && val.toString() === tempVal.toString() &&  tempExercises[targetIndex].toString() === "a"){
+                    console.log("true")
+                    tempExercises[targetIndex] = usersExercises[index]
+                    console.log(tempExercises[targetIndex] + "index is: " + targetIndex)
+                    matchfound = true
+                }
+                else{console.log("userVal is: "  + val + "tempVal is: " + val)}
+            })
+        
+        })
+        console.log(tempExercises)
+        // console.log("original")
+        // console.log(usersExercisesDurations)
+        // console.log("basic ascending sort version")
+        // console.log(usersExercisesDurations.sort())
+        // console.log("reversed based off our sorted version")
+        // console.log(usersExercisesDurations.reverse())
     }
 
 
@@ -104,7 +142,7 @@ export default function Stats(props) {
         <div style={{display: props.showStats ? 'grid' : 'none'}}>
             <div className = "stats-chart-buttons-container">
                 <button onClick = {handleClearUserStats}>Clear Stats</button>
-                <button >Clear Stats</button>
+                <button onClick = {sortStats}>Sort Stats</button>
                 <button >Clear Stats</button>
                 <button >Clear Stats</button>
             </div>
