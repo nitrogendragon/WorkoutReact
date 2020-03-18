@@ -25,9 +25,7 @@ export default function Stats(props) {
         console.log(tempNowHours + "hours")
         console.log(tempNowDays + "days")
     }
-    setTimeout(()=>{
-        createStartDate()
-    },150)
+
 
     
     function getIndex(value, arr){
@@ -65,7 +63,6 @@ export default function Stats(props) {
         for(let i  = 0; i < props.exerciseList.length; i++){
             tempExercise = usersExercises.includes(props.exerciseList[i]) ?
                 undefined : props.exerciseList[i]
-                console.log("The temp exercise is: " + tempExercise)
             //handling updating new exercise
             if(tempExercise != undefined && tempExercises != undefined && !tempExercises.includes(tempExercise)){
                 tempExercises= [...tempExercises, tempExercise]
@@ -76,14 +73,11 @@ export default function Stats(props) {
                 insertionIndex = getIndex(props.exerciseList[i],usersExercises)
                 if(insertionIndex != -1){
                     tempDurations[insertionIndex] = props.activePeriods[i] * props.totalSets + tempDurations[insertionIndex]
-                    console.log(insertionIndex)
                 }
 
             }
         }
         
-        console.log(tempDurations)
-        console.log(tempExercises)
         setUsersExercisesDurations(()=>tempDurations)
         setUsersExercises(()=>tempExercises)
         setUpdatedUserStats(true)
@@ -104,7 +98,6 @@ export default function Stats(props) {
         tempDur.map((val, index) =>{
             matchfound = false
             tempSortedDur.map((tempVal, targetIndex) => {
-                console.log(tempExercises)
                 if(matchfound != true && val.toString() === tempVal.toString() &&  tempExercises[targetIndex].toString() === "a"){
                     tempExercises[targetIndex] = usersExercises[index]
                     matchfound = true
@@ -117,22 +110,14 @@ export default function Stats(props) {
             tempExercises.reverse()
             tempSortedDur.reverse()
         }
-        console.log(tempExercises)
         setUsersExercisesDurations(()=>tempSortedDur)
         setUsersExercises(()=>tempExercises)
         setUpdatedUserStats(true)
-        // console.log("original")
-        // console.log(usersExercisesDurations)
-        // console.log("basic ascending sort version")
-        // console.log(usersExercisesDurations.sort())
-        // console.log("reversed based off our sorted version")
-        // console.log(usersExercisesDurations.reverse())
     }
 
 
     useEffect(()=>{
         if(props.updateStats){
-            console.log("updating stats")
             props.setUpdateStats(false)
             updateStats()
         }
@@ -148,7 +133,11 @@ export default function Stats(props) {
 
 
     useEffect(()=>{
-        if(usersExercises != null && usersExercises != undefined){
+        if(usersExercises[0] === "PUSH UP" && usersExercisesDurations[0] === 0 )
+        {
+            handleClearUserStats()
+        }
+        else if(usersExercises != null && usersExercises != undefined){
             const tempUserExercises = JSON.parse(localStorage.getItem(
                 props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES))
             setUsersExercises(tempUserExercises)
@@ -156,10 +145,7 @@ export default function Stats(props) {
                 props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS))
             setUsersExercisesDurations(tempUserExercisesDurations)
         }
-        else{
-            //if we have nothing we will default stuff
-            handleClearUserStats()
-        }
+        
     },[])
 
 
