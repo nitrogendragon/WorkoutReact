@@ -7,18 +7,24 @@ export default function Stats(props) {
     const [usersExercisesDurationsPrevDay, setUsersExercisesDurationsPrevDay] = useState([0])
     const [startDate, setStartDate] = useState(0)// will be measuring in whole numbers
     const [currentDate, setCurrentDate] = useState(0)// will be measuring in whole numbers
+    const [updatedUserStats, setUpdatedUserStats] = useState(false)
+    const [displayPrev,setDisplayPrev] = useState(false)
+
     const LOCAL_USERS_EXERCISES = "_myExercises"
     const LOCAL_USERS_EXERCISES_DURATIONS = "_myExercisesDurations"
     const LOCAL_USERS_PREV_DAY = "_prevDay"
     const LOCAL_USERS_START_DATE = "_startDate"
     const LOCAL_USERS_CURRENT_DATE = "_currentDate"
-    const [updatedUserStats, setUpdatedUserStats] = useState(false)
     
 
     function getCurrentDay(){
         return Math.floor(Date.now() / 86400000) //not perfect but works if we focus on pure 24 hour periods
     }
 
+
+    function showYesterdaysStats(){
+        setDisplayPrev( !displayPrev)
+    }
 
     
     function getIndex(value, arr){
@@ -41,20 +47,20 @@ export default function Stats(props) {
     }
 
     function updateStorage(){
-        console.log("The users exercises are: " + usersExercises)
+        // console.log("The users exercises are: " + usersExercises)
         localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES,
         JSON.stringify(usersExercises))
-        console.log("The users exercises durations are: " + usersExercisesDurations)
+        // console.log("The users exercises durations are: " + usersExercisesDurations)
         localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS, 
         JSON.stringify(usersExercisesDurations))
-        console.log("The users previous days exercises durations are: " + usersExercisesDurationsPrevDay)
+        // console.log("The users previous days exercises durations are: " + usersExercisesDurationsPrevDay)
         localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS + 
             LOCAL_USERS_PREV_DAY, 
         JSON.stringify(usersExercisesDurationsPrevDay))
-        console.log("The start date is: " + startDate)
+        // console.log("The start date is: " + startDate)
         localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_START_DATE,
         JSON.stringify(startDate))
-        console.log("The current date is: " + currentDate)
+        // console.log("The current date is: " + currentDate)
         localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_CURRENT_DATE,
         JSON.stringify(currentDate))
     }
@@ -97,7 +103,7 @@ export default function Stats(props) {
             for(index; index < tempDurations.length; index++){
                 if(usersExercisesDurationsPrevDay[index] >=0){tempPrevDur[index] = usersExercisesDurationsPrevDay[index]}
                 else{
-                    console.log("adding a zero")
+                    // console.log("adding a zero")
                     tempPrevDur[index] = 0
                 }
             }
@@ -212,7 +218,7 @@ export default function Stats(props) {
                 <button onClick = {handleClearUserStats}>Clear Stats</button>
                 <button onClick = {e=> sortStats(true)}>Sort L-H</button>
                 <button onClick = {e => sortStats(false)}>Sort H-L</button>
-                <button >Clear Stats</button>
+                <button onClick = {e=> showYesterdaysStats()}>Yesterdays Stats</button>
             </div>
             <StatBarsChart 
                 userExercises ={JSON.parse(localStorage.getItem(
@@ -220,7 +226,20 @@ export default function Stats(props) {
                 userExercisesDurations = {JSON.parse(localStorage.getItem(
                     props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS))}
                 updatedUserStats = {updatedUserStats}
+                isPrev = {false}
             />
+            { displayPrev ?
+                <StatBarsChart 
+                    userExercises ={JSON.parse(localStorage.getItem(
+                        props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES))}
+                    userExercisesDurations = {JSON.parse(localStorage.getItem(
+                        props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS +
+                        LOCAL_USERS_PREV_DAY))}
+                    updatedUserStats = {updatedUserStats}
+                    isPrev = {true}
+                /> :
+                <></>
+            }
             
         </div>
     )

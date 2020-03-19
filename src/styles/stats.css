@@ -13,6 +13,10 @@
     border-radius:10px;
 }
 
+.divider-clear{
+    background-image: none;
+}
+
 .divider :nth-child(6){
     padding-left:80px;
 }
@@ -20,6 +24,12 @@
 .bar-container{
     height: 650px;
     background-color: grey;
+    display:flex;
+    align-items: flex-end;  
+    justify-content: center;
+}
+.bar-container-prev{
+    height: 650px;
     display:flex;
     align-items: flex-end;  
     justify-content: center;
@@ -66,16 +76,14 @@
     text-align:center;
     overflow:hidden;
     word-wrap: break-word;
-    
     width:96px;
     height:50px;
-    /* background-image: linear-gradient(90deg, rgb(150, 16, 16), darkorange); */
-    /* background-color: darkgreen; */
-    /* border-left: 1px solid orange;
-    border-right: 1px solid orange;
-    border-bottom: 1px solid orange; */
     border-top: 2px solid orange;
     color: ghostwhite;
+}
+
+.bar-label-red{
+    color: red;
 }
 
 .stats-chart-buttons-container{

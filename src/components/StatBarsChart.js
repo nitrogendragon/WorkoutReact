@@ -24,9 +24,10 @@ export default function StatBarsChart(props) {
         let tempArr = []
         for(i; i < props.userExercises.length && i < 18; i++){
             tempArr[i] = <StatBar key = {i}
-            exerciseName = {props.userExercises[i]}
-            activePeriod = {props.userExercisesDurations[i] * modifier}
-        />
+                exerciseName = {props.userExercises[i]}
+                activePeriod = {props.userExercisesDurations[i] * modifier}
+                isPrev = {props.isPrev}
+            />
         }
         setTheBars(tempArr)
     }
@@ -41,7 +42,7 @@ export default function StatBarsChart(props) {
 
 
     return (
-            <div className="divider">
+            <div className={!props.isPrev ? "divider" : "divider divider-clear"}>
                 <div className="totals b1">100s</div>
                 <div className="totals b2">200s</div>
                 <div className="totals b3">300s</div>
@@ -49,6 +50,7 @@ export default function StatBarsChart(props) {
                 <div className="totals b5">500s</div>
                 {theBars}
             </div>
+
 
     )
 }
