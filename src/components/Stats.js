@@ -16,7 +16,7 @@ export default function Stats(props) {
     
 
     function getCurrentDay(){
-        return Math.Floor(Date.now() / 86400000) //not perfect but works if we focus on pure 24 hour periods
+        return Math.floor(Date.now() / 86400000) //not perfect but works if we focus on pure 24 hour periods
     }
 
 
@@ -47,10 +47,10 @@ export default function Stats(props) {
         console.log("The users exercises durations are: " + usersExercisesDurations)
         localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS, 
         JSON.stringify(usersExercisesDurations))
-        console.log("The users previous days exercises durations are: " + usersExercisesDurations)
+        console.log("The users previous days exercises durations are: " + usersExercisesDurationsPrevDay)
         localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS + 
             LOCAL_USERS_PREV_DAY, 
-        JSON.stringify(usersExercisesDurations))
+        JSON.stringify(usersExercisesDurationsPrevDay))
         console.log("The start date is: " + startDate)
         localStorage.setItem(props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_START_DATE,
         JSON.stringify(startDate))
@@ -85,12 +85,38 @@ export default function Stats(props) {
         if(startDate === 0){
             setStartDate(()=>getCurrentDay())
         }
+        let isNewDay = false
         if(currentDate === 0 || currentDate < getCurrentDay()){
             setCurrentDate(()=> getCurrentDay())
+            isNewDay = true
         }
-        setUsersExercisesDurations(()=>tempDurations)
-        setUsersExercises(()=>tempExercises)
-        setUpdatedUserStats(true)
+        if(!isNewDay){
+            let tempPrevDur = []
+            let index = 0
+            console.log(usersExercisesDurationsPrevDay)
+            for(index; index < tempDurations.length; index++){
+                if(usersExercisesDurationsPrevDay[index] >=0){tempPrevDur[index] = usersExercisesDurationsPrevDay[index]}
+                else{
+                    console.log("adding a zero")
+                    tempPrevDur[index] = 0
+                }
+            }
+            setUsersExercisesDurationsPrevDay(()=>tempPrevDur)
+            setUsersExercisesDurations(()=>tempDurations)
+            setUsersExercises(()=>tempExercises)
+            setUpdatedUserStats(true)
+        }
+        else{
+            let cleanSlateDurations = []
+            let index = 0
+            for(index; index < tempDurations.length; index++){
+                cleanSlateDurations[index] = 0
+            }
+            setUsersExercisesDurationsPrevDay(()=>tempDurations)
+            setUsersExercisesDurations(()=>cleanSlateDurations)
+            setUsersExercises(()=>tempExercises)
+            setUpdatedUserStats(true)
+        }
     }
 
     //depending on isLowToHigh changes the direction things are sorted
@@ -153,16 +179,20 @@ export default function Stats(props) {
         else {
             console.log("get")
             setUsersExercises(tempUserExercises)
+
             const tempUserExercisesDurations = JSON.parse(localStorage.getItem(
                 props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS))
             setUsersExercisesDurations(tempUserExercisesDurations)
+
             const tempUserExercisesDurationsPrevDay = JSON.parse(localStorage.getItem(
                 props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS + 
                 LOCAL_USERS_PREV_DAY))
             setUsersExercisesDurationsPrevDay(tempUserExercisesDurationsPrevDay)
+
             const tempUserStartDate = JSON.parse(localStorage.getItem(
                 props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_START_DATE))
             setStartDate(tempUserStartDate)
+            
             const tempUserCurrentDate = JSON.parse(localStorage.getItem(
                 props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_CURRENT_DATE))
             setCurrentDate(tempUserCurrentDate)
