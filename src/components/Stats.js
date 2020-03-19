@@ -123,6 +123,7 @@ export default function Stats(props) {
     function sortStats(isLowToHigh){
         let tempExercises = [""]
         let tempDur = [0]
+        let tempPrevDur = []
         let i
         let matchfound 
         for(i = 0; i < usersExercisesDurations.length; i++){
@@ -136,6 +137,7 @@ export default function Stats(props) {
             tempSortedDur.map((tempVal, targetIndex) => {
                 if(matchfound != true && val.toString() === tempVal.toString() &&  tempExercises[targetIndex].toString() === "a"){
                     tempExercises[targetIndex] = usersExercises[index]
+                    tempPrevDur[targetIndex] = usersExercisesDurationsPrevDay[index]
                     matchfound = true
                 }
                 // else{console.log("userVal is: "  + val + "tempVal is: " + val)}
@@ -145,7 +147,9 @@ export default function Stats(props) {
         if(!isLowToHigh){
             tempExercises.reverse()
             tempSortedDur.reverse()
+            tempPrevDur.reverse()
         }
+        setUsersExercisesDurationsPrevDay(()=>tempPrevDur)
         setUsersExercisesDurations(()=>tempSortedDur)
         setUsersExercises(()=>tempExercises)
         setUpdatedUserStats(true)
@@ -192,7 +196,7 @@ export default function Stats(props) {
             const tempUserStartDate = JSON.parse(localStorage.getItem(
                 props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_START_DATE))
             setStartDate(tempUserStartDate)
-            
+
             const tempUserCurrentDate = JSON.parse(localStorage.getItem(
                 props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_CURRENT_DATE))
             setCurrentDate(tempUserCurrentDate)
