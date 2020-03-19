@@ -44,7 +44,7 @@ export default function StatBar(props) {
 
     return (
         <>
-            <div className = {props.isPrev ? "bar-container-prev": "bar-container"} >
+            <div className = {props.isPrev && props.displayBoth ? "bar-container-prev": "bar-container"} >
                 <div style = {props.isPrev ? barPrev : bar}>
                     <div className = "bar-line b1"></div>
                     <div className = "bar-line b2"></div>

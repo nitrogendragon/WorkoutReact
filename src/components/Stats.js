@@ -9,7 +9,7 @@ export default function Stats(props) {
     const [currentDate, setCurrentDate] = useState(0)// will be measuring in whole numbers
     const [updatedUserStats, setUpdatedUserStats] = useState(false)
     const [displayPrev,setDisplayPrev] = useState(false)
-
+    const [displayBoth, setdisplayBoth] = useState(false)
     const LOCAL_USERS_EXERCISES = "_myExercises"
     const LOCAL_USERS_EXERCISES_DURATIONS = "_myExercisesDurations"
     const LOCAL_USERS_PREV_DAY = "_prevDay"
@@ -23,8 +23,26 @@ export default function Stats(props) {
 
 
     function showYesterdaysStats(){
+        setdisplayBoth(false)
         setDisplayPrev( !displayPrev)
     }
+
+
+    function showBothStats(){
+        if(!displayBoth){
+        setDisplayPrev(true)
+        setdisplayBoth(true)
+        }
+        else{
+            setDisplayPrev(false)
+            setdisplayBoth(false)
+        }
+    }
+
+    useEffect(()=>{
+        console.log("displayBoth is now: " + displayBoth)
+        console.log("displayPrev is now: " + displayPrev)
+    },displayPrev,displayBoth)
 
     
     function getIndex(value, arr){
@@ -218,8 +236,10 @@ export default function Stats(props) {
                 <button onClick = {handleClearUserStats}>Clear Stats</button>
                 <button onClick = {e=> sortStats(true)}>Sort L-H</button>
                 <button onClick = {e => sortStats(false)}>Sort H-L</button>
-                <button onClick = {e=> showYesterdaysStats()}>Yesterdays Stats</button>
+                <button onClick = {e=> showYesterdaysStats()}>Hide/Show Yesterdays Stats</button>
+                <button onClick = {e=> showBothStats()}>Compare Stats</button>
             </div>
+            {!displayPrev || displayBoth ?
             <StatBarsChart 
                 userExercises ={JSON.parse(localStorage.getItem(
                     props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES))}
@@ -227,7 +247,10 @@ export default function Stats(props) {
                     props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS))}
                 updatedUserStats = {updatedUserStats}
                 isPrev = {false}
-            />
+                /> :
+                <></>
+            }
+            
             { displayPrev ?
                 <StatBarsChart 
                     userExercises ={JSON.parse(localStorage.getItem(
@@ -237,6 +260,7 @@ export default function Stats(props) {
                         LOCAL_USERS_PREV_DAY))}
                     updatedUserStats = {updatedUserStats}
                     isPrev = {true}
+                    displayBoth = {displayBoth}
                 /> :
                 <></>
             }

@@ -99,7 +99,8 @@
 
 .stats-chart-buttons-container button{
     margin:0px;
-    min-width: 25%;
+    min-width: auto;
+    flex-grow: 1;
     height:95px;
     border-radius:0px;
     
