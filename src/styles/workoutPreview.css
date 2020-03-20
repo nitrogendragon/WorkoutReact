@@ -17,9 +17,20 @@
     padding: 10px;
 }
 
-.adjusted-button button:hover{
-    box-shadow: 0px 0px 0px 1px solid lightgreen !important;
+ .preview-buttons-container{
+   
+   height:auto;
+   width:auto; 
+   display: grid;
+   justify-content: center;
+   align-items:center;
+
+   grid-template-columns: repeat(2,auto);
 }
+ .preview-buttons-container button{
+   box-shadow: 0px 0px 0px 1px lightgreen;
+}
+
 
 
 .alert-background{

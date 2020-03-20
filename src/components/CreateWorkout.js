@@ -15,7 +15,7 @@ export default function CreateWorkout(props) {
             arr[i] = 
             <div key = {i}>
                 <div>
-                    <div className ="adjusted-button">
+                    <div className ="preview-buttons-container">
                         <button 
                             onClick ={e => handleUpdateWorkout(e.target.value, e.target.id)} 
                             value ="replaceAtIndex" 

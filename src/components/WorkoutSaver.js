@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import '../styles/workoutSaver.css'
+import '../styles/workoutPreview.css'
 export default function WorkoutSaver(props) {
     const exercisesKey = "_exercises"
     const activePeriodsKey = "_activePeriods"
@@ -134,7 +135,7 @@ export default function WorkoutSaver(props) {
 
     if(!choosingWorkoutToSaveTo && !choosingWorkoutToLoad)
         return (
-            <div >
+            <div className ="preview-buttons-container">
                 <button value = "true" onClick={e => setChoosingWorkoutToLoad(e.target.value)}>
                     Load {props.workoutValue}
                 </button>
