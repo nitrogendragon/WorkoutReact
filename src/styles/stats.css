@@ -3,7 +3,7 @@
     margin-left: 1%;
     width:98%;
     min-height:750px;
-    background-image: linear-gradient( rgb(35, 59, 35),whitesmoke, lightgreen, green, darkgreen);
+    background-image: linear-gradient( rgb(35, 59, 35),whitesmoke, lightgreen, green, lightgreen,green);
     display: flex;
     flex-direction: row;
     column-gap: 1px;
@@ -23,17 +23,12 @@
 
 .bar-container{
     height: 650px;
-    background-color: grey;
     display:flex;
     align-items: flex-end;  
     justify-content: center;
+    text-align:start;
 }
-.bar-container-prev{
-    height: 650px;
-    display:flex;
-    align-items: flex-end;  
-    justify-content: center;
-}
+
 
 .bar-line{
     position:absolute;

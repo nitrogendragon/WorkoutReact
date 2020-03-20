@@ -25,6 +25,7 @@ export default function StatBar(props) {
         textDecoration : 'underline',
         color: 'ghostwhite',
         zIndex: '10',
+        marginRight: '25px',
         fontWeight: 'bolder',
         position: 'absolute',
         transition : 'height 1000ms ease-in-out',
@@ -32,8 +33,9 @@ export default function StatBar(props) {
     }
     const barCountPrev={
         textDecoration : 'underline',
-        color: 'red',
+        color: 'aqua',
         zIndex: '10',
+        marginLeft: '40px',
         fontWeight: 'bolder',
         position: 'absolute',
         transition : 'height 1000ms ease-in-out',
@@ -44,7 +46,7 @@ export default function StatBar(props) {
 
     return (
         <>
-            <div className = {props.isPrev && props.displayBoth ? "bar-container-prev": "bar-container"} >
+            <div className =  "bar-container" >
                 <div style = {props.isPrev ? barPrev : bar}>
                     <div className = "bar-line b1"></div>
                     <div className = "bar-line b2"></div>
