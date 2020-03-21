@@ -43,7 +43,7 @@ export default function Stats(props) {
     useEffect(()=>{
         console.log("displayBoth is now: " + displayBoth)
         console.log("displayPrev is now: " + displayPrev)
-    },displayPrev,displayBoth)
+    },[displayPrev,displayBoth])
 
     
     function getIndex(value, arr){

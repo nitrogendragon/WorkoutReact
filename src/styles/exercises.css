@@ -102,7 +102,6 @@ body{
 
 @media (max-width: 1000px){
     .workout-creation-body{
-        min-width:1000px;
         min-height:2500px;
     }
     .directions{

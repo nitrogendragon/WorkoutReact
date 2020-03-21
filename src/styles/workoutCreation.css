@@ -19,7 +19,19 @@ input{
     height: auto;
     width: 100%;
 }
-
+/* .preview-buttons-container{
+   
+    height:auto;
+    width:auto; 
+    display: grid;
+    justify-content: center;
+    align-items:center;
+    
+    grid-template-columns: repeat(2,auto);
+ }
+  .preview-buttons-container button{
+    min-width: 100px;
+ } */
 
 .workout-buttons-container{
     display: flex;
@@ -28,6 +40,12 @@ input{
     justify-content: center;
     align-items: center;
 }
+
+ .creation-page button{
+    min-width:10px;
+    width:110px;
+}
+
 
 button{
     border: none;
@@ -51,6 +69,7 @@ button:hover{
     box-shadow: 0px 0px 0px 4px lightgreen;
     color:ghostwhite;
     font-size: 22px;
+    cursor: pointer;
 }
 
 .bigger-text{

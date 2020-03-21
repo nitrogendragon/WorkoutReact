@@ -15,24 +15,24 @@ export default function CreateWorkout(props) {
             arr[i] = 
             <div key = {i}>
                 <div>
-                    <div className ="preview-buttons-container">
-                        <button 
-                            onClick ={e => handleUpdateWorkout(e.target.value, e.target.id)} 
-                            value ="replaceAtIndex" 
-                            id = {i}>
-                            Replace
-                        </button>
-                        <button 
-                            onClick ={e => handleUpdateWorkout(e.target.value, e.target.id)} 
-                            value ="removeAtIndex" 
-                            id = {i}>
-                            Remove
-                        </button>
-                    </div>
                     <div className = "flex-item">
                         <p >Exercise: {props.exerciseList[i]}</p>
                         <p >Active Time: {props.activePeriods[i]} seconds</p>
                         <p >Rest Time: {props.restPeriods[i]} seconds</p>
+                        <div className ="preview-buttons-container">
+                            <button 
+                                onClick ={e => handleUpdateWorkout(e.target.value, e.target.id)} 
+                                value ="replaceAtIndex" 
+                                id = {i}>
+                                Replace
+                            </button>
+                            <button 
+                                onClick ={e => handleUpdateWorkout(e.target.value, e.target.id)} 
+                                value ="removeAtIndex" 
+                                id = {i}>
+                                Remove
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -208,9 +208,9 @@ export default function CreateWorkout(props) {
                         setWorkoutNames = {setWorkoutNames}
                         activeUserId = {props.activeUserId}
                         />
-                    <button onClick={e => handleUpdateWorkout(e.target.value)} value = "add">Add Exercise</button>
-                    <button onClick={e => handleUpdateWorkout(e.target.value)} value= "remove">Remove Last</button>
-                    <button onClick={e => handleUpdateWorkout(e.target.value)} value = "clear">Clear All</button>
+                    <button style = {{minWidth: "10px", width: "110px"}} onClick={e => handleUpdateWorkout(e.target.value)} value = "add">Add Exercise</button>
+                    <button style = {{minWidth: "10px", width: "110px"}} onClick={e => handleUpdateWorkout(e.target.value)} value= "remove">Remove Last</button>
+                    <button style = {{minWidth: "10px", width: "110px"}} onClick={e => handleUpdateWorkout(e.target.value)} value = "clear">Clear All</button>
                 </div>     
                 <div>{preview}</div>
             </div>

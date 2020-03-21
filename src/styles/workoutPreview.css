@@ -12,6 +12,8 @@
     border-radius: 5px;
     color:ghostwhite;
     overflow: hidden;
+    margin-bottom: 10px;
+    box-shadow:0px 0px 0px 2px lightgreen;
 }
 .flex-item p{
     padding: 10px;
@@ -24,11 +26,11 @@
    display: grid;
    justify-content: center;
    align-items:center;
-
+   
    grid-template-columns: repeat(2,auto);
 }
  .preview-buttons-container button{
-   box-shadow: 0px 0px 0px 1px lightgreen;
+   min-width: 100px;
 }
 
 

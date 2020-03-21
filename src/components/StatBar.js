@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react'
 import '../styles/stats.css'
-import { findRenderedComponentWithType } from 'react-dom/test-utils'
 export default function StatBar(props) {
     
 
@@ -12,6 +11,7 @@ export default function StatBar(props) {
         borderRadius : '10px 10px 0px 0px',
         height : props.activePeriod >= 1 ? props.activePeriod.toString() + 'px' : '0px'
     }
+
     const barPrev ={
         width : '98px',
         backgroundColor : 'green',
