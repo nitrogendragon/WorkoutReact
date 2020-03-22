@@ -10,6 +10,8 @@ export default function Stats(props) {
     const [updatedUserStats, setUpdatedUserStats] = useState(false)
     const [displayPrev,setDisplayPrev] = useState(false)
     const [displayBoth, setdisplayBoth] = useState(false)
+    const [statShowLimitIndex, setStatShowLimitIndex] = useState(10)
+    const [statCurIndex, setStatCurIndex] = useState(0)
     const LOCAL_USERS_EXERCISES = "_myExercises"
     const LOCAL_USERS_EXERCISES_DURATIONS = "_myExercisesDurations"
     const LOCAL_USERS_PREV_DAY = "_prevDay"
@@ -247,6 +249,10 @@ export default function Stats(props) {
                     props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS))}
                 updatedUserStats = {updatedUserStats}
                 isPrev = {false}
+                statShowLimitIndex = {statShowLimitIndex}
+                setStatShowLimitIndex = {setStatShowLimitIndex}
+                statCurIndex = {statCurIndex}
+                setStatCurIndex = {setStatCurIndex}
                 /> :
                 <></>
             }
@@ -261,6 +267,10 @@ export default function Stats(props) {
                     updatedUserStats = {updatedUserStats}
                     isPrev = {true}
                     displayBoth = {displayBoth}
+                    statShowLimitIndex = {statShowLimitIndex}
+                    setStatShowLimitIndex = {setStatShowLimitIndex}
+                    statCurIndex = {statCurIndex}
+                    setStatCurIndex = {setStatCurIndex}
                 /> :
                 <></>
             }
