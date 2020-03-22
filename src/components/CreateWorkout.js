@@ -14,7 +14,7 @@ export default function CreateWorkout(props) {
         for(let i =  0; i < props.exerciseList.length; i ++){
             arr[i] = 
             <div key = {i}>
-                <div>
+                <div className = "flex-item-container">
                     <div className = "flex-item">
                         <p >Exercise: {props.exerciseList[i]}</p>
                         <p >Active Time: {props.activePeriods[i]} seconds</p>

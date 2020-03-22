@@ -1,5 +1,10 @@
 
-
+.flex-item-container{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction: column;
+}
 .flex-item{
     display: flex;
     flex-direction:row;
@@ -14,6 +19,7 @@
     overflow: hidden;
     margin-bottom: 10px;
     box-shadow:0px 0px 0px 2px lightgreen;
+    width: 80%;
 }
 .flex-item p{
     padding: 10px;
