@@ -10,8 +10,8 @@ export default function Stats(props) {
     const [updatedUserStats, setUpdatedUserStats] = useState(false)
     const [displayPrev,setDisplayPrev] = useState(false)
     const [displayBoth, setdisplayBoth] = useState(false)
-    const [statShowLimitIndex, setStatShowLimitIndex] = useState(10)
-    const [statCurIndex, setStatCurIndex] = useState(0)
+    const [statsShowLimitIndex, setStatsShowLimitIndex] = useState(10)
+    const [statsCurIndex, setStatsCurIndex] = useState(0)
     const LOCAL_USERS_EXERCISES = "_myExercises"
     const LOCAL_USERS_EXERCISES_DURATIONS = "_myExercisesDurations"
     const LOCAL_USERS_PREV_DAY = "_prevDay"
@@ -182,6 +182,27 @@ export default function Stats(props) {
     }
 
 
+    function showHigherIndexStats(){
+        if(statsCurIndex + statsShowLimitIndex < usersExercises.length)
+        {
+            let temp = statsCurIndex + statsShowLimitIndex
+            setStatsCurIndex(temp)
+        }
+    }
+
+
+    function showLowerIndexStats(){
+        if(statsCurIndex - statsShowLimitIndex >= 0)
+        {
+            let temp = statsCurIndex - statsShowLimitIndex
+            setStatsCurIndex(temp)
+        }
+        else{
+            setStatsCurIndex(0)
+        }
+    }
+
+
     useEffect(()=>{
         if(props.updateStats){
             props.setUpdateStats(false)
@@ -240,6 +261,8 @@ export default function Stats(props) {
                 <button onClick = {e => sortStats(false)}>Sort H-L</button>
                 <button onClick = {e=> showYesterdaysStats()}>Hide/Show Yesterdays Stats</button>
                 <button onClick = {e=> showBothStats()}>Compare Stats</button>
+                <button onClick = {e=> showHigherIndexStats()}>Next</button>
+                <button onClick = {e=> showLowerIndexStats()}>Previous</button>
             </div>
             {!displayPrev || displayBoth ?
             <StatBarsChart 
@@ -249,10 +272,10 @@ export default function Stats(props) {
                     props.LOCAL_USERS_KEY + props.activeUserId +  LOCAL_USERS_EXERCISES_DURATIONS))}
                 updatedUserStats = {updatedUserStats}
                 isPrev = {false}
-                statShowLimitIndex = {statShowLimitIndex}
-                setStatShowLimitIndex = {setStatShowLimitIndex}
-                statCurIndex = {statCurIndex}
-                setStatCurIndex = {setStatCurIndex}
+                statsShowLimitIndex = {statsShowLimitIndex}
+                setStatsShowLimitIndex = {setStatsShowLimitIndex}
+                statsCurIndex = {statsCurIndex}
+                setStatsCurIndex = {setStatsCurIndex}
                 /> :
                 <></>
             }
@@ -267,10 +290,10 @@ export default function Stats(props) {
                     updatedUserStats = {updatedUserStats}
                     isPrev = {true}
                     displayBoth = {displayBoth}
-                    statShowLimitIndex = {statShowLimitIndex}
-                    setStatShowLimitIndex = {setStatShowLimitIndex}
-                    statCurIndex = {statCurIndex}
-                    setStatCurIndex = {setStatCurIndex}
+                    statsShowLimitIndex = {statsShowLimitIndex}
+                    setStatsShowLimitIndex = {setStatsShowLimitIndex}
+                    statsCurIndex = {statsCurIndex}
+                    setStatsCurIndex = {setStatsCurIndex}
                 /> :
                 <></>
             }

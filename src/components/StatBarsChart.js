@@ -9,9 +9,10 @@ export default function StatBarsChart(props) {
 
     const [theBars, setTheBars] = useState([])
     function createBasicChart(){
-        let i = 0
+        let i = props.statsCurIndex
+        console.log("the value of our i is: " + i)
         let tempArr = []
-        for(i; i < props.userExercises.length && i < props.statShowLimitIndex; i++){
+        for(i; i < props.userExercises.length && i < props.statsShowLimitIndex + props.statsCurIndex; i++){
             tempArr[i] = <StatBar key = {i}
                 exerciseName = {props.userExercises[i]}
                 activePeriod = {props.userExercisesDurations[i] * modifier}
@@ -26,13 +27,13 @@ export default function StatBarsChart(props) {
 
     function updateShownBarsLimit(){
         let temp = Math.floor((window.innerWidth -100) / 98)//dividing by 98 because that is the width of our bars and subtracting 100 because of the legend space
-            props.setStatShowLimitIndex(temp)
+            props.setStatsShowLimitIndex(temp)
         
     }
 
     useEffect(()=>{
         createBasicChart()
-    },[props.statShowLimitIndex,props.updatedUserStats])
+    },[props.statsShowLimitIndex,props.updatedUserStats])
 
 
     useEffect(()=>{
