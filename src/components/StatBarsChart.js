@@ -27,9 +27,8 @@ export default function StatBarsChart(props) {
 
     function updateShownBarsLimit(){
         let temp = Math.floor((window.innerWidth -100) / 98)//dividing by 98 because that is the width of our bars and subtracting 100 because of the legend space
-        console.log(temp)
         if(statShowLimitIndex !== temp){
-        setStatShowLimitIndex(temp)
+            setStatShowLimitIndex(temp)
         }
     }
 
@@ -39,15 +38,18 @@ export default function StatBarsChart(props) {
 
 
     useEffect(()=>{
-        console.log(statShowLimitIndex)
-    })
-
-
-    useEffect(()=>{
         if(props.userExercises != undefined && props.userExercises != null){
             updateShownBarsLimit()
         }
     },[props.updatedUserStats, window.innerWidth])
+
+
+      useEffect(() => {
+        const interval = setInterval(() => updateShownBarsLimit() , 100);
+        return () => {
+          clearInterval(interval);
+        };
+      }, []);
 
 
     return (
