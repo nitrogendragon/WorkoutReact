@@ -1,28 +1,18 @@
 import React,{useState,useEffect} from 'react'
 import StatBar from './StatBar'
 import '../styles/stats.css'
+
 export default function StatBarsChart(props) {
+    const [statShowLimitIndex, setStatShowLimitIndex] = useState(10)
     const modifier = 1
 
-
-    const centerer = {
-        position: '"absolute',
-        top: '0',
-        left: '0',
-        margin: '0',
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: '100%',
-
-    }
 
 
     const [theBars, setTheBars] = useState([])
     function createBasicChart(){
         let i = 0
         let tempArr = []
-        for(i; i < props.userExercises.length && i < 18; i++){
+        for(i; i < props.userExercises.length && i < statShowLimitIndex; i++){
             tempArr[i] = <StatBar key = {i}
                 exerciseName = {props.userExercises[i]}
                 activePeriod = {props.userExercisesDurations[i] * modifier}
@@ -34,12 +24,30 @@ export default function StatBarsChart(props) {
     }
 
 
+
+    function updateShownBarsLimit(){
+        let temp = Math.floor((window.innerWidth -100) / 98)//dividing by 98 because that is the width of our bars and subtracting 100 because of the legend space
+        console.log(temp)
+        if(statShowLimitIndex !== temp){
+        setStatShowLimitIndex(temp)
+        }
+    }
+
+    useEffect(()=>{
+        createBasicChart()
+    },[statShowLimitIndex])
+
+
+    useEffect(()=>{
+        console.log(statShowLimitIndex)
+    })
+
+
     useEffect(()=>{
         if(props.userExercises != undefined && props.userExercises != null){
-            // console.log(props.userExercises)
-            createBasicChart()
+            updateShownBarsLimit()
         }
-    },[props.updatedUserStats])
+    },[props.updatedUserStats, window.innerWidth])
 
 
     return (

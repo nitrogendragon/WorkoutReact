@@ -10,7 +10,6 @@ export default function Stats(props) {
     const [updatedUserStats, setUpdatedUserStats] = useState(false)
     const [displayPrev,setDisplayPrev] = useState(false)
     const [displayBoth, setdisplayBoth] = useState(false)
-    const [statShowLimitIndex, setStatShowLimitIndex] = useState(10)
     const LOCAL_USERS_EXERCISES = "_myExercises"
     const LOCAL_USERS_EXERCISES_DURATIONS = "_myExercisesDurations"
     const LOCAL_USERS_PREV_DAY = "_prevDay"
