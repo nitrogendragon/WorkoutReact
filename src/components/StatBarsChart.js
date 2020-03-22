@@ -33,7 +33,7 @@ export default function StatBarsChart(props) {
 
     useEffect(()=>{
         createBasicChart()
-    },[props.statsShowLimitIndex,props.updatedUserStats])
+    },[props.statsShowLimitIndex,props.updatedUserStats,props.statsCurIndex])
 
 
     useEffect(()=>{
