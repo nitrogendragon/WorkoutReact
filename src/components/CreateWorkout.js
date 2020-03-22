@@ -2,6 +2,7 @@ import React, {useState,useEffect} from 'react'
 import '../styles/workoutCreation.css'
 import '../styles/workoutPreview.css'
 import WorkoutSaver from './WorkoutSaver'
+import PreviewButtons from './PreviewButtons'
 export default function CreateWorkout(props) {
     const [restPeriodTemp,setRestPeriodTemp] = useState(1)
     const [activePeriodTemp,setActivePeriodTemp] = useState(1)
@@ -14,27 +15,10 @@ export default function CreateWorkout(props) {
         for(let i =  0; i < props.exerciseList.length; i ++){
             arr[i] = 
             <div key = {i}>
-                <div className = "flex-item-container">
-                    <div className = "flex-item">
-                        <p >Exercise: {props.exerciseList[i]}</p>
-                        <p >Active Time: {props.activePeriods[i]} seconds</p>
-                        <p >Rest Time: {props.restPeriods[i]} seconds</p>
-                        <div className ="preview-buttons-container">
-                            <button 
-                                onClick ={e => handleUpdateWorkout(e.target.value, e.target.id)} 
-                                value ="replaceAtIndex" 
-                                id = {i}>
-                                Replace
-                            </button>
-                            <button 
-                                onClick ={e => handleUpdateWorkout(e.target.value, e.target.id)} 
-                                value ="removeAtIndex" 
-                                id = {i}>
-                                Remove
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <PreviewButtons  i ={i} handleUpdateWorkout = {handleUpdateWorkout} 
+                    exerciseList = {props.exerciseList} activePeriods = {props.activePeriods}
+                    restPeriods = {props.restPeriods}
+                />
             </div>
         }
         setPreview(arr) 
