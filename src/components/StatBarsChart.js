@@ -4,23 +4,25 @@ import '../styles/stats.css'
 
 export default function StatBarsChart(props) {
     const modifier = 1
-
-
-
     const [theBars, setTheBars] = useState([])
+
+
     function createBasicChart(){
         let i = props.statsCurIndex
         console.log("the value of our i is: " + i)
         let tempArr = []
-        for(i; i < props.userExercises.length && i < props.statsShowLimitIndex + props.statsCurIndex; i++){
-            tempArr[i] = <StatBar key = {i}
-                exerciseName = {props.userExercises[i]}
-                activePeriod = {props.userExercisesDurations[i] * modifier}
-                isPrev = {props.isPrev}
-                displayBoth = {props.displayBoth}
-            />
+        if(props.userExercises != null){
+            for(i; i < props.userExercises.length && i < props.statsShowLimitIndex + props.statsCurIndex; i++){
+                tempArr[i] = <StatBar key = {i}
+                    exerciseName = {props.userExercises[i]}
+                    activePeriod = {props.userExercisesDurations[i] * modifier}
+                    isPrev = {props.isPrev}
+                    displayBoth = {props.displayBoth}
+                />
+            
+            }
+            setTheBars(tempArr)
         }
-        setTheBars(tempArr)
     }
 
 

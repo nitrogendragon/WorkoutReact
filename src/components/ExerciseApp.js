@@ -107,7 +107,7 @@ export default function App(props) {
         //if we are resting and there is another exericse we go to active
         else if(!isActiveTimer && currentExerciseIndex < activePeriods.length){
             setTimeRemaining(activePeriods[currentExerciseIndex])//exercise Time
-            updateCoach(0,0,0,"Heeerre we go!" + exerciseList[currentExerciseIndex].toString() + " for" +
+            updateCoach(0,0,0,"Here we go!" + exerciseList[currentExerciseIndex].toString() + " for" +
                 activePeriods[currentExerciseIndex].toString() + " seconds!")
             CoachCancelPrevAndSpeak()
         }

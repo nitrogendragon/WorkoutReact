@@ -154,14 +154,14 @@ export default function Stats(props) {
         let matchfound 
         for(i = 0; i < usersExercisesDurations.length; i++){
             tempDur[i] = usersExercisesDurations[i]
-            tempExercises[i] = "a"
+            tempExercises[i] = ""
         }
         const tempSortedDur = usersExercisesDurations.sort()
         //using tempDur because it doesn't get force sorted
         tempDur.map((val, index) =>{
             matchfound = false
             tempSortedDur.map((tempVal, targetIndex) => {
-                if(matchfound != true && val.toString() === tempVal.toString() &&  tempExercises[targetIndex].toString() === "a"){
+                if(matchfound != true && val.toString() === tempVal.toString() &&  tempExercises[targetIndex].toString() === ""){
                     tempExercises[targetIndex] = usersExercises[index]
                     tempPrevDur[targetIndex] = usersExercisesDurationsPrevDay[index]
                     matchfound = true
