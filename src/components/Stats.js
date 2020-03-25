@@ -119,7 +119,7 @@ export default function Stats(props) {
         if(!isNewDay){
             let tempPrevDur = []
             let index = 0
-            console.log(usersExercisesDurationsPrevDay)
+            console.log(usersExercisesDurations)
             for(index; index < tempDurations.length; index++){
                 if(usersExercisesDurationsPrevDay[index] >=0){tempPrevDur[index] = usersExercisesDurationsPrevDay[index]}
                 else{
@@ -152,11 +152,15 @@ export default function Stats(props) {
         let tempPrevDur = []
         let i
         let matchfound 
-        for(i = 0; i < usersExercisesDurations.length; i++){
+        for(i = 0; i < usersExercises.length; i++){
             tempDur[i] = usersExercisesDurations[i]
             tempExercises[i] = ""
         }
-        const tempSortedDur = usersExercisesDurations.sort()
+        const tempSortedDur = usersExercisesDurations.sort((a,b) => a - b)
+        console.log("sorted")
+        console.log(tempSortedDur)
+        console.log("unsorted")
+        console.log(tempDur)
         //using tempDur because it doesn't get force sorted
         tempDur.map((val, index) =>{
             matchfound = false
