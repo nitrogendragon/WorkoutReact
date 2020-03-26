@@ -1,0 +1,32 @@
+{
+    "chest":[
+        {
+            "exercises": [
+                "bench press",
+                "fly",
+                "dip",
+                "push up"
+            ]
+        }   
+    ],
+    "arms":[
+        {
+            "exercises": [
+                "curls",
+                "push up",
+                "push down",
+                "skull crusher"
+            ]
+        }   
+    ],
+    "legs":[
+        {
+            "exercises": [
+                "extensions",
+                "dead lift",
+                "squats",
+                "jumping lunges"
+            ]
+        }   
+    ]
+}

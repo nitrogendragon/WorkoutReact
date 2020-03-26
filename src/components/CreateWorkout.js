@@ -3,6 +3,7 @@ import '../styles/workoutCreation.css'
 import '../styles/workoutPreview.css'
 import WorkoutSaver from './WorkoutSaver'
 import PreviewButtons from './PreviewButtons'
+import WorkoutGenerator from './WorkoutGenerator'
 export default function CreateWorkout(props) {
     const [restPeriodTemp,setRestPeriodTemp] = useState(1)
     const [activePeriodTemp,setActivePeriodTemp] = useState(1)

@@ -6,6 +6,7 @@ import HomePage from './HomePage'
 import Logout from './Logout'
 import Stats from './Stats'
 import ShowStatsButton from './ShowStatsButton'
+import WorkoutGenerator from './WorkoutGenerator'
 import '../styles/exercises.css'
 export default function App(props) {
     const[timeRemaining, setTimeRemaining] = useState()
@@ -26,6 +27,7 @@ export default function App(props) {
     const [showStats, setShowStats] = useState(false)
     const [activeUserId, setActiveUserId] = useState(-1)
     const [updateStats,setUpdateStats] = useState(false)
+    
     const LOCAL_USERS_KEY = "_users"
     const myCoach = new SpeechSynthesisUtterance()
     myCoach.lang = 'en-GB'
@@ -184,6 +186,7 @@ export default function App(props) {
         
     },[showCreateWorkout])
 
+
     //conditional rendering essentially
     if(firstLoad || !loggedIn){
         return(
@@ -264,6 +267,7 @@ export default function App(props) {
             <div className="workout-creation-body">
                 <div className = "nav-bar">
                     <ShowStatsButton setShowStats = {setShowStats} showStats = {showStats}/>
+                    <WorkoutGenerator />
                     <Logout 
                         setActiveUserId = {setActiveUserId} 
                         setLoggedIn = {setLoggedIn}
@@ -277,7 +281,6 @@ export default function App(props) {
                         updateCoach = {updateCoach}
                         CoachCancelPrevAndSpeak = {CoachCancelPrevAndSpeak} 
                     />
-                    
                 </div>
                 <Stats 
                     exerciseList = {exerciseList}
