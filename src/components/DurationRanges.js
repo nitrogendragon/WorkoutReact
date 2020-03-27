@@ -18,6 +18,8 @@ export default function DurationRanges(props) {
     },[props.activeSliderValue])
 
     return (
+        <>
+        <p>Active Period Base Time: {props.activeSliderValue} Seconds</p>
         <div className = "slider">
             <input 
                 id="activeSliderValue" 
@@ -27,6 +29,9 @@ export default function DurationRanges(props) {
                 onChange={e =>handleChange(e)}
                 step="1"
             />
+        </div>
+        <p>Rest Period Base Time: {props.restSliderValue} Seconds</p>
+        <div className = "slider">
             <input 
                 id="restSliderValue" 
                 type="range" 
@@ -36,5 +41,6 @@ export default function DurationRanges(props) {
                 step="1"
             />
         </div>
+        </>
     )
 }
