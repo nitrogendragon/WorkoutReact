@@ -9,9 +9,11 @@ export default function WorkoutGenerator(props) {
     const [legsChecked, setLegsChecked] = useState(false)
     const [backChecked, setBackChecked] = useState(false)
     const [absChecked, setAbsChecked] = useState(false)
+    const [activeSliderValue, setActiveSliderValue] = useState(15)
+    const [restSliderValue, setRestSliderValue] = useState(1)
     const GeneratorData = require('../../src/generator-data.json')
-    const bool1 = true
-    const bool2 = false
+    const bool1 = false
+    const bool2 = true
     const bool3 = false
     const bool4 = false
     const bool5 = false
@@ -49,7 +51,10 @@ export default function WorkoutGenerator(props) {
                                         backChecked = {backChecked} setBackChecked = {setBackChecked} 
                                     />
                                     :
-                                    bool2 ? <DurationRanges /> :
+                                    bool2 ? 
+                                    <DurationRanges  
+                                        activeSliderValue = {activeSliderValue} setActiveSliderValue = {setActiveSliderValue}
+                                        restSliderValue = {restSliderValue} setRestSliderValue = {setRestSliderValue}/> :
                                     bool2 ? <p>bool2</p> :
                                     bool2 ? <p>bool2</p> :
                                     <p>Click an option to begin modifying your generated workout</p>
