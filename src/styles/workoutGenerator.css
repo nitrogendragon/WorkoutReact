@@ -124,6 +124,18 @@
     cursor: pointer; /* Cursor on hover */
         border-radius: 50px;
   }
+
+  .flex-container{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .flex-container p{
+      color:white;
+      font-size:18px;
+  }
   
 
 

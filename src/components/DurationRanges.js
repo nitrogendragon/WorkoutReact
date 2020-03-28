@@ -18,7 +18,7 @@ export default function DurationRanges(props) {
     },[props.activeSliderValue])
 
     return (
-        <>
+        <div className = "flex-container">
         <p>Active Period Base Time: {props.activeSliderValue} Seconds</p>
         <div className = "slider">
             <input 
@@ -41,6 +41,6 @@ export default function DurationRanges(props) {
                 step="1"
             />
         </div>
-        </>
+        </div>
     )
 }
