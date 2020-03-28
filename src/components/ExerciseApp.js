@@ -267,7 +267,11 @@ export default function App(props) {
             <div className="workout-creation-body">
                 <div className = "nav-bar">
                     <ShowStatsButton setShowStats = {setShowStats} showStats = {showStats}/>
-                    <WorkoutGenerator />
+                    <WorkoutGenerator 
+                        activePeriods = {activePeriods} setActivePeriods = {setActivePeriods}
+                        restPeriods = {restPeriods} setRestPeriods = {setRestPeriods}
+                        exerciseList = {exerciseList} setExerciseList = {setExerciseList}
+                    />
                     <Logout 
                         setActiveUserId = {setActiveUserId} 
                         setLoggedIn = {setLoggedIn}

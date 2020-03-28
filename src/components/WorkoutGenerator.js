@@ -6,7 +6,6 @@ import TotalExercises from './TotalExercises'
 import WorkoutBalance from './WorkoutBalance'
 export default function WorkoutGenerator(props) {
     const [showWorkoutGenerator, setShowWorkoutGenerator] = useState(false)
-    const [activeSliderValue, setActiveSliderValue] = useState(15)
     const [chestChecked, setChestChecked] = useState(true)
     const [armsChecked, setArmsChecked] = useState(true)
     const [legsChecked, setLegsChecked] = useState(true)
@@ -23,12 +22,14 @@ export default function WorkoutGenerator(props) {
     const [backModifier, setBackModifier] = useState(1)
     const [absModifier, setAbsModifier] = useState(1)
     const [restSliderValue, setRestSliderValue] = useState(1)
-    const [totalExercises, setTotalExercises] = useState(1)
-    const GeneratorData = require('../../src/generator-data.json')
+    const [finalRestSliderValue, setFinalRestSliderValue] = useState(1)
+    const [activeSliderValue, setActiveSliderValue] = useState(15)
+    const [totalExercises, setTotalExercises] = useState(5)
     const [genBool1, setGenBool1] = useState(true)
     const [genBool2, setGenBool2] = useState(false)
     const [genBool3, setGenBool3] = useState(false)
     const [genBool4, setGenBool4] = useState(false)
+    const GeneratorData = require('../../src/generator-data.json')
 
     useEffect(() => {
         console.log(backModifier)
@@ -48,6 +49,62 @@ export default function WorkoutGenerator(props) {
     }
 
 
+    function getHighest(highest){
+        let val = chestTotalExercises
+        if(val < absTotalExercises){ val = absTotalExercises}
+        if(val < armsTotalExercises){ val = armsTotalExercises}
+        if(val < legsTotalExercises){ val = legsTotalExercises}
+        if(val < backTotalExercises){ val = backTotalExercises}
+        highest = val
+    }
+
+
+    function generateWorkout(){
+        console.log('generator started running')
+        let tempExercises = []
+        let tempActiveDurs = []
+        let tempRestDurs = []
+        let i = 0
+        
+        for(i; i<totalExercises;i++){
+            if(armsChecked && i < armsTotalExercises) 
+            {
+                tempExercises = [...tempExercises, "Push Up"]
+                tempActiveDurs = [...tempActiveDurs, activeSliderValue * armsModifier]
+                tempRestDurs = [...tempRestDurs, restSliderValue]
+            }
+            if(legsChecked && i < legsTotalExercises) 
+            {
+                tempExercises = [...tempExercises, "Leg Extension"] 
+                tempActiveDurs = [...tempActiveDurs, activeSliderValue * legsModifier]         
+                tempRestDurs = [...tempRestDurs, restSliderValue]         
+            }
+            if(absChecked && i < absTotalExercises) 
+            {
+                tempExercises = [...tempExercises, "Russian Twist"]
+                tempActiveDurs = [...tempActiveDurs, activeSliderValue * legsModifier]
+                tempRestDurs = [...tempRestDurs, restSliderValue]
+            }
+            if(chestChecked && i < chestTotalExercises) 
+            {
+                tempExercises = [...tempExercises, "Wide Push Up"]
+                tempActiveDurs = [...tempActiveDurs, activeSliderValue * legsModifier]
+                tempRestDurs = [...tempRestDurs, restSliderValue]
+            }
+            if(backChecked && i < backTotalExercises) 
+            {
+                tempExercises = [...tempExercises, "Dead Lift"]
+                tempActiveDurs = [...tempActiveDurs, activeSliderValue * legsModifier]
+                tempRestDurs = [...tempRestDurs, restSliderValue]
+            }
+        }
+        tempRestDurs[tempRestDurs.length - 1] = parseInt(finalRestSliderValue)
+        console.log(tempExercises)
+        console.log(tempActiveDurs)
+        console.log(tempRestDurs)
+    }
+
+
 
 
     return (
@@ -62,7 +119,7 @@ export default function WorkoutGenerator(props) {
                             <button onClick={e => handleTab(2)}>Duration Ranges</button>
                             <button onClick={e => handleTab(3)}>Total Exercises</button>
                             <button onClick={e => handleTab(4)}> Workout Balance</button>
-                            <button > Create </button>
+                            <button onClick={e => generateWorkout()}> Create </button>
                             </div>
                             <div className="content">
                                 {
@@ -78,7 +135,8 @@ export default function WorkoutGenerator(props) {
                                     genBool2 ? 
                                     <DurationRanges  
                                         activeSliderValue = {activeSliderValue} setActiveSliderValue = {setActiveSliderValue}
-                                        restSliderValue = {restSliderValue} setRestSliderValue = {setRestSliderValue}/> :
+                                        restSliderValue = {restSliderValue} setRestSliderValue = {setRestSliderValue}
+                                        finalRestSliderValue = {finalRestSliderValue} setFinalRestSliderValue = {setFinalRestSliderValue}/> :
                                     genBool3 ? 
                                     <TotalExercises
                                         totalExercises = {totalExercises} setTotalExercises = {setTotalExercises}

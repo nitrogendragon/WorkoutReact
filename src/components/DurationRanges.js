@@ -11,6 +11,9 @@ export default function DurationRanges(props) {
         else if(e.target.id === 'restSliderValue'){
             props.setRestSliderValue(e.target.value)
         }
+        else if(e.target.id === 'finalRestSliderValue'){
+            props.setFinalRestSliderValue(e.target.value)
+        }
     }
 
 
@@ -34,6 +37,17 @@ export default function DurationRanges(props) {
                 type="range" 
                 min="1" max="120" 
                 value={props.restSliderValue} 
+                onChange={e =>handleChange(e)}
+                step="1"
+            />
+        </div>
+        <p>End of Set Rest Period Time: {props.finalRestSliderValue} Seconds</p>
+        <div className = "slider">
+            <input 
+                id="finalRestSliderValue" 
+                type="range" 
+                min="1" max="1200" 
+                value={props.finalRestSliderValue} 
                 onChange={e =>handleChange(e)}
                 step="1"
             />
