@@ -19,14 +19,24 @@ export default function WorkoutGenerator(props) {
     const [restSliderValue, setRestSliderValue] = useState(1)
     const [totalExercises, setTotalExercises] = useState(1)
     const GeneratorData = require('../../src/generator-data.json')
-    const bool1 = false
-    const bool2 = false
-    const bool3 = true
-    const bool4 = false
+    const [genBool1, setGenBool1] = useState(true)
+    const [genBool2, setGenBool2] = useState(false)
+    const [genBool3, setGenBool3] = useState(false)
+    const [genBool4, setGenBool4] = useState(false)
 
     function updateShowGenerator(){
         setShowWorkoutGenerator(() =>!showWorkoutGenerator)
     }
+
+
+    function handleTab(i){
+        i=== 1 ? setGenBool1(true) : setGenBool1(false)
+        i=== 2 ? setGenBool2(true) : setGenBool2(false)
+        i=== 3 ? setGenBool3(true) : setGenBool3(false)
+        i=== 4 ? setGenBool4(true) : setGenBool4(false)
+
+    }
+
 
 
 
@@ -38,15 +48,15 @@ export default function WorkoutGenerator(props) {
                     <div className="absolute-container">
                         <div className="inner-container">
                             <div className = "generator-nav">
-                            <button>Types of exercises</button>
-                            <button>Duration Ranges</button>
-                            <button>Total Exercises</button>
-                            <button> Workout Balance</button>
-                            <button> Create </button>
+                            <button onClick={e => handleTab(1)}>Types of exercises</button>
+                            <button onClick={e => handleTab(2)}>Duration Ranges</button>
+                            <button onClick={e => handleTab(3)}>Total Exercises</button>
+                            <button onClick={e => handleTab(4)}> Workout Balance</button>
+                            <button > Create </button>
                             </div>
                             <div className="content">
                                 {
-                                    bool1 ? 
+                                    genBool1 ? 
                                     <ExerciseTypes 
                                         chestChecked = {chestChecked} setChestChecked = {setChestChecked} 
                                         armsChecked = {armsChecked} setArmsChecked = {setArmsChecked}
@@ -55,11 +65,11 @@ export default function WorkoutGenerator(props) {
                                         backChecked = {backChecked} setBackChecked = {setBackChecked} 
                                     />
                                     :
-                                    bool2 ? 
+                                    genBool2 ? 
                                     <DurationRanges  
                                         activeSliderValue = {activeSliderValue} setActiveSliderValue = {setActiveSliderValue}
                                         restSliderValue = {restSliderValue} setRestSliderValue = {setRestSliderValue}/> :
-                                    bool3 ? 
+                                    genBool3 ? 
                                     <TotalExercises
                                         totalExercises = {totalExercises} setTotalExercises = {setTotalExercises}
                                         chestChecked = {chestChecked} chestTotalExercises = {chestTotalExercises} setChestTotalExercises = {setChestTotalExercises}
@@ -70,7 +80,7 @@ export default function WorkoutGenerator(props) {
 
                                     />
                                     :
-                                    bool4 ? <p>bool2</p> :
+                                    genBool4 ? <p>bool2</p> :
                                     <p>Click an option to begin modifying your generated workout</p>
                                 }
                             </div>
