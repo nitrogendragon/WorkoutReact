@@ -5,27 +5,56 @@
                 "bench press",
                 "fly",
                 "dip",
-                "push up"
+                "push up",
+                "dumbbell squeeze press",
+                "incline barbell press",
+                "incline dumbbell bench press",
+                "close-grip barbell bench press",
+                "decline press up",
+                "decline barbell bench press",
+                "staggered press-up",
+                "chest dips",
+                "clap press-up"
             ]
         }   
     ],
     "arms":[
         {
             "exercises": [
-                "curls",
+                "bicep curls",
                 "push up",
                 "push down",
-                "skull crusher"
+                "skull crusher",
+                "upright row",
+                "chicken wings",
+                "scarecrow extensions",
+                "side curls",
+                "front extensions",
+                "back row",
+                "in and out extensions",
+                "side extensions",
+                "pull ups",
+                "planche",
+                "v push up"
             ]
         }   
     ],
     "legs":[
         {
             "exercises": [
-                "extensions",
+                "leg extensions",
                 "dead lift",
                 "squats",
-                "jumping lunges"
+                "jumping lunges",
+                "reverse leg extensions",
+                "burpees",
+                "step ups",
+                "box jumps",
+                "split squat",
+                "sumo squat",
+                "hip thrust",
+                "single leg dead lift",
+                "goblet squat"
             ]
         }   
     ],
@@ -35,17 +64,53 @@
                 "extensions",
                 "dead lift",
                 "squats",
-                "jumping lunges"
+                "jumping lunges",
+                "bent over row",
+                "plank",
+                "side plank",
+                "renegade row",
+                "dumbbell single arm row",
+                "chest supported dumbbell row",
+                "inverted row",
+                "bent over dumbbell alternating row",
+                "seated cable row with pause",
+                "kettlebell swings",
+                "front squat",
+                "swiss ball leg curl",
+                "towel cable row",
+                "burpees",
+                "supermans"
             ]
         }   
     ],
     "abs":[
         {
             "exercises": [
-                "extensions",
+                "back extensions",
                 "dead lift",
                 "squats",
-                "jumping lunges"
+                "jumping lunges",
+                "back extensions",
+                "side plank dips",
+                "side plank reach trhough",
+                "side to side crunch",
+                "lying windshield wipers",
+                "alternating toe reach",
+                "walking plank",
+                "hip thrust plank",
+                "up down plank",
+                "side plank dips",
+                "v ups",
+                "side plank",
+                "plank",
+                "v sit",
+                "leg raises",
+                "crunches",
+                "raised leg bicycle crunches",
+                "bicycle crunches",
+                "plank with hips",
+                "mountain climbers",
+                "spider man"
             ]
         }   
     ]
