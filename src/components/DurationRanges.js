@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import '../styles/workoutGenerator.css'
+import meme from '../../src/Images/9000meme.jfif'
 export default function DurationRanges(props) {
 
 
@@ -24,7 +25,7 @@ export default function DurationRanges(props) {
             <input 
                 id="activeSliderValue" 
                 type="range" 
-                min="10" max="1000" 
+                min="10" max="9001" 
                 value={props.activeSliderValue} 
                 onChange={e =>handleChange(e)}
                 step="1"
@@ -41,6 +42,14 @@ export default function DurationRanges(props) {
                 step="1"
             />
         </div>
+        <div>
+                {props.activeSliderValue > 9000 ? 
+                    
+                    <img src={meme} alt=''></img>
+                    :
+                    <></>
+                }
+            </div>
         </div>
     )
 }

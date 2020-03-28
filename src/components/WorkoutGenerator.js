@@ -2,28 +2,32 @@ import React,{useState, useEffect} from 'react'
 import '../styles/workoutGenerator.css'
 import ExerciseTypes from './ExerciseTypes'
 import DurationRanges from './DurationRanges'
+import TotalExercises from './TotalExercises'
 export default function WorkoutGenerator(props) {
     const [showWorkoutGenerator, setShowWorkoutGenerator] = useState(false)
-    const [chestChecked, setChestChecked] = useState(false)
-    const [armsChecked, setArmsChecked] = useState(false)
-    const [legsChecked, setLegsChecked] = useState(false)
-    const [backChecked, setBackChecked] = useState(false)
-    const [absChecked, setAbsChecked] = useState(false)
     const [activeSliderValue, setActiveSliderValue] = useState(15)
+    const [chestChecked, setChestChecked] = useState(true)
+    const [armsChecked, setArmsChecked] = useState(true)
+    const [legsChecked, setLegsChecked] = useState(true)
+    const [backChecked, setBackChecked] = useState(true)
+    const [absChecked, setAbsChecked] = useState(true)
+    const [chestTotalExercises, setChestTotalExercises] = useState(1)
+    const [armsTotalExercises, setArmsTotalExercises] = useState(1)
+    const [legsTotalExercises, setLegsTotalExercises] = useState(1)
+    const [backTotalExercises, setBackTotalExercises] = useState(1)
+    const [absTotalExercises, setAbsTotalExercises] = useState(1)
     const [restSliderValue, setRestSliderValue] = useState(1)
+    const [totalExercises, setTotalExercises] = useState(1)
     const GeneratorData = require('../../src/generator-data.json')
     const bool1 = false
-    const bool2 = true
-    const bool3 = false
+    const bool2 = false
+    const bool3 = true
     const bool4 = false
-    const bool5 = false
+
     function updateShowGenerator(){
         setShowWorkoutGenerator(() =>!showWorkoutGenerator)
     }
 
-    useEffect(()=>{
-        console.log(showWorkoutGenerator)
-    },[showWorkoutGenerator])
 
 
     return (
@@ -55,8 +59,18 @@ export default function WorkoutGenerator(props) {
                                     <DurationRanges  
                                         activeSliderValue = {activeSliderValue} setActiveSliderValue = {setActiveSliderValue}
                                         restSliderValue = {restSliderValue} setRestSliderValue = {setRestSliderValue}/> :
-                                    bool2 ? <p>bool2</p> :
-                                    bool2 ? <p>bool2</p> :
+                                    bool3 ? 
+                                    <TotalExercises
+                                        totalExercises = {totalExercises} setTotalExercises = {setTotalExercises}
+                                        chestChecked = {chestChecked} chestTotalExercises = {chestTotalExercises} setChestTotalExercises = {setChestTotalExercises}
+                                        armsChecked = {armsChecked} armsTotalExercises = {armsTotalExercises} setArmsTotalExercises = {setArmsTotalExercises}
+                                        legsChecked = {legsChecked} legsTotalExercises = {legsTotalExercises} setLegsTotalExercises = {setLegsTotalExercises}
+                                        absChecked = {absChecked} absTotalExercises = {absTotalExercises} setAbsTotalExercises = {setAbsTotalExercises}
+                                        backChecked = {backChecked} backTotalExercises = {backTotalExercises} setBackTotalExercises = {setBackTotalExercises}
+
+                                    />
+                                    :
+                                    bool4 ? <p>bool2</p> :
                                     <p>Click an option to begin modifying your generated workout</p>
                                 }
                             </div>

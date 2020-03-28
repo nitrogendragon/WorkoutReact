@@ -44,7 +44,6 @@ export default function CreateWorkout(props) {
     function handleKeyDown(e, val){
         if(e.key === "Enter" && val === "add"){
             handleUpdateWorkout(val)
-            
         }
     }
 
