@@ -45,7 +45,6 @@ export default function WorkoutGenerator(props) {
         i=== 2 ? setGenBool2(true) : setGenBool2(false)
         i=== 3 ? setGenBool3(true) : setGenBool3(false)
         i=== 4 ? setGenBool4(true) : setGenBool4(false)
-
     }
 
 
@@ -99,9 +98,10 @@ export default function WorkoutGenerator(props) {
             }
         }
         tempRestDurs[tempRestDurs.length - 1] = parseInt(finalRestSliderValue)
-        console.log(tempExercises)
-        console.log(tempActiveDurs)
-        console.log(tempRestDurs)
+
+        props.setActivePeriods(()=> tempActiveDurs)
+        props.setRestPeriods(()=> tempRestDurs)
+        props.setExerciseList(()=> tempExercises)
     }
 
 
