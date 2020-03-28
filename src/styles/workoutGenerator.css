@@ -135,6 +135,7 @@
   .flex-container p{
       color:white;
       font-size:18px;
+      min-width:100px;
   }
 
   .flex-container input{

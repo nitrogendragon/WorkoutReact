@@ -3,6 +3,7 @@ import '../styles/workoutGenerator.css'
 import ExerciseTypes from './ExerciseTypes'
 import DurationRanges from './DurationRanges'
 import TotalExercises from './TotalExercises'
+import WorkoutBalance from './WorkoutBalance'
 export default function WorkoutGenerator(props) {
     const [showWorkoutGenerator, setShowWorkoutGenerator] = useState(false)
     const [activeSliderValue, setActiveSliderValue] = useState(15)
@@ -16,6 +17,11 @@ export default function WorkoutGenerator(props) {
     const [legsTotalExercises, setLegsTotalExercises] = useState(1)
     const [backTotalExercises, setBackTotalExercises] = useState(1)
     const [absTotalExercises, setAbsTotalExercises] = useState(1)
+    const [chestModifier, setChestModifier] = useState(1)
+    const [armsModifier, setArmsModifier] = useState(1)
+    const [legsModifier, setLegsModifier] = useState(1)
+    const [backModifier, setBackModifier] = useState(1)
+    const [absModifier, setAbsModifier] = useState(1)
     const [restSliderValue, setRestSliderValue] = useState(1)
     const [totalExercises, setTotalExercises] = useState(1)
     const GeneratorData = require('../../src/generator-data.json')
@@ -23,6 +29,10 @@ export default function WorkoutGenerator(props) {
     const [genBool2, setGenBool2] = useState(false)
     const [genBool3, setGenBool3] = useState(false)
     const [genBool4, setGenBool4] = useState(false)
+
+    useEffect(() => {
+        console.log(backModifier)
+    }, [backModifier])
 
     function updateShowGenerator(){
         setShowWorkoutGenerator(() =>!showWorkoutGenerator)
@@ -80,7 +90,15 @@ export default function WorkoutGenerator(props) {
 
                                     />
                                     :
-                                    genBool4 ? <p>bool2</p> :
+                                    genBool4 ? 
+                                    <WorkoutBalance
+                                        absChecked = {absChecked} absModifier = {absModifier} setAbsModifier = {setAbsModifier}
+                                        armsChecked = {armsChecked} armsModifier = {armsModifier} setArmsModifier = {setArmsModifier}
+                                        legsChecked = {legsChecked} legsModifier = {legsModifier} setLegsModifier = {setLegsModifier}
+                                        chestChecked = {chestChecked} chestModifier = {chestModifier} setChestModifier = {setChestModifier}
+                                        backChecked = {backChecked} backModifier = {backModifier} setBackModifier = {setBackModifier}
+                                    />
+                                    :
                                     <p>Click an option to begin modifying your generated workout</p>
                                 }
                             </div>

@@ -5,7 +5,6 @@ export default function DurationRanges(props) {
 
 
     function handleChange(e){
-        console.log("triggered")
         if(e.target.id === 'activeSliderValue'){
             props.setActiveSliderValue(e.target.value)
         }
@@ -14,9 +13,6 @@ export default function DurationRanges(props) {
         }
     }
 
-    useEffect(()=>{
-        console.log(props.activeSliderValue)
-    },[props.activeSliderValue])
 
     return (
         <div className = "flex-container">
