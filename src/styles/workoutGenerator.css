@@ -136,6 +136,12 @@
       color:white;
       font-size:18px;
   }
+
+  .flex-container input{
+      width:100%;
+  }
+
+
   
 
 

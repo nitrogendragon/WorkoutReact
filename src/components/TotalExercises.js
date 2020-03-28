@@ -5,11 +5,11 @@ export default function TotalExercises(props) {
     const [updateTotalExercises, setUpdateTotalExercises] = useState(false)
 
     function handleUpdateTotalExercises(){
-        console.log('updating our total exercises')
+
         let total = parseInt(props.chestTotalExercises) + parseInt(props.absTotalExercises) + 
             parseInt(props.backTotalExercises)
             + parseInt(props.armsTotalExercises) + parseInt(props.legsTotalExercises)
-            console.log('the total is: ' + total)
+            // console.log('the total is: ' + total)
         if(total >= 0){
             props.setTotalExercises(()=> total)
         }
@@ -40,7 +40,7 @@ export default function TotalExercises(props) {
 
 
     return (
-        <div flex-container>
+        <div className = 'flex-container'>
             <p>Total Exercises: {props.totalExercises}</p>
             {props.chestChecked ?
                 <TotalExercisesSetter 
