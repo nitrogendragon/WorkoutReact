@@ -1,4 +1,4 @@
-{
+[{
     "chest":[
         {
             "exercises": [
@@ -28,5 +28,25 @@
                 "jumping lunges"
             ]
         }   
+    ],
+    "back":[
+        {
+            "exercises": [
+                "extensions",
+                "dead lift",
+                "squats",
+                "jumping lunges"
+            ]
+        }   
+    ],
+    "abs":[
+        {
+            "exercises": [
+                "extensions",
+                "dead lift",
+                "squats",
+                "jumping lunges"
+            ]
+        }   
     ]
-}
+}]

@@ -4,6 +4,7 @@ import ExerciseTypes from './ExerciseTypes'
 import DurationRanges from './DurationRanges'
 import TotalExercises from './TotalExercises'
 import WorkoutBalance from './WorkoutBalance'
+import GeneratorData from '../../src/generator-data.json'
 export default function WorkoutGenerator(props) {
     const [showWorkoutGenerator, setShowWorkoutGenerator] = useState(false)
     const [chestChecked, setChestChecked] = useState(true)
@@ -29,7 +30,7 @@ export default function WorkoutGenerator(props) {
     const [genBool2, setGenBool2] = useState(false)
     const [genBool3, setGenBool3] = useState(false)
     const [genBool4, setGenBool4] = useState(false)
-    const GeneratorData = require('../../src/generator-data.json')
+    const genData = [...GeneratorData]
 
     useEffect(() => {
         console.log(backModifier)
@@ -48,52 +49,76 @@ export default function WorkoutGenerator(props) {
     }
 
 
-    function getHighest(highest){
-        let val = chestTotalExercises
-        if(val < absTotalExercises){ val = absTotalExercises}
-        if(val < armsTotalExercises){ val = armsTotalExercises}
-        if(val < legsTotalExercises){ val = legsTotalExercises}
-        if(val < backTotalExercises){ val = backTotalExercises}
-        highest = val
+    function getExerciseFromData(exerciseGroupDataIndex){
+        let tempExerciseHolder = ""
+        exerciseGroupDataIndex === 0 ?
+        tempExerciseHolder = (genData[0].chest[0].exercises[Math.floor(Math.random() * 
+            genData[0].chest[0].exercises.length)].toString())
+        :
+        exerciseGroupDataIndex === 1 ?
+        tempExerciseHolder = (genData[0].arms[0].exercises[Math.floor(Math.random() * 
+            genData[0].arms[0].exercises.length)].toString())
+        :
+        exerciseGroupDataIndex === 2 ?
+        tempExerciseHolder = (genData[0].legs[0].exercises[Math.floor(Math.random() * 
+            genData[0].legs[0].exercises.length)].toString())
+        :
+        exerciseGroupDataIndex === 3 ?
+        tempExerciseHolder = (genData[0].back[0].exercises[Math.floor(Math.random() * 
+            genData[0].back[0].exercises.length)].toString())
+        :
+        exerciseGroupDataIndex === 4 ?
+        tempExerciseHolder = (genData[0].abs[0].exercises[Math.floor(Math.random() * 
+            genData[0].abs[0].exercises.length)].toString())
+        :
+        console.log('Something probably just went wrong?')
+        return tempExerciseHolder
     }
 
 
     function generateWorkout(){
         console.log('generator started running')
         let tempExercises = []
+        let tempExercise = ""
         let tempActiveDurs = []
         let tempRestDurs = []
         let i = 0
         
         for(i; i<totalExercises;i++){
+            if(chestChecked && i < chestTotalExercises) 
+            {
+                tempExercise = getExerciseFromData(0)
+                
+                tempExercises = [...tempExercises, tempExercise]
+                tempActiveDurs = [...tempActiveDurs, activeSliderValue * chestModifier]
+                tempRestDurs = [...tempRestDurs, restSliderValue]
+            }
             if(armsChecked && i < armsTotalExercises) 
             {
-                tempExercises = [...tempExercises, "Push Up"]
+                tempExercise = getExerciseFromData(1)
+                tempExercises = [...tempExercises, tempExercise]
                 tempActiveDurs = [...tempActiveDurs, activeSliderValue * armsModifier]
                 tempRestDurs = [...tempRestDurs, restSliderValue]
             }
             if(legsChecked && i < legsTotalExercises) 
             {
-                tempExercises = [...tempExercises, "Leg Extension"] 
+                tempExercise = getExerciseFromData(2)
+                tempExercises = [...tempExercises, tempExercise] 
                 tempActiveDurs = [...tempActiveDurs, activeSliderValue * legsModifier]         
                 tempRestDurs = [...tempRestDurs, restSliderValue]         
             }
-            if(absChecked && i < absTotalExercises) 
-            {
-                tempExercises = [...tempExercises, "Russian Twist"]
-                tempActiveDurs = [...tempActiveDurs, activeSliderValue * legsModifier]
-                tempRestDurs = [...tempRestDurs, restSliderValue]
-            }
-            if(chestChecked && i < chestTotalExercises) 
-            {
-                tempExercises = [...tempExercises, "Wide Push Up"]
-                tempActiveDurs = [...tempActiveDurs, activeSliderValue * legsModifier]
-                tempRestDurs = [...tempRestDurs, restSliderValue]
-            }
             if(backChecked && i < backTotalExercises) 
             {
-                tempExercises = [...tempExercises, "Dead Lift"]
-                tempActiveDurs = [...tempActiveDurs, activeSliderValue * legsModifier]
+                tempExercise = getExerciseFromData(3)
+                tempExercises = [...tempExercises, tempExercise]
+                tempActiveDurs = [...tempActiveDurs, activeSliderValue * backModifier]
+                tempRestDurs = [...tempRestDurs, restSliderValue]
+            }
+            if(absChecked && i < absTotalExercises) 
+            {
+                tempExercise = getExerciseFromData(4)
+                tempExercises = [...tempExercises, tempExercise]
+                tempActiveDurs = [...tempActiveDurs, activeSliderValue * absModifier]
                 tempRestDurs = [...tempRestDurs, restSliderValue]
             }
         }
@@ -102,6 +127,7 @@ export default function WorkoutGenerator(props) {
         props.setActivePeriods(()=> tempActiveDurs)
         props.setRestPeriods(()=> tempRestDurs)
         props.setExerciseList(()=> tempExercises)
+        updateShowGenerator()
     }
 
 
