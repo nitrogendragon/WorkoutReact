@@ -264,7 +264,7 @@ export default function Stats(props) {
                 <button onClick = {handleClearUserStats}>Clear Stats</button>
                 <button onClick = {e=> sortStats(true)}>Sort L-H</button>
                 <button onClick = {e => sortStats(false)}>Sort H-L</button>
-                <button onClick = {e=> showYesterdaysStats()}>Hide/Show Yesterdays Stats</button>
+                <button onClick = {e=> showYesterdaysStats()}>{!displayPrev ? "Show Previous":"Show Today" }</button>
                 <button onClick = {e=> showBothStats()}>Compare Stats</button>
                 <button onClick = {e=> showHigherIndexStats()}>Next</button>
                 <button onClick = {e=> showLowerIndexStats()}>Previous</button>

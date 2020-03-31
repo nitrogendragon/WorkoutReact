@@ -46,6 +46,12 @@ body{
     column-gap: 4.5px;
 }
 
+.nav-bar, .bar-2{
+    grid-template-columns: repeat(2, auto);
+    justify-content: center;
+    align-items:center;
+}
+
 .nav-bar button, .nav-bar button:hover{
     z-index:0;
     width: 100%;

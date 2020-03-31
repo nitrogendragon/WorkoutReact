@@ -210,13 +210,9 @@ export default function App(props) {
     else if(!showCreateWorkout){
         return (
             <div className="workout-creation-body">>
-                <div className = "nav-bar">
+                <div className = "nav-bar bar-2">
                     <ShowStatsButton setShowStats = {setShowStats} showStats = {showStats}/>
-                    <WorkoutGenerator 
-                        activePeriods = {activePeriods} setActivePeriods = {setActivePeriods}
-                        restPeriods = {restPeriods} setRestPeriods = {setRestPeriods}
-                        exerciseList = {exerciseList} setExerciseList = {setExerciseList}
-                    />
+                    
                     <Logout 
                         setActiveUserId = {setActiveUserId} 
                         setLoggedIn = {setLoggedIn}
