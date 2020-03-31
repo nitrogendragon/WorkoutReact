@@ -212,6 +212,11 @@ export default function App(props) {
             <div className="workout-creation-body">>
                 <div className = "nav-bar">
                     <ShowStatsButton setShowStats = {setShowStats} showStats = {showStats}/>
+                    <WorkoutGenerator 
+                        activePeriods = {activePeriods} setActivePeriods = {setActivePeriods}
+                        restPeriods = {restPeriods} setRestPeriods = {setRestPeriods}
+                        exerciseList = {exerciseList} setExerciseList = {setExerciseList}
+                    />
                     <Logout 
                         setActiveUserId = {setActiveUserId} 
                         setLoggedIn = {setLoggedIn}
@@ -253,7 +258,7 @@ export default function App(props) {
                     <p className="directions">{timerRunning ? isActiveTimer ? "PUSH IT!!!" : "REST" : "Get Ready"}</p>
                     <TimerComponent timeRemaining = {timeRemaining} timerRunning = {timerRunning}/>
                     <div>
-                        <p className = "p-bold">The current Exercise number is: {currentExerciseIndex}</p>
+                        <p className = "p-bold">The Current Exercise Number is: {currentExerciseIndex + 1} / {exerciseList.length}</p>
                         <p className = "p-bold">Set {currentSet}</p>
                         <p className = "p-bold">Sets Remaining {totalSets - currentSet}</p>
                     </div>

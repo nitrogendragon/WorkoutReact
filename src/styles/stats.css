@@ -100,3 +100,13 @@
     border-radius:0px;
     
 }
+
+.dark-background{
+    position:absolute;
+    display: flex;
+    background-color: rgba(1,1,1,.8);
+    width:100%;
+    height:150%;
+    left: 0;
+    top:0;
+}

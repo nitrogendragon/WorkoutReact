@@ -10,7 +10,7 @@ export default function ExerciseTypes(props) {
 
 
     return (
-        <div className = "grid-2">
+        <div className = "grid-5">
             <CheckBox isChecked = {props.chestChecked} setChecked = {props.setChestChecked} labelText = {'Chest'}/>
             <CheckBox isChecked = {props.armsChecked} setChecked = {props.setArmsChecked} labelText = {'Arms'}/>
             <CheckBox isChecked = {props.legsChecked} setChecked = {props.setLegsChecked} labelText = {'Legs'}/>

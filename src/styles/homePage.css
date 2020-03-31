@@ -5,7 +5,7 @@
     text-align: center;
     flex-direction: column;
     background-color: ghostwhite;
-    background-image: radial-gradient( rgb(35, 59, 35),darkorange,darkred,darkorange, rgb(35, 59, 35),whitesmoke,rgb(35, 59, 35));
+    background-image: linear-gradient( rgb(35, 59, 35),darkgreen,green,lightgreen);
     position: absolute;
     top:0px;
     left:0px;

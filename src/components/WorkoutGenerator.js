@@ -186,7 +186,7 @@ export default function WorkoutGenerator(props) {
                                     <p>Click an option to begin modifying your generated workout</p>
                                 }
                             </div>
-                                <button onClick={e => updateShowGenerator()}>Back</button>
+                                <button style = {{width:"50%", marginTop:'10px'}} onClick={e => updateShowGenerator()}>Back</button>
                         </div>
                     </div> 
                 

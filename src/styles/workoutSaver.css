@@ -16,10 +16,15 @@
     margin-top:100px;
     display: grid;
     
-    grid-template-columns: repeat(5,250px);
+    grid-template-columns: repeat(5,200px);
     width: 100%;
     justify-content:center;
     align-items:center;
+}
+
+.save-load-inner button{
+    min-width:180px;
+    min-height:50px;
 }
 
 @media(max-width:800px){
@@ -27,6 +32,10 @@
         width:20%;
     }
     .workout-container p{width:150px;}
+    .save-load-inner button{
+        min-height:80px;
+        margin-top:60px;
+    }
 }
 
 .workout-name-input{

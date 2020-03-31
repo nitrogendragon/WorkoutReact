@@ -259,6 +259,7 @@ export default function Stats(props) {
 
     return (
         <div style={{display: props.showStats ? 'grid' : 'none'}}>
+            <div className = "dark-background"></div>
             <div className = "stats-chart-buttons-container">
                 <button onClick = {handleClearUserStats}>Clear Stats</button>
                 <button onClick = {e=> sortStats(true)}>Sort L-H</button>

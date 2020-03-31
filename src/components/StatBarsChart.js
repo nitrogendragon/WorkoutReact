@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import StatBar from './StatBar'
 import '../styles/stats.css'
-
 export default function StatBarsChart(props) {
     const modifier = 1
     const [theBars, setTheBars] = useState([])
@@ -54,6 +53,7 @@ export default function StatBarsChart(props) {
 
 
     return (
+            
             <div className={!props.isPrev || props.isPrev && !props.displayBoth ? "divider" : "divider divider-clear"}>
                 <div className="totals b1">100s</div>
                 <div className="totals b2">200s</div>
