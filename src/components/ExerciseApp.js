@@ -7,6 +7,7 @@ import Logout from './Logout'
 import Stats from './Stats'
 import ShowStatsButton from './ShowStatsButton'
 import WorkoutGenerator from './WorkoutGenerator'
+import TextFileReader from './TextFileReader' 
 import '../styles/exercises.css'
 export default function App(props) {
     const[timeRemaining, setTimeRemaining] = useState()
@@ -210,7 +211,7 @@ export default function App(props) {
     else if(!showCreateWorkout){
         return (
             <div className="workout-creation-body">>
-                <div className = "nav-bar bar-2">
+                <div className = "nav-bar-bar-2">
                     <ShowStatsButton setShowStats = {setShowStats} showStats = {showStats}/>
                     
                     <Logout 
@@ -287,6 +288,11 @@ export default function App(props) {
                         CoachCancelPrevAndSpeak = {CoachCancelPrevAndSpeak} 
                     />
                 </div>
+                <TextFileReader
+                    setActivePeriods = {setActivePeriods}
+                    setRestPeriods = {setRestPeriods}
+                    setExerciseList = {setExerciseList}
+                />
                 <Stats 
                     exerciseList = {exerciseList}
                     activePeriods = {activePeriods}

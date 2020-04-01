@@ -46,10 +46,14 @@ body{
     column-gap: 4.5px;
 }
 
-.nav-bar, .bar-2{
+.nav-bar-bar-2{
+    display: grid;
+    margin: 0px;
     grid-template-columns: repeat(2, auto);
     justify-content: center;
     align-items:center;
+    z-index: 1;
+    padding:50px;
 }
 
 .nav-bar button, .nav-bar button:hover{
