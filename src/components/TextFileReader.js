@@ -1,8 +1,6 @@
 import React,{useState} from 'react'
 
 export default function TextFileReader(props) {
-    
-    const [json, setJson] = useState("");
     let fileInputRef = React.createRef();
 
     function insertIntoStrings(result){
@@ -15,8 +13,8 @@ export default function TextFileReader(props) {
         let tempString = ""
         console.log(result.length)
         for(i; i < result.length; i++){
-            if(result[i] !== ","){
-                console.log("not a comma")
+            if(result[i] !== "," && result[i] !== " "){
+                console.log("not a comma or a space")
                 tempString = tempString + result[i]
             }
             else{
@@ -39,14 +37,11 @@ export default function TextFileReader(props) {
         props.setRestPeriods(tempRestPeriods)
         props.setActivePeriods(tempActivePeriods)
         props.setExerciseList(tempExercises)
-        console.log("tempExercises" + tempExercises)
-        console.log("tempRestPeriods" + tempRestPeriods)
-        console.log("tempActivePeriods" + tempActivePeriods)
+        
     }
   
     return (
       <div className="App">
-        <p>{json}</p>
         <input
           type="file"
           ref={fileInputRef}
