@@ -5,6 +5,6 @@ export default function ShowStatsButton(props) {
         props.setShowStats(!props.showStats)
     }
     return (
-        <button onClick={handleShowStats}>{props.showStats? 'Return' : 'Statistics'}</button>
+        <button style={{zIndex:"1"}} onClick={handleShowStats}>{props.showStats? 'Return' : 'Statistics'}</button>
     )
 }

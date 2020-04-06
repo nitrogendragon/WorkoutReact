@@ -243,7 +243,7 @@ export default function App(props) {
                     <button onClick={startRoutine}>Start</button>
                     <button onClick={createWorkout}>Create Workout </button>
                 </div>
-                {/* <div className = "exercise-app-container"> */}
+                
                     <Exercises 
                         exercisesCompleted = {currentExerciseIndex}
                         exercises = {exercises}
